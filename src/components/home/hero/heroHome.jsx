@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const HeroHome = () => {
   return (
-    <div className="relative bg-blue-500 text-white py-16 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6">
+    <div className="relative bg-[#4a9bd3] text-white py-16 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-28 md:-ml-16">
