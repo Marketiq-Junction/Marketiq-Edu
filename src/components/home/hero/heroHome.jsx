@@ -3,54 +3,55 @@ import Image from 'next/image';
 
 const HeroHome = () => {
   return (
-    <div className="relative bg-blue-500 text-white py-16 md:py-24 px-6 flex justify-center items-center mt-32 mb-4">
+    <div className="relative bg-blue-500 text-white py-16 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
-        <div className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold">
+        <div className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-28 md:-ml-16">
+          <h1 className="text-2xl md:text-3xl font-semibold text-black">
             Education.MarketJunction
           </h1>
-          <h2 className="text-2xl md:text-3xl font-bold mt-2">
-            The Smart Stop for Digital Growth
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold mt-2">
+            The Smart Stop <br className="hidden md:block" /> for Digital Growth
           </h2>
-          <p className="mt-4 text-lg">
+          <p className="mt-4 md:mt-8 text-lg md:text-xl">
             Empowering the Future of Tech Talent
           </p>
-          <div className="flex justify-center md:justify-start mt-8 space-x-4">
-            <button className="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition">
+          <div className="flex justify-center md:justify-start mt-6 md:mt-8 space-x-4">
+            {/* Get Quote Now Button */}
+            <button className="bg-[#50c3c6] text-white border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20">
               Get Quote Now
             </button>
-            <button className="border border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-blue-500 transition">
+            {/* Learn More Button */}
+            <button className="text-black  border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20">
               Learn More
             </button>
           </div>
         </div>
 
         {/* Right Section */}
-        <div className="flex-1 relative">
-          <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
+        <div className="flex-1 relative z-10 mt-8 md:mt-0">
+          <div className="relative w-full h-48 md:h-64 lg:h-80 rounded-lg overflow-hidden">
             <Image
-              src="/path/to/your/image.jpg" // Replace with your image path
+              src="/" // Replace with your image path
               alt="Hero Image"
               layout="fill"
               objectFit="cover"
+              className="z-0"
             />
           </div>
-          <div className="absolute top-4 right-4 bg-pink-500 text-white px-4 py-2 rounded-full">
-            Singles <span className="font-bold">18%</span>
-          </div>
-          <div className="absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-full shadow-lg">
-            <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
-              <span className="text-2xl font-bold text-blue-500">73%</span>
+
+          <div className="absolute bottom-[-20px] md:bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-white p-3 md:p-4 rounded-full shadow-lg z-10">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gray-200 flex items-center justify-center">
+              <span className="text-xl md:text-2xl font-bold text-blue-500">73%</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Wave Background */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <div className="absolute -bottom-6 left-0 w-full overflow-hidden z-0">
         <svg
-          className="w-screen h-36 md:h-80" // Use w-screen to make the wave full width
+          className="w-full h-32 md:h-48   lg:h-96"
           viewBox="0 0 1440 320"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
