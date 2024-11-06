@@ -17,7 +17,6 @@ module.exports = {
         roboto: ["Roboto", "sans-serif"],
         publicSans: ["Public Sans", "sans-serif"], // Add Public Sans here
       },
-
     },
   },
   plugins: [],
