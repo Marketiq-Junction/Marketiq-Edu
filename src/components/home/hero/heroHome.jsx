@@ -7,7 +7,7 @@ const HeroHome = () => {
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-28 md:-ml-16">
-          <h1 className="text-2xl md:text-3xl font-semibold text-black">
+          <h1 className="text-2xl md:text-3xl font-semibold  text-black">
             Education.MarketJunction
           </h1>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold mt-2">

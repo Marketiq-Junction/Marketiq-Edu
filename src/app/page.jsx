@@ -6,10 +6,10 @@ import Mission from '@/components/home/mission/mission'
 import Vision from '@/components/home/vision/vision'
 import Chooseus from '@/components/home/chooseus/Chooseus'
 import Courses from '@/components/home/courses/courses'
-import PayAfterPlacement from '@/components/payafterplacement/payafterplacement'
-import StudentExperience from '@/components/studentexperience/studentexperience'
-import Career from '@/components/career/career'
-import Join from '@/components/join/join'
+import PayAfterPlacement from '@/components/home/payafterplacement/payafterplacement'
+import StudentExperience from '@/components/home/studentexperience/studentexperience'
+import Career from '@/components/home/career/career'
+import Join from '@/components/home/join/join'
 
 const page = () => {
   return (
