@@ -9,7 +9,7 @@ import Courses from '@/components/home/courses/courses'
 import PayAfterPlacement from '@/components/home/payafterplacement/payafterplacement'
 import StudentExperience from '@/components/home/studentexperience/studentexperience'
 import Career from '@/components/home/career/career'
-import Join from '@/components/home/join/join'
+import Join from '@/components/join/join'
 
 const page = () => {
   return (

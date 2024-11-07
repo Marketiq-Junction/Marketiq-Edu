@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, Typography, Grid, Card, CardContent, CardMedia } from '@mui/material';
+import Image from 'next/image';
 
 const Courses = () => {
   // Sample course data
   const courseData = [
     {
       title: '6-Month Course',
-      image: '/path/to/your/image1.jpg',
+      image: '/logoo.png',
     },
     {
       title: '1-Year Course',
@@ -23,57 +23,38 @@ const Courses = () => {
   ];
 
   return (
-    <Box py={5} textAlign="center">
+    <div className="py-10 text-center">
       {/* Category Label as a Button-like Element */}
-      <Box
-        sx={{
-          display: 'inline-block',
-          backgroundColor: '#50c3c6',
-          color: '#fff',
-          fontWeight: 'bold',
-          padding: '8px 16px',
-          borderRadius: '20px',
-          mb: 2,
-          textTransform: 'uppercase',
-          fontSize: '0.875rem',
-        }}
-      >
-        COURSE CATEGORY
-      </Box>
+      <div className="inline-block bg-[#50c3c6] text-white font-bold py-2 px-4 rounded-full mb-4 uppercase text-sm">
+        Course Category
+      </div>
 
       {/* Heading */}
-      <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 4 }}>
-        Explore Our Courses
-      </Typography>
+      <h2 className="text-3xl font-bold mb-8">Explore Our Courses</h2>
 
       {/* Course Cards */}
-      <Grid container spacing={4} justifyContent="center">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-4 md:px-0">
         {courseData.map((course, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <Card
-              sx={{
-                borderRadius: '12px',
-                boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
-                transition: 'transform 0.3s ease',
-                '&:hover': { transform: 'translateY(-8px)' },
-              }}
-            >
-              <CardMedia
-                component="img"
-                image={course.image}
+          <div
+            key={index}
+            className="bg-white rounded-lg shadow-lg transform transition duration-300 hover:-translate-y-2"
+          >
+            <div className="relative w-full h-36 rounded-t-lg overflow-hidden">
+              <Image
+                src={course.image}
                 alt={course.title}
-                sx={{ borderTopLeftRadius: '12px', borderTopRightRadius: '12px' }}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-lg"
               />
-              <CardContent sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  {course.title}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+            </div>
+            <div className="p-4 text-center">
+              <h3 className="text-lg font-bold">{course.title}</h3>
+            </div>
+          </div>
         ))}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   );
 };
 
