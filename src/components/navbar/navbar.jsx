@@ -43,7 +43,11 @@ const Navbar = () => {
 
         {/* Menu Icon for Mobile */}
         <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
-          {isOpen ? <span className="text-3xl">✖</span> : <span className="text-3xl">☰</span>}
+          {isOpen ? (
+            <span className="text-3xl">✖</span>
+          ) : (
+            <span className="text-3xl">☰</span>
+          )}
         </div>
 
         {/* Menu Items */}
@@ -52,7 +56,7 @@ const Navbar = () => {
             isOpen ? "translate-x-0" : "translate-x-full"
           } md:static md:flex md:w-auto md:translate-x-0 md:shadow-none flex-col md:flex-row items-start md:items-center p-8 gap-8 md:p-0 z-40 overflow-auto`}
         >
-          {["home", "about-us", "courses", "contact-us"].map((page) => (
+          {["home", "about-us", "courses", "contact-us", "verify-certificate"].map((page) => (
             <li
               key={page}
               className={`p-4 text-lg font-semibold hover:text-blue-600 ${
@@ -65,6 +69,9 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+
+         
+         
 
           {/* Buttons for Mobile View */}
           <div className="flex md:hidden flex-col space-y-4 mt-4">
@@ -106,21 +113,6 @@ const Navbar = () => {
               Let&apos;s Talk <ChatIcon className="ml-2" />
             </div>
           </Link>
-
-          {/* Uncommented Buttons for clarity */}
-          {/* <Link href="/login">
-            <div className="bg-white text-black px-8 py-3 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer">
-              LOGIN
-            </div>
-          </Link>
-          <Link href="/join-us">
-            <div
-              className="text-white px-8 py-3 rounded-lg hover:bg-blue-700 cursor-pointer flex items-center justify-center"
-              style={{ backgroundColor: "#50c3c6" }}
-            >
-              JOIN US <ArrowForwardIcon />
-            </div>
-          </Link> */}
         </div>
       </div>
     </nav>
@@ -197,16 +189,14 @@ export default Navbar;
 //             </li>
 //           ))}
 
-          
 //           <div className="flex md:hidden flex-col space-y-4 mt-4">
-          
+
 //             <Link href="/login">
 //               <div className="bg-white text-black px-6 py-3 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer">
 //                 Login
 //               </div>
 //             </Link>
 
-            
 //             <Link href="/join-us">
 //               <div
 //                 className="text-white px-6 py-3 rounded-lg hover:bg-blue-700 cursor-pointer flex items-center justify-center"

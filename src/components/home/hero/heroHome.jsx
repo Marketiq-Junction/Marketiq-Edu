@@ -56,7 +56,7 @@ const HeroHome = () => {
       {/* Wave Background */}
       <div className="absolute -bottom-6 left-0 w-full overflow-hidden z-0">
         <svg
-          className="w-full h-24 md:h-48 lg:h-96"
+          className="w-full h-32 md:h-48 lg:h-96"
           viewBox="0 0 1440 320"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
