@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Card, CardContent, Grid, IconButton } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -8,11 +7,10 @@ import WorkIcon from "@mui/icons-material/Work";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const Chooseus = () => {
+const ChooseUs = () => {
   const [currentStartIndex, setCurrentStartIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
 
-  // Array of card data
   const cards = [
     {
       id: 1,
@@ -40,97 +38,76 @@ const Chooseus = () => {
     },
   ];
 
-  // Double cards to allow smooth, continuous scrolling
   const extendedCards = [...cards, ...cards];
 
-  // Update visibleCards based on screen size
   useEffect(() => {
     const handleResize = () => {
       setVisibleCards(window.innerWidth < 768 ? 1 : 3);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Handle "Next" button click
   const handleNext = () => {
     setCurrentStartIndex((prevIndex) => (prevIndex + 1) % cards.length);
   };
 
-  // Handle "Previous" button click
   const handlePrevious = () => {
     setCurrentStartIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
   };
 
-  // Display only the cards based on the current start index and visibleCards
   const currentCards = extendedCards.slice(
     currentStartIndex,
     currentStartIndex + visibleCards
   );
 
   return (
-    <Box className="p-4 md:p-8 bg-white md:ml-28 min-h-[400px]">
-      <Grid container spacing={2} alignItems="center">
+    <div className="p-6 md:p-10 bg-white md:ml-28 min-h-[400px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
         {/* Left Section with Heading */}
-        <Grid item xs={12} md={4}>
-          <Typography
-            variant="h4"
-            className="font-bold text-2xl font-montserrat md:text-4xl text-black mb-4 md:mb-8 text-center md:text-left ml-0 md:-ml-24"
-          >
+        <div className="col-span-1 text-center md:text-left">
+          <h2 className="text-2xl md:-ml-20 md:text-4xl font-bold font-montserrat text-black mb-4 md:mb-8">
             Why Choose Education.MarketJunction?
-          </Typography>
-        </Grid>
+          </h2>
+        </div>
 
         {/* Right Section with Cards */}
-        <Grid item xs={12} md={8}>
-          <Box className="flex overflow-hidden">
-            <Box className="flex transition-transform duration-500" style={{ width: "100%" }}>
-              {currentCards.map((card, index) => (
-                <Card
-                  key={`${card.id}-${index}`}
-                  className="text-white rounded-lg -ml-2 sm:mx-4 md:mx-2 flex-shrink-0 flex flex-col items-center justify-center w-full md:w-[calc(90%/3)] min-h-[300px] p-6 transition-colors hover:bg-[#50c3c6]"
-                  style={{
-                    backgroundColor: "#4a9bd3",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CardContent>
-                    {card.icon}
-                    <Typography variant="h6" className="font-semibold font-syne mt-4">
-                      {card.title}
-                    </Typography>
-                    <Typography variant="body2" className="mt-8  font-syne text-center">
-                      {card.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ))}
-            </Box>
-          </Box>
+        <div className="col-span-2 flex overflow-hidden">
+          <div className="flex transition-transform duration-500 w-full">
+            {currentCards.map((card, index) => (
+              <div
+                key={`${card.id}-${index}`}
+                className="text-white rounded-lg bg-[#4a9bd3] -ml-2 sm:mx-4 md:mx-2 flex-shrink-0 flex flex-col items-center justify-center w-full md:w-[calc(90%/3)] min-h-[300px] p-6 transform transition hover:scale-105 hover:bg-[#50c3c6]"
+              >
+                <div>{card.icon}</div>
+                <h3 className="text-xl font-semibold mt-4">{card.title}</h3>
+                <p className="text-center mt-4">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-          {/* Navigation Buttons */}
-          <Box className="flex justify-center mt-4 gap-8">
-            <IconButton
-              onClick={handlePrevious}
-              className="bg-[#4a9bd3] text-white rounded-full p-2 hover:bg-[#50c3c6]"
-              aria-label="Previous"
-            >
-              <ArrowBackIosIcon />
-            </IconButton>
-            <IconButton
-              onClick={handleNext}
-              className="bg-[#4a9bd3] text-white rounded-full p-2 hover:bg-[#50c3c6]"
-              aria-label="Next"
-            >
-              <ArrowForwardIosIcon />
-            </IconButton>
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+      {/* Navigation Buttons */}
+      <div className="flex justify-center mt-4 gap-8">
+        <button
+          onClick={handlePrevious}
+          className="bg-[#4a9bd3] text-white rounded-full p-3 hover:bg-[#50c3c6] transition-colors duration-300"
+          aria-label="Previous"
+        >
+          <ArrowBackIosIcon className="h-6 w-6" />
+        </button>
+        <button
+          onClick={handleNext}
+          className="bg-[#4a9bd3] text-white rounded-full p-3 hover:bg-[#50c3c6] transition-colors duration-300"
+          aria-label="Next"
+        >
+          <ArrowForwardIosIcon className="h-6 w-6" />
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default Chooseus;
+export default ChooseUs;
