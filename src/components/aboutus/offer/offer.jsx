@@ -1,105 +1,74 @@
 "use client";
 import React, { useState } from 'react';
-import { IconButton } from '@mui/material';
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import Image from 'next/image';
 
 const Offer = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
 
   const cards = [
     {
       id: 1,
-      title: "6-Month Certification",
-      description: "For those seeking a quick skill boost.",
-      extraInfo: "With a decade of experience in the ever-evolving landscape of digital marketing, James brings practical insights and hands-on strategies to her courses.",
-      image: "/"
+      title: "2-Month Course",
+      description: "An intensive course designed to quickly enhance your skills.",
+      extraInfo: "A fast-track program designed to introduce the fundamentals of web development, providing you with essential skills to get started in the industry. Perfect for those seeking rapid learning and immediate job entry, this program includes project-based learning and full placement support.",
+      image: "/2month.avif"
     },
     {
       id: 2,
-      title: "1-Year Diploma",
-      description: "For students aiming to develop a strong foundation.",
-      extraInfo: "Comprehensive course covering essential topics to build a robust skill set.",
-      image: "/path/to/image2.jpg"
-    },
-    {
-      id: 3,
-      title: "2-Year Advanced Diploma",
-      description: "For those who want to deepen their expertise.",
-      extraInfo: "Advanced topics and in-depth knowledge for career advancement.",
-      image: "/path/to/image3.jpg"
-    },
-    {
-      id: 4,
-      title: "3-Month Bootcamp",
-      description: "Quick learning for professionals.",
-      extraInfo: "Intensive bootcamp for fast-paced learning and immediate application.",
-      image: "/path/to/image4.jpg"
+      title: "4-Month Course",
+      description: "An in-depth course providing comprehensive knowledge and experience.",
+      extraInfo: "A comprehensive program that builds on foundational skills and covers intermediate-level web development concepts, ensuring you’re fully prepared to meet industry demands. This course combines extensive hands-on training with complete placement assistance for long-term career success.",
+      image: "/4month.avif"
     }
   ];
-
-  const handleNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % cards.length);
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
-  };
 
   const handleCardClick = (id) => {
     setSelectedCard(id === selectedCard ? null : id);
   };
 
   return (
-    <div className="flex flex-col items-center p-6">
-      <h2 className="text-4xl font-bold font-syne text-center mb-4">What We Offer</h2>
-      <p className="text-center text-xl mb-8 font-syne text-black">
-        At Education.MarketJunction, we offer flexible and career-oriented <br /> programs designed to cater to students with various career goals <br />and time commitments. Our offerings include:
+    <div className="flex flex-col items-center p-4 md:p-6 mt-8 md:mt-16">
+      <h2 className="text-3xl md:text-4xl font-bold font-syne text-center mb-4">What We Offer</h2>
+      <p className="text-center text-lg md:text-xl mb-8 font-syne text-black">
+        At Education.MarketJunction, we offer flexible and career-oriented <br className="hidden md:block" /> programs designed to cater to students with various career goals <br className="hidden md:block" />and time commitments.
       </p>
 
-      <div className="flex items-center">
-        <IconButton onClick={handlePrev}>
-          <ArrowBack />
-        </IconButton>
-
-        <div className="flex gap-4 overflow-hidden">
-          {cards.slice(activeIndex, activeIndex + 3).map((card) => (
-            <div
-              key={card.id}
-              className={`relative min-w-[280px] rounded-lg shadow-lg transform transition-all duration-300 bg-white flex ${selectedCard === card.id ? 'w-[600px]' : 'w-[300px]'}`}
-              onClick={() => handleCardClick(card.id)}
-            >
-              <div className="relative w-full h-40 md:h-full flex-shrink-0">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-lg md:rounded-l-lg"
-                />
-              </div>
-              <div className="p-4 flex flex-col justify-center w-full">
-                <h3 className="text-lg font-semibold text-gray-900">{card.title}</h3>
-                <p className="text-sm text-gray-700">{card.description}</p>
-              </div>
-              {selectedCard === card.id && (
-                <div className="p-4 bg-blue-50 flex flex-col justify-center w-full rounded-r-lg">
-                  <p className="text-gray-700">{card.extraInfo}</p>
-                </div>
-              )}
+      <div className="flex flex-col md:flex-row gap-4 justify-center">
+        {cards.map((card) => (
+          <div
+            key={card.id}
+            className={`relative rounded-lg shadow-lg transform transition-all duration-300 bg-white hover:bg-blue-50 flex flex-col ${
+              selectedCard === card.id ? 'md:w-[500px] w-full' : 'md:w-[300px] w-full'
+            }`}
+            onClick={() => handleCardClick(card.id)}
+            style={{ cursor: 'pointer' }}
+          >
+            {/* Image Section */}
+            <div className="relative w-full h-48 md:h-56">
+              <Image
+                src={card.image}
+                alt={card.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-lg"
+              />
             </div>
-          ))}
-        </div>
 
-        <IconButton onClick={handleNext}>
-          <ArrowForward />
-        </IconButton>
+            {/* Title and Description Section */}
+            <div className="p-4">
+              <h3 className="text-lg md:text-xl font-semibold font-syne text-gray-900">{card.title}</h3>
+              <p className="text-md md:text-lg text-gray-700 font-syne">{card.description}</p>
+            </div>
+
+            {/* Extra Info Section */}
+            {selectedCard === card.id && (
+              <div className="absolute inset-0 md:inset-auto md:top-0 md:right-0 bg-blue-50 p-4 h-full md:w-48 font-syne flex items-center rounded-lg md:rounded-r-lg transition-all">
+                <p className="text-gray-700 text-lg md:text-sm">{card.extraInfo}</p>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-
-      <button className="mt-8 px-4 py-2 bg-blue-600 text-white rounded-full">
-        View More
-      </button>
     </div>
   );
 };
