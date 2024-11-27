@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Vision = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center bg-[#50c3c6] p-6 md:p-8 mt-4 mb-4">
+    <div className="flex flex-col md:flex-row items-center bg-white p-6 md:p-8 mt-4 mb-4">
       {/* Left Section (Text) */}
       <div className="flex-1 md:pr-8 text-center md:text-left md:ml-12 mt-4 md:mt-0">
         <h2 className="text-3xl md:text-5xl font-semibold font-syne">Vision</h2>

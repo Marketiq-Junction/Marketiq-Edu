@@ -1,4 +1,4 @@
-import ContactForm from "../ContactForm"; // Make sure the path is correct
+// import ContactForm from "../ContactForm"; // Make sure the path is correct
 import { LocationOn, Phone, Email } from "@mui/icons-material";
 
 const Getintouch = () => {
@@ -54,7 +54,7 @@ const Getintouch = () => {
 
       {/* Drop A Line Form */}
       <div className="md:w-1/2 mt-8 md:mt-0">
-        <ContactForm />
+        {/* <ContactForm /> */}
       </div>
     </section>
   );

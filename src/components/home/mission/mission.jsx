@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Mission = () => {
   return (
@@ -27,8 +27,12 @@ const Mission = () => {
           robust placement support, ensuring that every student has the tools to
           succeed in a rapidly evolving digital world.
         </p>
-        {/* Learn More Button with Link */}
-        <Link href="/about-us">
+        {/* Learn More Button with WhatsApp Integration */}
+        <Link
+          href={`https://wa.me/919920892689?text=Hi%20there!%20I%20am%20interested%20in%20learning%20more%20about%20your%20mission%20and%20programs.`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <button className="mt-6 ml-12 mb-8 bg-[#50c3c6] font-semibold font-montserrat text-black px-6 py-3 hover:bg-[#3ca0a0] transition mr-12">
             Learn More
           </button>

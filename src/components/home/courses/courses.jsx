@@ -1,68 +1,88 @@
-"use client"
-import React, { useState } from 'react';
-import Image from 'next/image';
+"use client";
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { FaLaptopCode, FaRocket, FaDigitalTachograph } from "react-icons/fa";
 
 const Courses = () => {
-  const [selectedCourse, setSelectedCourse] = useState(null);
-
-  // Updated course data with only 2 courses
+  // Course data with "syllabusLink" and icons
   const courseData = [
     {
       id: 1,
-      title: '2-Month Course',
-      image: '/2month.avif',
-      extraInfo: 'This is a 2-month intensive course designed to quickly enhance your skills. With hands-on projects and expert guidance, you’ll develop the foundational knowledge necessary to jumpstart your career.'
+      title: "2-Day Bootcamp",
+      icon: <FaLaptopCode className="text-6xl text-[#1976d2]" />, // Icon for course
+      extraInfo:
+        "Join our 2-day bootcamp to get a quick overview of digital marketing fundamentals. Perfect for beginners to get started!",
+      syllabusLink: "/pdf/Bootcamp.pdf",
     },
     {
       id: 2,
-      title: '4-Month Course',
-      image: '/4month.avif',
-      extraInfo: 'This 4-month course offers in-depth knowledge and hands-on experience in key areas. It includes comprehensive assignments, one-on-one mentorship, and practical applications to deepen your learning.'
+      title: "45-Day Fast Track Program",
+      icon: <FaRocket className="text-6xl text-[#388e3c]" />, // Icon for course
+      extraInfo:
+        "This 45-day program focuses on fast-paced learning with in-depth knowledge and hands-on experience in digital marketing.",
+      syllabusLink: "/pdf/45 day.pdf",
+    },
+    {
+      id: 3,
+      title: "4-Month Digital Marketing Program",
+      icon: <FaDigitalTachograph className="text-6xl text-[#d32f2f]" />, // Icon for course
+      extraInfo:
+        "Our 4-month program offers an extensive curriculum designed to make you a pro in digital marketing. Includes practical assignments and expert guidance.",
+      syllabusLink: "/pdf/4 Month.pdf",
     },
   ];
 
-  const handleCardClick = (id) => {
-    setSelectedCourse(selectedCourse === id ? null : id); // Toggle the selected course
+  // Framer Motion animation variants
+  const cardVariants = {
+    hover: {
+      scale: 1.05,
+      y: -10,
+      transition: { type: "spring", stiffness: 300, damping: 20 },
+    },
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
-    <div className="py-10 text-center">
-      {/* Category Label as a Button-like Element */}
-      <div className="inline-block bg-[#50c3c6] text-white font-bold font-montserrat py-2 px-4 rounded-full mb-4 uppercase text-sm">
-        Course Category
-      </div>
-
+    <div className="py-10 text-center bg-gradient-to-b from-[#e3f2fd] to-[#f1f8e9]">
       {/* Heading */}
-      <h2 className="text-3xl font-bold font-montserrat mb-8">Explore Our Courses</h2>
+      <h2 className="text-4xl font-bold font-montserrat mb-12 text-gray-800">
+        Explore Our Courses & Syllabus
+      </h2>
 
       {/* Course Cards */}
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 px-4 mb-16 md:px-0">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 md:px-8">
         {courseData.map((course) => (
-          <div
+          <Link
             key={course.id}
-            className="bg-white hover:bg-blue-50 rounded-lg shadow-lg transform transition duration-300 hover:-translate-y-2 cursor-pointer max-w-[90%] sm:max-w-[500px] mx-auto"
-            onClick={() => handleCardClick(course.id)}
+            href={course.syllabusLink}
+            target="_blank" // Open in a new tab
+            rel="noopener noreferrer" // Prevent security vulnerabilities
           >
-            <div className="relative w-full h-48 sm:h-72 rounded-t-lg overflow-hidden">
-              <Image
-                src={course.image}
-                alt={course.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-t-lg"
-              />
-            </div>
-            <div className="p-4 text-center">
-              <h3 className="text-lg sm:text-xl font-bold font-montserrat">{course.title}</h3>
-            </div>
-
-            {/* Extra Info Section */}
-            {selectedCourse === course.id && (
-              <div className="bg-blue-50 p-4 rounded-b-lg transition-all duration-300 ease-in-out text-left text-sm sm:text-base">
-                <p className="text-gray-700">{course.extraInfo}</p>
+            <motion.div
+              className="relative bg-white rounded-lg shadow-lg hover:bg-gradient-to-r hover:from-[#e0f7fa] hover:to-[#c8e6c9] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col items-center h-full cursor-pointer"
+              variants={cardVariants}
+              initial="initial"
+              whileHover="hover"
+              animate="animate"
+            >
+              {/* Icon Section */}
+              <div className="p-8 bg-gradient-to-t from-gray-100 to-gray-50 rounded-t-lg w-full flex justify-center">
+                {course.icon}
               </div>
-            )}
-          </div>
+
+              {/* Content Section */}
+              <div className="p-6 flex flex-col items-center">
+                <h3 className="text-lg sm:text-xl font-bold font-montserrat text-gray-800">
+                  {course.title}
+                </h3>
+                <p className="text-sm text-gray-600 mt-4 text-center">
+                  {course.extraInfo}
+                </p>
+              </div>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </div>

@@ -22,7 +22,7 @@ const Footer = () => {
             />
             <h3 className="font-semibold text-left text-black mb-2">Contact Us</h3>
             <p className="font-semibold text-left text-gray-500 mb-2 text-sm md:text-base">
-              Call: <a href="tel:+919594402916" className="hover:underline">+91 959 440 2916</a>
+              Call: <a href="tel:+919920892689" className="hover:underline">+91 99208 92689</a>
             </p>
             <p className="font-semibold text-left text-black mb-2 text-sm md:text-base">
               Email: <a href="mailto:marketiqjunction@gmail.com" className="hover:underline"> <span className="text-gray-500">marketiqjunction@gmail.com</span></a>
@@ -67,7 +67,7 @@ const Footer = () => {
           <div className="flex-1">
             <h3 className="font-semibold text-left text-black mb-4">Category</h3>
             <ul className="text-left space-y-2 text-sm md:text-base">
-              <li><Link href="/about-us" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
+              <li><Link href="/courses" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
               <li><Link href="/courses" className="text-gray-500 hover:underline">Our Programs</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Join Education.Code4Bharat</Link></li>
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
 
           {/* Fourth Column: Get In Touch with Mobile Number */}
-          <div className="flex-1">
+          {/* <div className="flex-1">
             <h3 className="font-semibold text-left text-black mb-4">Get In Touch</h3>
             <form className="flex flex-col">
               <input
@@ -91,7 +91,7 @@ const Footer = () => {
                 Submit
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
         {/* Footer Bottom: Copyright */}
@@ -103,7 +103,7 @@ const Footer = () => {
 
         {/* WhatsApp Floating Icon for All Screens */}
         <a
-          href="https://wa.me/+919594402916"
+          href="https://wa.me/+919920892689"
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-4 right-4 md:bottom-6 md:right-6 bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg hover:bg-green-600 transition-colors duration-300"

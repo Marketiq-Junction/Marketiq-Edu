@@ -3,25 +3,26 @@ import Navbar from '../components/navbar/navbar'
 import HeroHome from '../components/home/hero/heroHome'
 import Footer from '../components/footer/footer'
 import Mission from '@/components/home/mission/mission'
-import Vision from '@/components/home/vision/vision'
-import Chooseus from '@/components/home/chooseus/Chooseus'
+// import Vision from '@/components/home/vision/vision'
 import Courses from '@/components/home/courses/courses'
 import PayAfterPlacement from '@/components/home/payafterplacement/payafterplacement'
 import StudentExperience from '@/components/home/studentexperience/studentexperience'
 import Career from '@/components/home/career/career'
 import Join from '@/components/join/join'
+import ChooseUs from '@/components/aboutus/chooseus/chooseUs'
+import Review from '@/components/home/reviwes/review'
 
 const page = () => {
   return (
     <div>
       <Navbar/>
       <HeroHome/>
+      {/* <Vision/> */}
       <Mission/>
-      <Vision/>
-      <Chooseus/>
+      <ChooseUs/>
       <Courses/>
       <PayAfterPlacement/>
-      <StudentExperience/>
+      <Review/>
       <Career/>
       <Join/>
       <Footer/>
