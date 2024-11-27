@@ -14,11 +14,11 @@ const Footer = () => {
           {/* First Column: Contact Us */}
           <div className="flex-1">
             <Image
-              src="/logoo.png"
+              src="/mj1.png"
               alt="Logo"
               width={224}
               height={96}
-              className="mb-4 h-20 w-48 md:h-24 md:w-56"
+              className="mb-4 h-20 w-48 md:h-24 md:w-56 rounded-xl"
             />
             <h3 className="font-semibold text-left text-black mb-2">Contact Us</h3>
             <p className="font-semibold text-left text-gray-500 mb-2 text-sm md:text-base">
@@ -55,18 +55,17 @@ const Footer = () => {
           {/* Second Column: Explore */}
           <div className="flex-1">
             <h3 className="font-semibold text-left text-black mb-4">Explore</h3>
-            <ul className="text-left space-y-2 text-sm md:text-base">
-              <li><Link href="/" className="text-gray-500 hover:underline">Home</Link></li>
-              <li><Link href="/about-us" className="text-gray-500 hover:underline">About</Link></li>
+            <ul className="text-left space-y-2 text-sm md:text-base mt-8">
+              <li><Link href="/" className="text-gray-500 hover:underline">Our Story</Link></li>
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">learn&grow</Link></li>
-              <li><Link href="/contact-us" className="text-gray-500 hover:underline">Contact</Link></li>
+              <li><Link href="/contact-us" className="text-gray-500 hover:underline">Support Center</Link></li>
             </ul>
           </div>
 
           {/* Third Column: Category */}
           <div className="flex-1">
             <h3 className="font-semibold text-left text-black mb-4">Category</h3>
-            <ul className="text-left space-y-2 text-sm md:text-base">
+            <ul className="text-left space-y-2 text-sm md:text-base mt-8">
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">Our Programs</Link></li>

@@ -49,7 +49,7 @@ const VerifyCertificate = () => {
         {/* Title and Description */}
         <div className="text-center mb-8">
           <motion.h1
-            className="text-3xl font-bold text-[#106EB5]"
+            className="text-3xl font-bold text-blue-400"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -91,7 +91,7 @@ const VerifyCertificate = () => {
 
           <motion.button
             type="submit"
-            className="w-full py-3 text-white bg-[#106EB5] rounded-md mt-6"
+            className="w-full py-3 text-white bg-blue-400 rounded-md"
             disabled={loading}
             whileHover={{ scale: 1.03 }}
           >

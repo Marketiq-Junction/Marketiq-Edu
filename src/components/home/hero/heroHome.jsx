@@ -2,16 +2,20 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const HeroHome = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { threshold: 0.8 }); // Adjust threshold as
   return (
-    <motion.div 
-    className="relative bg-gradient-to-br from-[#4a9bd3] to-[#50c3c6] text-white py-10 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6 overflow-hidden"
-    initial={{opacity:0, x: 50}}
-    animate={{opacity:1,x:0}}
-    transition={{duration:0.5, ease:"circOut"}} >
-    
+    <motion.div
+      ref={ref}
+      className="relative bg-gradient-to-br from-[#4a9bd3] to-[#50c3c6] text-white py-10 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6 overflow-hidden"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <motion.div

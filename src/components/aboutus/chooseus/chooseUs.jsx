@@ -58,11 +58,11 @@ const ChooseUs = () => {
     <div className="flex flex-col bg-[#50c3c6] items-center p-8 mt-4 mb-4 rounded-lg">
       {/* Title Section */}
       <div className="flex flex-col md:flex-row w-full items-start md:items-center md:justify-start mb-6 ml-8">
-        <h2 className="text-3xl md:text-5xl font-semibold font-montserrat ml-2  text-center md:text-left">Why Choose Us?</h2>
+        <h2 className="text-3xl md:text-6xl font-semibold font-montserrat ml-12 text-center md:text-left">Your Path to <br /> <span className="mt-2 block text-white">Guaranteed</span> <span className="mt-2 block text-white"> Success</span></h2>
       </div>
 
       {/* Category Buttons */}
-      <div className="flex flex-wrap justify-center md:justify-end w-full gap-2 px-2 mb-6">
+      <div className="flex flex-wrap justify-center md:justify-end w-full gap-2 px-2 mb-6 md:-mt-24">
         {['All Category', 'Career-Focused Curriculum', '100% Placement Assistance', 'Flexible Learning Options', 'Real-World Projects'].map((category) => (
           <button
             key={category}
