@@ -58,7 +58,7 @@ const Footer = () => {
             <ul className="text-left space-y-2 text-sm md:text-base">
               <li><Link href="/" className="text-gray-500 hover:underline">Home</Link></li>
               <li><Link href="/about-us" className="text-gray-500 hover:underline">About</Link></li>
-              <li><Link href="/courses" className="text-gray-500 hover:underline">Courses</Link></li>
+              <li><Link href="/learn&grow" className="text-gray-500 hover:underline">learn&grow</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Contact</Link></li>
             </ul>
           </div>
@@ -67,9 +67,9 @@ const Footer = () => {
           <div className="flex-1">
             <h3 className="font-semibold text-left text-black mb-4">Category</h3>
             <ul className="text-left space-y-2 text-sm md:text-base">
-              <li><Link href="/courses" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
+              <li><Link href="/learn&grow" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
-              <li><Link href="/courses" className="text-gray-500 hover:underline">Our Programs</Link></li>
+              <li><Link href="/learn&grow" className="text-gray-500 hover:underline">Our Programs</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Join Education.Code4Bharat</Link></li>
             </ul>
           </div>

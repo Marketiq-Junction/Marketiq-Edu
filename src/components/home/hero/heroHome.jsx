@@ -51,7 +51,7 @@ const HeroHome = () => {
             transition={{ duration: 0.8, delay: 1 }}
           >
             {/* Learn & Grow Button */}
-            <Link href="/courses">
+            <Link href="/learn&grow">
               <button className="bg-[#ffffff] text-[#50c3c6] border border-transparent px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
                 Learn & Grow
               </button>
