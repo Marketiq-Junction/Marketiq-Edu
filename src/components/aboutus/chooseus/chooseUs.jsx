@@ -84,7 +84,7 @@ const ChooseUs = () => {
         {getVisibleCards().map((card, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-lg w-full md:w-64 h-72 flex flex-col items-center p-4 transition-transform duration-300 ease-in-out"
+            className="bg-white rounded-lg shadow-lg w-full md:w-64 h-72 flex flex-col items-center p-4 transition-transform duration-300 ease-in-out hover:bg-blue-200"
           >
             <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
               <Image

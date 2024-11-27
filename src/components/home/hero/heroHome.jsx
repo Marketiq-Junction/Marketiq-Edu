@@ -6,7 +6,12 @@ import { motion } from "framer-motion";
 
 const HeroHome = () => {
   return (
-    <div className="relative bg-gradient-to-br from-[#4a9bd3] to-[#50c3c6] text-white py-10 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6 overflow-hidden">
+    <motion.div 
+    className="relative bg-gradient-to-br from-[#4a9bd3] to-[#50c3c6] text-white py-10 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6 overflow-hidden"
+    initial={{opacity:0, x: 50}}
+    animate={{opacity:1,x:0}}
+    transition={{duration:0.5, ease:"circOut"}} >
+    
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <motion.div
@@ -71,7 +76,7 @@ const HeroHome = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="relative w-full h-64 md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 ">
+          <div className="relative w-full h-64x md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 ">
             <Image
               src="/herohome.avif" // Replace with your image path
               alt="Hero Image"
@@ -84,14 +89,35 @@ const HeroHome = () => {
           <motion.div
             className="absolute bottom-[-20px] md:bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-white p-3 md:p-4 rounded-full shadow-lg z-10"
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [1, 0.8, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
           >
-            <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-gray-200 flex items-center justify-center ">
+            {/* Pulsing Circle */}
+            <motion.div
+              className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-gray-200 flex items-center justify-center"
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [1, 0.8, 1],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            >
               <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-500">
                 100%
               </span>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
@@ -115,7 +141,7 @@ const HeroHome = () => {
           ></path>
         </svg>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
