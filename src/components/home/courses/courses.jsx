@@ -2,15 +2,18 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaRocket, FaDigitalTachograph } from "react-icons/fa";
+// MUI Icons
+import CodeIcon from "@mui/icons-material/Code";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import MarketingIcon from "@mui/icons-material/Assessment";
 
 const Courses = () => {
-  // Course data with "syllabusLink" and icons
+  // Course data with "syllabusLink" and MUI icons
   const courseData = [
     {
       id: 1,
       title: "2-Day Bootcamp",
-      icon: <FaLaptopCode className="text-6xl text-[#1976d2]" />, // Icon for course
+      icon: <CodeIcon className="text-[4rem] text-[#1976d2]" />, // MUI Icon for course
       extraInfo:
         "Join our 2-day bootcamp to get a quick overview of digital marketing fundamentals. Perfect for beginners to get started!",
       syllabusLink: "/pdf/Bootcamp.pdf",
@@ -18,7 +21,7 @@ const Courses = () => {
     {
       id: 2,
       title: "45-Day Fast Track Program",
-      icon: <FaRocket className="text-6xl text-[#388e3c]" />, // Icon for course
+      icon: <RocketLaunchIcon className="text-[4rem] text-[#388e3c]" />, // MUI Icon for course
       extraInfo:
         "This 45-day program focuses on fast-paced learning with in-depth knowledge and hands-on experience in digital marketing.",
       syllabusLink: "/pdf/45 day.pdf",
@@ -26,7 +29,7 @@ const Courses = () => {
     {
       id: 3,
       title: "4-Month Digital Marketing Program",
-      icon: <FaDigitalTachograph className="text-6xl text-[#d32f2f]" />, // Icon for course
+      icon: <MarketingIcon className="text-[4rem] text-[#d32f2f]" />, // MUI Icon for course
       extraInfo:
         "Our 4-month program offers an extensive curriculum designed to make you a pro in digital marketing. Includes practical assignments and expert guidance.",
       syllabusLink: "/pdf/4 Month.pdf",
@@ -67,11 +70,16 @@ const Courses = () => {
               whileHover="hover"
               animate="animate"
             >
-              {/* Icon Section */}
-              <div className="p-8 bg-gradient-to-t from-gray-100 to-gray-50 rounded-t-lg w-full flex justify-center">
+              {/* <motion.div 
+              initial={{opacity:0.3,scale:0.4}}
+              animate={{opacity:1,scale:1}}
+              transition={{duration:0.7,delay:0.3, ease:"backIn"}}
+              className="p-8   rounded-t-lg w-full flex justify-center">
+                {course.icon}
+              </motion.div> */}
+              <div className=" p-8 rounded-t-lg w-full flex justify-center mt-8 sm: animate-bounce">
                 {course.icon}
               </div>
-
               {/* Content Section */}
               <div className="p-6 flex flex-col items-center">
                 <h3 className="text-lg sm:text-xl font-bold font-montserrat text-gray-800">

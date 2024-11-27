@@ -1,9 +1,17 @@
+"use client"
 // import ContactForm from "../ContactForm"; // Make sure the path is correct
 import { LocationOn, Phone, Email } from "@mui/icons-material";
+import { motion } from "framer-motion";
 
 const Getintouch = () => {
   return (
-    <section className="container mx-auto p-8 flex flex-col md:flex-row justify-between items-start mt-12 mb-8">
+    <motion.div 
+    initial={{opacity:0,scale:0.9}}
+    animate={{opacity:1,scale:1}}
+    transition={{duration:1,ease:"circIn"}}
+    
+    
+    className="container mx-auto p-8 flex flex-col md:flex-row justify-between items-start mt-12 mb-8">
       {/* Contact Info Section */}
       <div className="md:w-1/2 space-y-6">
         <h2 className="font-syne text-3xl font-bold">Get in Touch</h2>
@@ -56,7 +64,7 @@ const Getintouch = () => {
       <div className="md:w-1/2 mt-8 md:mt-0">
         {/* <ContactForm /> */}
       </div>
-    </section>
+    </motion.div>
   );
 };
 
