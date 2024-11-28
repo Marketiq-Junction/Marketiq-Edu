@@ -155,7 +155,7 @@ const ChooseUs = () => {
             <div>
               <h3 className="font-semibold text-lg">Flexible Learning Paths</h3>
               <p className="text-gray-600">
-                Choose from 6-month, 1-year, 2-year, or 3-year programs tailored
+                Choose from 2-Days Bootcamp, 45-Days fast track course, 4-Months In-Depth Course programs tailored
                 to meet specific career goals.
               </p>
             </div>
@@ -179,11 +179,10 @@ const ChooseUs = () => {
             />
             <div>
               <h3 className="font-semibold text-lg">
-                Accredited Certifications and Degrees
+                 Certifications
               </h3>
               <p className="text-gray-600">
-                Courses offer diplomas, advanced diplomas, and degrees in
-                partnership with top NAAC A++ universities.
+              Digital Marketing Specialist Certificate<br/>Advanced SEO Specialist Certificate<br/>Social Media Marketing Expert Certificate<br/>Full Stack Digital Marketer Certificate.
               </p>
             </div>
           </motion.div>

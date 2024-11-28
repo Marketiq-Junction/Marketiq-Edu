@@ -20,19 +20,30 @@ const HeroCourses = () => {
     window.open(whatsappUrl, "_blank");
   };
 
+  const automatic = {
+    initial:{opicity: 0, scale: 0.9},
+    animate:{opicity:1, scale:1}
+
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-gradient-to-br from-[#3498db] to-[#1e81d3] mx-4 md:mx-16 rounded-2xl p-4 md:p-16 flex flex-col md:flex-row items-center justify-between text-white mt-8 shadow-lg"
+    variants={automatic}
+    initial = "initial"
+    whileInView="animate"
+    viewport={{once:false, amount: 0.3}}
+    transition={{duration:0.8,delay:0.2 }}
+      className="bg-blue-400 mx-4 md:mx-16 rounded-2xl p-4 md:p-16 flex flex-col md:flex-row items-center justify-between text-white mt-8 shadow-lg"
     >
       {/* Left Section - Text */}
       <motion.div
+      variants={automatic}
+      initial = "initial"
+    whileInView="animate"
+    viewport={{once:false, amount: 0.3}}
+    transition={{duration:0.8,delay:0.2 }}
         className="flex-1 text-center md:text-left mb-8 md:mb-0"
-        initial={{ x: -50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+       
       >
         <h1 className="text-2xl md:text-5xl font-bold text-black mb-4">
           Grow up your skills by online courses with <br />
@@ -41,10 +52,12 @@ const HeroCourses = () => {
           </span>
         </h1>
         <motion.div
+        variants={automatic}
+        initial = "initial"
+        whileInView="animate"
+        viewport={{once:false, amount: 0.3}}
+        transition={{duration:0.8,delay:0.2 }}
           className="flex flex-col md:flex-row justify-center md:justify-start gap-4 mt-6 md:mt-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <button
             onClick={openWhatsApp}
