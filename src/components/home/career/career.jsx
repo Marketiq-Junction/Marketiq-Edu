@@ -25,11 +25,9 @@ const Career = () => {
     <div ref={containerRef} className="min-h-screen overflow-y-auto">
       {/* Animated Container */}
       <motion.div
-        className="bg-[#4b93d2] mx-4 mt-4 md:mx-20 flex flex-col md:flex-row items-center p-4 md:p-6 rounded-lg mb-8"
+        className="bg-[#4b93d2] mx-4 mt-4  md:mx-20 flex flex-col md:flex-row items-center p-4 md:p-6 rounded-lg mb-8"
         style={{ opacity, scale }}
         transition={{ ease: "circOut", duration: 1.2 }}
-        
-        whileTap={{ scale: 0.95 }}
       >
         {/* Left Side Image */}
         <motion.div
