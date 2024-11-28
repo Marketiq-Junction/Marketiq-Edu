@@ -90,7 +90,7 @@ const Navbar = () => {
                 className="text-white px-6 py-3 rounded-lg flex items-center justify-center cursor-pointer"
                 style={{ backgroundColor: "#50c3c6" }}
               >
-                Let&apos;s Talk <ChatIcon className="ml-2" />
+                Let&apos;s Talk <ChatIcon className="ml-2 " />
               </div>
             </Link>
           </div>

@@ -57,7 +57,7 @@ const Mission = () => {
         variants={textVariants}
         initial="hidden"
         whileInView="visible" // Trigger animation when in view
-        viewport={{ once: true, amount: 0.5 }} // Adjust viewport settings
+        viewport={{ once: false, amount: 0.5 }} // Adjust viewport settings
       >
         <h2 className="text-4xl md:text-5xl font-semibold font-syne mr-0 md:mr-12 -mt-4 md:-mt-16">
           Mission

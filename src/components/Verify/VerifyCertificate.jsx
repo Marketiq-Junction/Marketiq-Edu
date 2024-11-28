@@ -45,7 +45,7 @@ const VerifyCertificate = () => {
 
   return (
     <section className="verify-section w-full h-[calc(80vh-10vh)] flex items-center justify-center bg-[#f4f6f9]">
-      <div className="w-[90%] max-w-4xl h-[70%] bg-white rounded-3xl flex flex-col items-center p-8 shadow-lg">
+      <div className="w-[90%] max-w-4xl h-[80%] bg-white rounded-3xl flex flex-col items-center p-8 shadow-lg">
         {/* Title and Description */}
         <div className="text-center mb-8">
           <motion.h1
@@ -91,7 +91,7 @@ const VerifyCertificate = () => {
 
           <motion.button
             type="submit"
-            className="w-full py-3 text-white bg-blue-400 rounded-md"
+            className="w-full py-3 text-white bg-blue-400 rounded-md "
             disabled={loading}
             whileHover={{ scale: 1.03 }}
           >

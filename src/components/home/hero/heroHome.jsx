@@ -26,7 +26,7 @@ const HeroHome = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h1
-            className="text-2xl md:text-3xl font-semibold text-black"
+            className="text-2xl md:text-3xl font-semibold font-syne text-black"
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -34,7 +34,7 @@ const HeroHome = () => {
             Education.MarketJunction
           </motion.h1>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-6xl font-semibold mt-2"
+            className="text-3xl md:text-5xl lg:text-6xl font-semibold font-montserrat mt-2"
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -42,7 +42,7 @@ const HeroHome = () => {
             The Smart Stop <br className="hidden md:block" /> for Digital Growth
           </motion.h2>
           <motion.p
-            className="mt-4 md:mt-8 text-lg md:text-xl"
+            className="mt-4 md:mt-8 text-lg font-syne md:text-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -57,7 +57,7 @@ const HeroHome = () => {
           >
             {/* Learn & Grow Button */}
             <Link href="/learn&grow">
-              <button className="bg-[#ffffff] text-[#50c3c6] border border-transparent px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
+              <button className="bg-[#ffffff] text-[#50c3c6] border border-transparent px-4 py-2 md:px-6 md:py-3 shadoww-lg rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
                 Learn & Grow
               </button>
             </Link>

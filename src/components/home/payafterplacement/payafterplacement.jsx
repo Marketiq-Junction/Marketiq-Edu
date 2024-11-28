@@ -15,7 +15,7 @@ const PayAfterPlacement = () => {
     <div className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-[#4a9bd3] to-[#50c3c6] p-6 md:p-10 text-white mb-8">
       {/* Left Side Image */}
       <motion.div
-        className="w-full md:w-2/5 rounded-lg overflow-hidden mb-6 md:mb-0"
+        className="w-full md:w-1/3 rounded-lg overflow-hidden mb-6 md:mb-0"
         style={{
           opacity, // Fades in
           y: translateY, // Moves upward
@@ -35,7 +35,7 @@ const PayAfterPlacement = () => {
 
       {/* Right Side Texts */}
       <motion.div
-        className="w-full md:w-3/5 md:ml-16 text-left"
+        className="w-full md:w-3/5 md:ml-16 text-left "
         whileHover={{ scale: 1.05, color: "#ffffff" }}
         style={{
           opacity, // Fades in
@@ -45,20 +45,30 @@ const PayAfterPlacement = () => {
         initial={{ opacity: 0, x: 100 }} // Start off-screen
         animate={{ opacity: 1, x: 0 }} // Move into view
       >
-        <h4 className="text-3xl md:text-5xl text-black font-bold font-montserrat mb-4 md:mb-8">
+        <h4 className="text-3xl md:text-5xl text-black font-bold font-syne mb-4 md:mb-8">
           100% Placement <br className="hidden md:block" /> Assistance
         </h4>
         <motion.p
-          className="text-sm md:text-xl leading-relaxed"
+          className="text-sm md:text-xl leading-relaxed font-syne "
         >
-          We’re committed to student success and offer dedicated placement
-          support until you secure a position in the industry. With this model,
-          students can focus on their learning journey and start securing a job.
-          <br /> <br />
-          That’s why we’re proud to offer a 100% Placement Assistance designed
-          to give students the freedom to focus entirely on their learning
-          journey. With this model, students can immerse themselves in
-          developing their skills without the worry of placement.
+          At Education.MarketJunction, your success is our priority! We provide comprehensive placement support to ensure you land your dream job in the tech industry. <br />
+
+Why Choose Our Placement Assistance?
+<br />🔹 Guaranteed Support Until Placement
+Our dedicated placement team works with you until you secure a position in the industry.
+
+<br />🔹 Focus on Learning
+No need to worry about job hunting — concentrate fully on developing your skills and expertise.
+
+<br />
+🔹 Tailored Career Guidance
+Receive personalized mentorship, resume building, and interview preparation to stand out in the job market.
+
+<br />🔹 Access to Top Industry Connections
+We connect you with leading companies and job opportunities aligned with your career goals.
+
+<br />At Education.MarketJunction, we empower you to immerse yourself in learning while we handle the rest. Your success is our success! 🚀
+
         </motion.p>
       </motion.div>
     </div>

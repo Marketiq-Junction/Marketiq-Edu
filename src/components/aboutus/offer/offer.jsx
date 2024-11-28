@@ -29,9 +29,9 @@ const Offer = () => {
     }
   ];
 
-  const handleCardClick = (id) => {
-    setSelectedCard(id === selectedCard ? null : id);
-  };
+    const handleCardClick = (id) => {
+      setSelectedCard(id === selectedCard ? null : id);
+    };
 
   return (
     <div className="flex flex-col items-center p-4 md:p-6 mt-8 md:mt-16">
