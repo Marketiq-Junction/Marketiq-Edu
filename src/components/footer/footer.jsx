@@ -30,7 +30,7 @@ const Footer = () => {
             <p className="font-semibold text-left text-black mb-4 text-sm md:text-base">
   Address: <br />
   <a
-    href="https://www.google.com/maps/place/Off+BKC,+Mumbai,+India+400070"
+    href="https://maps.app.goo.gl/9c8Gij4NMeGtGJM86"
     target="_blank"
     rel="noopener noreferrer"
     className="text-gray-500 hover:underline"
@@ -96,7 +96,7 @@ const Footer = () => {
         {/* Footer Bottom: Copyright */}
         <div className="mt-8 text-center">
           <p className="text-xs md:text-sm text-gray-700">
-            © {new Date().getFullYear()} MarketIQ Edu. All rights reserved.
+            © 2011- 2025 MarketIQ Edu. All rights reserved.
           </p>
         </div>
 
