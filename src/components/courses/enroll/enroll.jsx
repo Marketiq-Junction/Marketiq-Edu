@@ -2,23 +2,37 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link"; // Import Link component
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
+import { duration } from "@mui/material";
 
 const Enroll = () => {
+  const fadeinanimation = {
+    initial: {
+      opacity: 0,
+      x: -200,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+      // duration:3,
+      // duration:3,
+    },
+    transition: {
+      duration: 1,
+      delay: 0.5,
+    },
+  };
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, ease: "circInOut" }}
+      variants={fadeinanimation}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: false, amount: 0.3 }} // Triggers animation when 30% of the element is in view
+      transition={{ duration: 1, delay: 0.5 }} // Transition for each scroll trigger
       className="bg-[#e8f6ff] mx-4 md:mx-20 flex flex-col md:flex-row items-center p-6 rounded-lg mb-8 mt-4"
     >
       {/* Left Side Image with motion */}
-      <motion.div
-        initial={{ x: -200, opacity: 0, rotate: -90 }} // Start with the image off-screen and rotated
-        animate={{ x: 0, opacity: 1, rotate: 0 }} // Animate to the center (x: 0) and no rotation
-        transition={{ duration: 3, delay: 0.5 }} // Duration and delay of the transition
-        className="w-full md:w-1/2 md:ml-8 flex justify-center mb-4 md:mb-0"
-      >
+      <motion.div className="w-full md:w-1/2 md:ml-8 flex justify-center mb-4 md:mb-0">
         <Image
           src="/5.jpg" // Replace with your image path
           alt="Career Image"

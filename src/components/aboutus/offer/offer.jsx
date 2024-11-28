@@ -69,7 +69,7 @@ const Offer = () => {
 
             {/* Extra Info Section */}
             {selectedCard === card.id && (
-              <div className="absolute inset-0 md:inset-auto md:top-0 md:right-0 md:w-[400px] bg-blue-50 p-4 h-full md:w-48 font-syne flex items-center rounded-lg md:rounded-r-lg transition-all">
+              <div className="absolute inset-0 md:inset-auto md:top-0 md:right-0 md:w-[400px] bg-blue-50 p-4 h-full font-syne flex items-center rounded-lg md:rounded-r-lg transition-all">
                 <p className="text-gray-700 text-lg md:text-lg">{card.extraInfo}</p>
               </div>
             )}

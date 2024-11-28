@@ -8,23 +8,55 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
 const ChooseUs = () => {
+  // Define variants for entrance animations
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+  const sectionVariants = {
+    hidden: { x: 50, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  // Define continuous bounce animation
+  const bounceTransition = {
+    y: {
+      duration: 2,
+      yoyo: Infinity,
+      ease: "easeInOut",
+    },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="flex flex-col md:flex-row items-center gap-8 mt-8 px-4 md:px-16 py-12"
     >
       {/* Left Section - Image */}
       <motion.div
         className="flex-1 flex justify-center md:justify-start mb-8 md:mb-0"
-        initial={{ x: -50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.8, delay: 0.2 }}
+        animate={{
+          y: [0, -10, 0, 10, 0], // Bouncy motion
+        }}
       >
         <div className="relative w-60 h-80 sm:w-72 sm:h-96 lg:w-[500px] lg:h-[700px]">
           <Image
-            src="/courses.avif" // Replace with actual image path
+            src="/courses.avif"
             alt="Student Image"
             fill
             style={{ objectFit: "cover" }}
@@ -36,8 +68,10 @@ const ChooseUs = () => {
       {/* Right Section - Content */}
       <motion.div
         className="flex-1"
-        initial={{ x: 50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         {/* Section Title */}
@@ -56,9 +90,14 @@ const ChooseUs = () => {
           {/* Card 1 */}
           <motion.div
             className="bg-white shadow-lg p-6 rounded-lg flex items-start gap-4 transition-transform transform hover:scale-105"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.5 }}
+            animate={{
+              y: [0, -5, 0, 5, 0], // Subtle bouncy motion
+            }}
           >
             <SchoolIcon
               className="text-blue-600"
@@ -76,9 +115,14 @@ const ChooseUs = () => {
           {/* Card 2 */}
           <motion.div
             className="bg-white shadow-lg p-6 rounded-lg flex items-start gap-4 transition-transform transform hover:scale-105"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+            animate={{
+              y: [0, -5, 0, 5, 0],
+            }}
           >
             <GroupIcon className="text-blue-600" style={{ fontSize: "2rem" }} />
             <div>
@@ -95,9 +139,14 @@ const ChooseUs = () => {
           {/* Card 3 */}
           <motion.div
             className="bg-white shadow-lg p-6 rounded-lg flex items-start gap-4 transition-transform transform hover:scale-105"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.7 }}
+            animate={{
+              y: [0, -5, 0, 5, 0],
+            }}
           >
             <ExploreIcon
               className="text-blue-600"
@@ -114,10 +163,15 @@ const ChooseUs = () => {
 
           {/* Card 4 */}
           <motion.div
-            className="bg-white shadow-lg p-6 rounded-lg flex items-start gap-4 transition-transform transform hover:scale-105"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="bg-white shadow-lg p-6 rounded-lg flex items-start gap-4 transition-transform transform hover:scale-105 "
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.8 }}
+            animate={{
+              y: [0, -5, 0, 5, 0],
+            }}
           >
             <VerifiedIcon
               className="text-blue-600"
