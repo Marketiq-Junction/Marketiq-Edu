@@ -7,11 +7,12 @@ import { useRef } from "react";
 
 const HeroHome = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { threshold: 0.8 }); // Adjust threshold as
+  const isInView = useInView(ref, { threshold: 0.8 });
+
   return (
     <motion.div
       ref={ref}
-      className="relative bg-gradient-to-br from-[#4a9bd3] to-[#50c3c6] text-white py-10 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6 overflow-hidden"
+      className="flex flex-wrap relative bg-gradient-to-br from-[#4a9bd3] to-[#50c3c6] text-white py-10 md:py-36 px-4 md:px-6 flex justify-center items-center mt-2 mb-6 overflow-hidden"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -19,13 +20,13 @@ const HeroHome = () => {
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <motion.div
-          className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-28 md:-ml-16"
+          className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-20 md:-ml-4"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h1
-            className="text-2xl md:text-3xl font-semibold text-black"
+            className="text-2xl md:text-3xl font-semibold font-syne text-black"
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -33,7 +34,7 @@ const HeroHome = () => {
             Education.MarketJunction
           </motion.h1>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-6xl font-semibold mt-2"
+            className="text-3xl md:text-5xl lg:text-6xl font-semibold font-montserrat mt-2"
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -41,7 +42,7 @@ const HeroHome = () => {
             The Smart Stop <br className="hidden md:block" /> for Digital Growth
           </motion.h2>
           <motion.p
-            className="mt-4 md:mt-8 text-lg md:text-xl"
+            className="mt-4 md:mt-8 text-lg font-syne md:text-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -56,7 +57,7 @@ const HeroHome = () => {
           >
             {/* Learn & Grow Button */}
             <Link href="/learn&grow">
-              <button className="bg-[#ffffff] text-[#50c3c6] border border-transparent px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
+              <button className="bg-[#ffffff] text-[#50c3c6] border border-transparent px-4 py-2 md:px-6 md:py-3 shadoww-lg rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
                 Learn & Grow
               </button>
             </Link>
@@ -75,14 +76,14 @@ const HeroHome = () => {
 
         {/* Right Section */}
         <motion.div
-          className="flex-1 relative z-10 mt-4 md:mt-0 w-full md:w-auto"
+          className="flex-1 relative z-10 mt-12 md:mt-4 md:mt-0 w-full md:w-auto"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="relative w-full h-64x md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 ">
+          <div className="relative w-full h-64 md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 animate-bounce">
             <Image
-              src="/herohome.avif" // Replace with your image path
+              src="/herohome.avif"
               alt="Hero Image"
               layout="fill"
               objectFit="cover"
@@ -128,23 +129,24 @@ const HeroHome = () => {
 
       {/* Wave Background */}
       <motion.div
-        className="absolute -bottom-6 left-0 w-full overflow-hidden z-0 "
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <svg
-          className="w-full h-32 md:h-48 lg:h-96"
-          viewBox="0 0 1440 320"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="#ffffff"
-            d="M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,128C672,139,768,181,864,197.3C960,213,1056,203,1152,192C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-      </motion.div>
+  className="absolute -bottom-16  w-full xl:w-full 2xl:w-full overflow-hidden z-0"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1 }}
+>
+  <svg
+    className="w-full h-auto md:h-52 lg:h-96"  // Adjust height responsively
+    viewBox="0 0 1440 320"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="#ffffff"
+      d="M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,128C672,139,768,181,864,197.3C960,213,1056,203,1152,192C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+    />
+  </svg>
+</motion.div>
+
     </motion.div>
   );
 };

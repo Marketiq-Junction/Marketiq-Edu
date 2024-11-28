@@ -77,7 +77,7 @@ const Courses = () => {
               className="p-8   rounded-t-lg w-full flex justify-center">
                 {course.icon}
               </motion.div> */}
-              <div className=" p-8 rounded-t-lg w-full flex justify-center mt-8 sm: animate-bounce">
+              <div className=" p-4 rounded-t-lg w-full flex justify-center mt-8 animate-bounce">
                 {course.icon}
               </div>
               {/* Content Section */}
