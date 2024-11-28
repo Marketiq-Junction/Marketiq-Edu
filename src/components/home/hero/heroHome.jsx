@@ -81,7 +81,7 @@ const HeroHome = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="relative w-full h-64 md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 animate-bounce">
+          <div className="relative w-full h-64 md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 hover:animate-bounce">
             <Image
               src="/herohome.avif"
               alt="Hero Image"

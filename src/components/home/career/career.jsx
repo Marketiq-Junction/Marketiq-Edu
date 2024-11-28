@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 const Career = () => {
   const router = useRouter();
@@ -17,15 +18,15 @@ const Career = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const translateY = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
-  const navigateToContact = () => {
-    router.push("/contact-us");
-  };
+  // const navigateToContact = () => {
+  //   router.push("/contact-us");
+  // };
 
   return (
     <div ref={containerRef} className="min-h-screen overflow-y-auto">
       {/* Animated Container */}
       <motion.div
-        className="bg-[#4b93d2] mx-4 mt-4  md:mx-20 flex flex-col md:flex-row items-center p-4 md:p-6 rounded-lg mb-8"
+        className="bg-[#4b93d2] mx-4 mt-4  md:mx-20 flex flex-col md:flex-row items-center p-4 md:p-6 rounded-lg mb-2"
         style={{ opacity, scale }}
         transition={{ ease: "circOut", duration: 1.2 }}
       >
@@ -42,9 +43,9 @@ const Career = () => {
           <Image
             src="/career.jpg"
             alt="Career Image"
-            width={500}
+            width={400}
             height={200}
-            className="rounded-lg mt-12 mb-12"
+            className="rounded-lg mt-2 mb-2"
           />
         </motion.div>
 
@@ -66,15 +67,17 @@ const Career = () => {
             Career Pathways
           </h2>
           <p className="text-base font-montserrat md:text-lg mt-4 md:mt-8">
-          Our courses go beyond theory, offering hands-on experience with real-world projects that mirror industry challenges. Gain the skills and confidence to solve practical problems, just like a professional.
-          <br />  <span className="mt-2 block">We dont just teach technical skills — we prepare you for the job market with dedicated placement support. From resume building to mock interviews and soft skills training, we equip you to land your dream job.</span>
-<span className="mt-4 block">At Marketiq Junction, we are committed to helping you unlock your full potential and achieve success in your career. Join us and experience the difference!</span>
+          At Marketiq Junction, gain hands-on experience with real-world projects, plus dedicated placement support. We help you build technical skills, prepare for interviews, and land your dream job. Unlock your full potential and succeed with us!
 
           </p>
 
           {/* Animated Button */}
+         <Link
+         href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20learn%20more%20about%20your%20courses.`}
+         target="_blank"
+         rel="noopener noreferrer">
           <motion.button
-            onClick={navigateToContact}
+            // onClick={navigateToContact}
             className="mt-6 md:mt-8 bg-[#50c3c6] text-black font-semibold font-montserrat px-4 md:px-6 py-2 md:py-3 rounded-3xl hover:bg-gray-200"
             
             animate={{
@@ -87,8 +90,9 @@ const Career = () => {
               ease: "easeOut",
             }}
           >
-            Start Teaching Now
+            Contact Now
           </motion.button>
+          </Link>
         </motion.div>
       </motion.div>
     </div>

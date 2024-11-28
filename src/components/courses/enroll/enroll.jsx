@@ -65,9 +65,11 @@ const Enroll = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1 }}
         >
-          <Link href="/contact-us">
+          <Link href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20learn%20more%20about%20your%20courses.`}
+         target="_blank"
+         rel="noopener noreferrer">
             <button className="mt-16 bg-[#0554f2] text-white font-semibold font-montserrat px-6 py-3 rounded-3xl hover:bg-gray-200 transition duration-300 mb-8">
-              Start Teaching Now
+              Contact Us
             </button>
           </Link>
         </motion.div>

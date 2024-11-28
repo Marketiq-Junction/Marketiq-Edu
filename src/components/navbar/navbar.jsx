@@ -28,7 +28,7 @@ const Navbar = () => {
   const menuItems = [
     { name: "Our story", path: "home" },
     { name: "Learn&Grow", path: "learn&grow" },
-    { name: "Support Center", path: "contact-us" },
+    // { name: "Support Center", path: "contact-us" },
     { name: "Verify Certificate", path: "verify-certificate" },
   ];
 

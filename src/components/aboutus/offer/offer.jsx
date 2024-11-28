@@ -8,30 +8,30 @@ const Offer = () => {
   const cards = [
     {
       id: 1,
-      title: "2-day Bootcamp",
+      title: '2-day Bootcamp',
       icon: <FaRocket size={50} className="text-blue-500 mx-auto" />,
       details: [
-        "Duration: 2 Days",
-        "Hours: 8 hours per day",
-        "Placement Support: No placement support",
-        "Hands-on Experience: Apply concepts through real-time exercises and examples",
-        "Certifications: Receive a Digital Marketing Bootcamp Certificate"
+        <h2><b>- Duration: </b>2 Days,<br />
+        <b>- Hours</b>: 8 hours per day <br />
+        <b>- Placement Support:</b> No placement support <br />
+        <b>- Hands-on Experience:</b> Apply concepts through real-time exercises and examples
+         <br /><b>- Certifications:</b> Receive a Digital Marketing Bootcamp Certificate</h2>
       ]
     },
     {
       id: 2,
-      title: "45-day Fast Track Program",
+      title: "45-day  Fast Track Program",
       icon: <FaBriefcase size={50} className="text-blue-500 mx-auto" />,
       details: [
-        "Duration: 45 Days",
-        "Hours: 3 days per week, 3 hours per session",
-        "Placement Support: Career guidance and mock interviews included",
-        "100% Placement Support: Resume building, mock interviews, and recruiter connections",
-        "Project-Based Learning: Gain practical experience by working on real-world campaigns",
-        "Certifications:",
-        "- Digital Marketing Basics Certificate",
-        "- Social Media Marketing Specialist Certificate",
-        "- Content Writing Specialist Certificate"
+        <h1><b>•Duration:</b> 45 Days
+        <br /><b>•Hours:</b> 2 days per week , 5 hours per session  <br />
+        <b>•Placement Support:</b> Career guidance and mock interviews included
+        <br /><b>•100% Placement Support:</b> Resume building, mock interviews, and recruiter connections
+        <br /> <b>•Project-Based Learning:</b> Gain practical experience by working on real-world campaigns <br />
+        <b>•Certifications: </b>
+        <br />- Digital Marketing Basics Certificate
+        <br />- Social Media Marketing Specialist Certificate
+        <br />- Content Writing Specialist Certificate</h1>
       ]
     },
     {
@@ -39,16 +39,16 @@ const Offer = () => {
       title: "4-Month Digital Marketing Program",
       icon: <FaCertificate size={50} className="text-blue-500 mx-auto" />,
       details: [
-        "Duration: 4 months",
-        "Hours: 3 days per week, 3 hours per day",
-        "Placement Support: 100% assistance with career workshops and mock interviews",
-        "100% Placement Support: Career coaching, mock interviews, and recruiter connections.",
-        "Live Projects: Gain practical experience by working on real-world campaigns.",
-        "Certifications:",
-        "- Digital Marketing Specialist Certificate",
-        "- Advanced SEO Specialist Certificate",
-        "- Social Media Marketing Expert Certificate",
-        "- Full Stack Digital Marketer Certificate"
+        <h1><b>•Duration:</b> 4 months <br />
+        • <b>Hours:</b> 2 days per week, 5 hours per day <br />
+        <b>•Placement Support:</b> 100% assistance with career workshops and mock interviews <br />
+        <b>•100% Placement Support:</b> Career coaching, mock interviews, and recruiter connections. <br />
+        <b>•Live Projects:</b> Gain practical experience by working on real-world campaigns. <br />
+        <b>•Certifications:</b> <br />
+        - Digital Marketing Specialist Certificate <br />
+        - Advanced SEO Specialist Certificate <br />
+        - Social Media Marketing Expert Certificate <br />
+        - Full Stack Digital Marketer Certificate</h1>
       ]
     }
   ];
@@ -94,7 +94,7 @@ const Offer = () => {
             {/* Extra Info Section */}
             {selectedCard === card.id && (
               <div className="absolute inset-0 bg-blue-50 p-6 font-syne flex flex-col justify-center transition-all rounded-lg z-10 h-full overflow-y-auto">
-                <ul className="list-disc list-inside text-gray-700 text-sm md:text-md">
+                <ul className=" list-inside text-gray-700 text-sm md:text-md">
                   {card.details.map((detail, index) => (
                     <li key={index} className="mb-2">{detail}</li>
                   ))}

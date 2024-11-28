@@ -15,7 +15,7 @@ const PayAfterPlacement = () => {
     <div className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-[#4a9bd3] to-[#50c3c6] p-6 md:p-10 text-white mb-8">
       {/* Left Side Image */}
       <motion.div
-        className="w-full md:w-1/3 rounded-lg overflow-hidden mb-6 md:mb-0"
+        className="w-full md:w-1/4 rounded-lg overflow-hidden mb-6 md:mb-0"
         style={{
           opacity, // Fades in
           y: translateY, // Moves upward
@@ -27,7 +27,7 @@ const PayAfterPlacement = () => {
           src="/placement.jpg" // Replace with your image path
           alt="Pay After Placement"
           layout="responsive"
-          width={400}
+          width={300}
           height={300}
           className="object-cover"
         />
@@ -51,23 +51,15 @@ const PayAfterPlacement = () => {
         <motion.p
           className="text-sm md:text-xl leading-relaxed font-syne "
         >
-          At Education.MarketJunction, your success is our priority! We provide comprehensive placement support to ensure you land your dream job in the tech industry. <br />
+         At Education.MarketJunction, your success is our priority! We offer:
+<br />Guaranteed Support Until Placement:  Our team helps you until you land a job.
+<br />Focus on Learning: Concentrate on developing your skills while we handle job hunting.
+<br />Personalized Career Guidance: Get mentorship, resume building, and interview prep.
+<br />Industry Connections: Access top companies and job opportunities aligned with your goals.
+<br />Let us support your journey to success! 
 
-Why Choose Our Placement Assistance?
-<br />🔹 Guaranteed Support Until Placement
-Our dedicated placement team works with you until you secure a position in the industry.
 
-<br />🔹 Focus on Learning
-No need to worry about job hunting — concentrate fully on developing your skills and expertise.
 
-<br />
-🔹 Tailored Career Guidance
-Receive personalized mentorship, resume building, and interview preparation to stand out in the job market.
-
-<br />🔹 Access to Top Industry Connections
-We connect you with leading companies and job opportunities aligned with your career goals.
-
-<br />At Education.MarketJunction, we empower you to immerse yourself in learning while we handle the rest. Your success is our success! 🚀
 
         </motion.p>
       </motion.div>

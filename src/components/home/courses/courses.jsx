@@ -57,9 +57,9 @@ const Courses = () => {
       {/* Course Cards */}
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 md:px-8">
         {courseData.map((course) => (
-          <Link
+          <div    //change this div tag to link tag it will conitnue working
             key={course.id}
-            href={course.syllabusLink}
+            href={course.syllabusLink} 
             target="_blank" // Open in a new tab
             rel="noopener noreferrer" // Prevent security vulnerabilities
           >
@@ -90,7 +90,7 @@ const Courses = () => {
                 </p>
               </div>
             </motion.div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

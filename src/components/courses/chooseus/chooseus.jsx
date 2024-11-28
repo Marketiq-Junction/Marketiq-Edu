@@ -105,9 +105,9 @@ const ChooseUs = () => {
             />
             <div>
               <h3 className="font-semibold text-lg">Career-Ready Curriculum</h3>
-              <p className="text-gray-600">
-                Each course is designed by industry professionals to equip
-                students with job-ready skills from day one.
+              <p className="text-gray-600 mt-4">
+             <span className="font-bold"> • Course Design: </span> Created by industry professionals.
+             <span className="font-bold"> <br />• Job-Ready Skills: </span> Equip students with practical skills from day one.
               </p>
             </div>
           </motion.div>
@@ -129,9 +129,9 @@ const ChooseUs = () => {
               <h3 className="font-semibold text-lg">
                 100% Placement Assistance
               </h3>
-              <p className="text-gray-600">
-                Comprehensive placement support, with a pay-after-placement
-                model that ensures financial accessibility for all.
+              <p className="text-gray-600 mt-2">
+             <span className="font-bold"> • Industry-Designed Courses: </span> Created by professionals to ensure real-world relevance.
+              <br /> <span className="font-bold">• Job-Ready Skills:</span> Equip students with the skills needed from day one.
               </p>
             </div>
           </motion.div>
@@ -154,9 +154,10 @@ const ChooseUs = () => {
             />
             <div>
               <h3 className="font-semibold text-lg">Flexible Learning Paths</h3>
-              <p className="text-gray-600">
-                Choose from 2-Days Bootcamp, 45-Days fast track course, 4-Months In-Depth Course programs tailored
-                to meet specific career goals.
+              <p className="text-gray-600 mt-2">
+              • Choose from 2-Days Bootcamp, <br />
+              • 45-Days fast track course, <br />• 4-Months In-Depth Course programs tailored
+                to <br />meet specific career goals.
               </p>
             </div>
           </motion.div>
@@ -182,7 +183,7 @@ const ChooseUs = () => {
                  Certifications
               </h3>
               <p className="text-gray-600">
-              Digital Marketing Specialist Certificate<br/>Advanced SEO Specialist Certificate<br/>Social Media Marketing Expert Certificate<br/>Full Stack Digital Marketer Certificate.
+              • Digital Marketing Specialist Certificate<br/>• Advanced SEO Specialist Certificate<br/>• Social Media Marketing Expert Certificate<br/> • Full Stack Digital Marketer Certificate.
               </p>
             </div>
           </motion.div>

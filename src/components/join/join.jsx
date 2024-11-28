@@ -11,7 +11,7 @@ const Join = () => {
     initial={{opacity:0.6,scale:0.4}}
     animate={{opacity:1,scale:1}}
     transition={{duration:3,ease:"backOut"}}
-    className="flex justify-center items-start bg-white py-10 px-4 sm:px-8 md:py-16 md:mb-32">
+    className="flex justify-center items-start bg-white py-10 px-4 sm:px-8 md:py-16 md:mb-16 md:-mt-2">
       <div className="text-center max-w-screen-lg px-2 md:px-0">
         <h1 className="text-2xl md:text-5xl font-semibold font-syne mb-6">
           Join Education.MarketJunction

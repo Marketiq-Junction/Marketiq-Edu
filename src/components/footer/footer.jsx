@@ -21,19 +21,19 @@ const Footer = () => {
               className="mb-4 h-20 w-48 md:h-24 md:w-56 rounded-xl"
             />
             <h3 className="font-semibold text-left text-black mb-2">Contact Us</h3>
-            <p className="font-semibold text-left text-gray-500 mb-2 text-sm md:text-base">
-              Call: <a href="tel:+919920892689" className="hover:underline">+91 99208 92689</a>
+            <p className="font-semibold text-left text-black mb-2 text-sm md:text-base">
+            📞 Call: <a href="tel:+919920892689" className="hover:underline">+91 99208 92689</a>
             </p>
             <p className="font-semibold text-left text-black mb-2 text-sm md:text-base">
-              Email: <a href="mailto:marketiqjunction@gmail.com" className="hover:underline"> <span className="text-gray-500">marketiqjunction@gmail.com</span></a>
+            ✉️ Email: <a href="mailto:marketiqjunction@gmail.com" className="hover:underline"> <span className="text-black">marketiqjunction@gmail.com</span></a>
             </p>
             <p className="font-semibold text-left text-black mb-4 text-sm md:text-base">
-  Address: <br />
+            📍 Address: <br />
   <a
     href="https://maps.app.goo.gl/9c8Gij4NMeGtGJM86"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-gray-500 hover:underline"
+    className="text-black hover:underline"
   >
     Off BKC, Mumbai, India 400070
   </a>
@@ -54,8 +54,8 @@ const Footer = () => {
 
           {/* Second Column: Explore */}
           <div className="flex-1">
-            <h3 className="font-semibold text-left text-black mb-4">Explore</h3>
-            <ul className="text-left space-y-2 text-sm md:text-base mt-8">
+            <h3 className="font-semibold text-xl text-left text-black mb-4">Explore</h3>
+            <ul className="text-left space-y-2  md:text-base mt-8">
               <li><Link href="/" className="text-gray-500 hover:underline">Our Story</Link></li>
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">learn&grow</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Support Center</Link></li>
@@ -64,7 +64,7 @@ const Footer = () => {
 
           {/* Third Column: Category */}
           <div className="flex-1">
-            <h3 className="font-semibold text-left text-black mb-4">Category</h3>
+            <h3 className="font-semibold text-left text-xl text-black mb-4">Category</h3>
             <ul className="text-left space-y-2 text-sm md:text-base mt-8">
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
               <li><Link href="/contact-us" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
@@ -96,7 +96,7 @@ const Footer = () => {
         {/* Footer Bottom: Copyright */}
         <div className="mt-8 text-center">
           <p className="text-xs md:text-sm text-gray-700">
-            © 2011- 2025 MarketIQ Edu. All rights reserved.
+            © 2011- 2024 MarketIQ Edu. All rights reserved.
           </p>
         </div>
 
