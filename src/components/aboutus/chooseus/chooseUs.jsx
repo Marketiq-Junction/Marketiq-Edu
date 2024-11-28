@@ -37,7 +37,7 @@ const ChooseUs = () => {
       alt: "Flexible Learning Options",
       category: "Comprehensive Placement Support",
       extraInfo:
-        "We don’t just teach technical skills — we prepare you for the job market with dedicated placement support. From resume building to mock interviews and soft skills training, we equip you to land your dream job.",
+        "We dont just teach technical skills — we prepare you for the job market with dedicated placement support. From resume building to mock interviews and soft skills training, we equip you to land your dream job.",
     },
     {
       id: 4,
@@ -48,6 +48,9 @@ const ChooseUs = () => {
       extraInfo:
         "Grow your connections through exclusive events, workshops, and networking opportunities with industry leaders. Develop relationships that can open doors to exciting career prospects.",
     },
+    { id:5, src: '/career.jpg', title: 'Continuous Learning with Industry-Relevant Courses', alt: 'Real-World Projects', category: 'Real-World Projects', extraInfo:'Stay ahead of the curve with courses designed to meet the demands of a rapidly evolving job market. Our curriculum is updated regularly to reflect the latest industry trends and technologies.' },
+      { id:6, src: '/placement.jpg', title: 'Flexible Learning for Your Convenience', alt: 'Real-World Projects', category: 'Real-World Projects', extraInfo:'Whether you prefer online, hybrid, or in-person learning, we offer flexible options to suit your schedule. Learn at your own pace while balancing your personal and professional life.' },
+      { id:7, src: '/prep.jpg', title: 'Affordable, Quality Education', alt: 'Real-World Projects', category: 'Affordable, Quality Education' , extraInfo:'We believe quality education should be accessible. Our courses offer exceptional value, providing a high-quality learning experience at an affordable price.'}
   ];
 
   const handleCardClick = (id) => {
@@ -96,7 +99,7 @@ const ChooseUs = () => {
     <div className="flex flex-col bg-[#50c3c6] items-center p-8 mt-4 mb-4 rounded-lg">
       {/* Title Section */}
       <div className="flex flex-col md:flex-row w-full items-start md:items-center md:justify-start mb-6 ml-8">
-        <h2 className="text-3xl md:text-6xl font-semibold font-syne text-center md:text-left">
+        <h2 className="text-3xl md:text-6xl font-semibold font-syne text-center md:text-left -ml-8 md:-ml-0">
           Your Path to <span className="text-white">Guaranteed</span> <br /> Success
         </h2>
       </div>
