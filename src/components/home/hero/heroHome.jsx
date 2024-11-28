@@ -129,7 +129,7 @@ const HeroHome = () => {
 
       {/* Wave Background */}
       <motion.div
-  className="absolute -bottom-16 left-0 w-auto overflow-hidden z-0"
+  className="absolute -bottom-16  w-full xl:w-full 2xl:w-full overflow-hidden z-0"
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 1 }}
