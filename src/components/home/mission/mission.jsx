@@ -1,13 +1,10 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Mission = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 }); // Trigger when 50% of the component is in view
-
   const containerVariants = {
     hidden: { opacity: 0, x: "-100vw" },
     visible: {
@@ -36,16 +33,14 @@ const Mission = () => {
   };
 
   return (
-    <div
-      ref={ref} // Attach ref for useInView hook
-      className="flex flex-col md:flex-row items-center p-8 mt-8 bg-white"
-    >
+    <div className="flex flex-col md:flex-row items-center p-8 mt-8 bg-white">
       {/* Left Section - Image */}
       <motion.div
         className="flex-1 -mt-8 md:-mt-16 md:mb-0"
         variants={imageVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"} // Trigger based on isInView
+        whileInView="visible" // Trigger animation when in view
+        viewport={{ once: false, amount: 0.5 }} // Adjust viewport settings
       >
         <Image
           src="/mission.avif"
@@ -61,26 +56,32 @@ const Mission = () => {
         className="flex-1 md:pl-8 text-center md:text-right"
         variants={textVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"} // Trigger based on isInView
+        whileInView="visible" // Trigger animation when in view
+        viewport={{ once: true, amount: 0.5 }} // Adjust viewport settings
       >
         <h2 className="text-4xl md:text-5xl font-semibold font-syne mr-0 md:mr-12 -mt-4 md:-mt-16">
           Mission
         </h2>
         <p className="mt-4 text-base md:text-lg font-montserrat mr-0 md:mr-12">
-          Our mission at Education.MarketJunction is to bridge the gap between
-          education and employment by providing students with industry-relevant
-          skills, practical expertise, and the confidence needed to excel in the
-          tech industry. We are dedicated to nurturing future-ready
-          professionals through high-quality training, hands-on projects, and
-          robust placement support, ensuring that every student has the tools to
-          succeed in a rapidly evolving digital world.
+          Bridge the gap between education and employment.
+          <br />
+          Equip students with industry-relevant skills and practical expertise.
+          <br />
+          Build confidence to excel in the tech industry.
+          <br />
+          Provide high-quality training and hands-on project experience.
+          <br />
+          Offer robust placement support for career success.
+          <br />
+          Prepare future-ready professionals for the evolving digital world.{" "}
+          <br />{" "}
         </p>
         {/* Learn More Button */}
         <motion.div
           variants={textVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"} // Trigger based on isInView
-          transition={{ delay: 0.6 }}
+          whileInView="visible" // Trigger animation when in view
+          viewport={{ once: true, amount: 0.5 }} // Adjust viewport settings
         >
           <Link
             href={`https://wa.me/919920892689?text=Hi%20there!%20I%20am%20interested%20in%20learning%20more%20about%20your%20mission%20and%20programs.`}
@@ -92,11 +93,11 @@ const Mission = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0, scale: 0 }}
-              animate={
-                isInView
-                  ? { opacity: 1, scale: [1, 1.1, 1] }
-                  : { opacity: 0, scale: 0 }
-              }
+              whileInView={{
+                opacity: 1,
+                scale: [1, 1.1, 1],
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
