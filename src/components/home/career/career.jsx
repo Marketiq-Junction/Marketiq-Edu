@@ -79,7 +79,7 @@ const Career = () => {
                 ease: "easeOut",
               }}
             >
-              Contact Now
+              We would Love to Hear From You
             </motion.button>
           </Link>
         </motion.div>
