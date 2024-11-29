@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const VerifyCertificate = () => {
-  const [certificateId, setCertificateId] = useState("");
+  const [credentialId, setcredentialId] = useState("");
   const [verificationStatus, setVerificationStatus] = useState(null);
   const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ const VerifyCertificate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
-            Please enter the unique certificate number to verify its authenticity.
+            Please enter the unique Credential Id to verify its authenticity.
           </motion.p>
         </div>
 
@@ -75,17 +75,17 @@ const VerifyCertificate = () => {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
         >
           <div>
-            <label htmlFor="certificateId" className="block text-sm font-medium text-gray-600">
-              Certificate Number
+            <label htmlFor="credentialId" className="block text-sm font-medium text-gray-600">
+            Credential Id
             </label>
             <input
               type="text"
-              id="certificateId"
-              value={certificateId}
-              onChange={(e) => setCertificateId(e.target.value)}
+              id="credentialId"
+              value={credentialId}
+              onChange={(e) => setcredentialId(e.target.value)}
               required
               className="w-full px-4 py-2 border rounded-md mt-2"
-              placeholder="Enter the certificate number"
+              placeholder="Enter the Credential Id"
             />
           </div>
 
@@ -95,7 +95,7 @@ const VerifyCertificate = () => {
             disabled={loading}
             whileHover={{ scale: 1.03 }}
           >
-            {loading ? "Verifying..." : "Verify Certificate"}
+            {loading ? "Verifying..." : "Verify Credential Id"}
           </motion.button>
         </motion.form>
 

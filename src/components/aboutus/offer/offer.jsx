@@ -33,7 +33,7 @@ const Offer = () => {
     },
     {
       id: 3,
-      title: "4-Month Digital Marketing Program",
+      title: "4-Month A.I Digital Marketing Program",
       icon: <FaCertificate size={50} className="text-blue-500 mx-auto" />,
       details: [
         { label: 'Duration', value: '4 months' },
