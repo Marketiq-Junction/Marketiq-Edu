@@ -128,11 +128,11 @@ const ChooseUs = () => {
       </div>
 
       {/* Carousel Section */}
-      <div className="flex gap-4 px-4 md:px-12 w-full justify-center md:justify-end items-start">
+      <div className="flex gap-4 px-4 md:px-12 w-full justify-center md:justify-end items-start ">
         {getVisibleCards().map((card) => (
           <div
             key={card.id}
-            className={`bg-white rounded-xl shadow-lg w-full md:w-80 flex flex-col items-center p-4 transition-transform duration-300 ease-in-out hover:bg-blue-200 ${
+            className={`bg-white rounded-xl shadow-lg w-full md:w-80 flex flex-col items-center p-4 transition-transform duration-300 ease-in-out hover:bg-blue-200 hover:animate-pulse ${
               selectedCard === card.id ? "md:w-[400px]" : ""
             }`}
             onClick={() => handleCardClick(card.id)}

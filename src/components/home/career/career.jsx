@@ -22,7 +22,7 @@ const Career = () => {
     <div ref={containerRef} className="min-h-screen overflow-y-auto flex justify-center items-center">
       {/* Animated Container */}
       <motion.div
-        className="bg-[#4a9ad2] mx-4 mt-4 md:mx-10 lg:mx-20 flex flex-col md:flex-row items-center p-6 md:p-8 lg:p-12 rounded-lg w-full max-w-6xl"
+        className="bg-[#4a9ad2] mx-2 mt-4 md:mx-10 lg:mx-12 flex flex-col md:flex-row items-center p-6 md:p-8 lg:p-12 rounded-lg w-full max-w-6xl"
         style={{ opacity, scale }}
         transition={{ ease: "circOut", duration: 1.2 }}
       >
@@ -33,7 +33,7 @@ const Career = () => {
           transition={{ type: "spring", stiffness: 150, damping: 25 }}
         >
           <Image
-            src="/career.jpg"
+            src="/career.png"
             alt="Career Image"
             width={400}
             height={300}

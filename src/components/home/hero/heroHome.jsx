@@ -57,7 +57,7 @@ const HeroHome = () => {
           >
             {/* Learn & Grow Button */}
             <Link href="/learn&grow">
-              <button className="bg-[#ffffff] text-[#50c3c6] border border-transparent px-4 py-2 md:px-6 md:py-3 shadoww-lg rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
+              <button className="bg-[#ffffff] text-[#50c3c6] border border-white px-4 py-2 md:px-6 md:py-3 shadoww-lg rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
                 Learn & Grow
               </button>
             </Link>
@@ -127,25 +127,50 @@ const HeroHome = () => {
         </motion.div>
       </div>
 
-      {/* Wave Background */}
+      
       <motion.div
-  className="absolute -bottom-16  w-full xl:w-full 2xl:w-full overflow-hidden z-0"
+  className="absolute -bottom-20 w-full xl:w-full 2xl:w-full overflow-hidden z-0"
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 1 }}
 >
-  <svg
-    className="w-full h-auto md:h-52 lg:h-96"  // Adjust height responsively
+  <motion.svg
+    className="w-full h-52 md:h-52 lg:h-96"
     viewBox="0 0 1440 320"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    initial={{ y: 0 }}
+    animate={{
+      y: [0, 15, 0, -15, 0], // The wave moves up and down smoothly
+      transition: {
+        duration: 5, // Duration for one complete cycle
+        repeat: Infinity, // Repeat animation
+        ease: "easeInOut",
+        yoyo: true, // Ensure smooth reverse animation (not instantaneous)
+      },
+    }}
   >
-    <path
+    <motion.path
       fill="#ffffff"
-      d="M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,128C672,139,768,181,864,197.3C960,213,1056,203,1152,192C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      d="M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,128C672,139,768,181,864,197.3C960,213,1056,203,1152,192C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" // Default curve
+      animate={{
+        d: [
+          "M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,128C672,139,768,181,864,197.3C960,213,1056,203,1152,192C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z", // Default curve
+          "M0,250L48,240C96,230,192,210,288,190C384,170,480,150,576,130C672,110,768,90,864,70C960,50,1056,30,1152,10C1248,-10,1344,-30,1392,-35.3L1440,-40L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z", // Second curve (higher wave)
+          "M0,280L48,270C96,260,192,240,288,220C384,200,480,180,576,160C672,140,768,120,864,100C960,80,1056,60,1152,40C1248,30,1344,20,1392,10L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z", // Third curve (even higher)
+        ],
+      }}
+      transition={{
+        duration: 5, // The full cycle duration
+        repeat: Infinity, // Repeat infinitely
+        ease: "easeInOut", // Smooth easing
+        yoyo: true, // Make the animation reverse smoothly (this allows for a natural flow back)
+      }}
     />
-  </svg>
+  </motion.svg>
 </motion.div>
+
+
 
     </motion.div>
   );

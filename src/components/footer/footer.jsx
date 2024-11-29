@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <div className="bg-blue-200 text-white py-8 shadow-xl">
+    <div className="bg-blue-400 text-white py-8 shadow-xl">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-start items-start space-y-8 md:space-y-0 md:space-x-8">
           {/* First Column: Contact Us */}
@@ -56,9 +56,9 @@ const Footer = () => {
           <div className="flex-1">
             <h3 className="font-semibold text-xl text-left text-black mb-4">Explore</h3>
             <ul className="text-left space-y-2  md:text-base mt-8">
-              <li><Link href="/" className="text-gray-500 hover:underline">Our Story</Link></li>
-              <li><Link href="/learn&grow" className="text-gray-500 hover:underline">learn&grow</Link></li>
-              <li><Link href="/contact-us" className="text-gray-500 hover:underline">Support Center</Link></li>
+              <li><Link href="/" className="text-black hover:underline">Our Story</Link></li>
+              <li><Link href="/learn&grow" className="text-black hover:underline">learn&grow</Link></li>
+              <li><Link href="/contact-us" className="text-black hover:underline">Support Center</Link></li>
             </ul>
           </div>
 
@@ -66,10 +66,10 @@ const Footer = () => {
           <div className="flex-1">
             <h3 className="font-semibold text-left text-xl text-black mb-4">Category</h3>
             <ul className="text-left space-y-2 text-sm md:text-base mt-8">
-              <li><Link href="/learn&grow" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
-              <li><Link href="https://wa.me/+919920892689" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
-              <li><Link href="/learn&grow" className="text-gray-500 hover:underline">Our Programs</Link></li>
-              <li><Link href="https://wa.me/+919920892689" className="text-gray-500 hover:underline">Join Education.Marketiq</Link></li>
+              <li><Link href="/learn&grow" className="text-black hover:underline">100% Placement Assistance</Link></li>
+              <li><Link href="https://wa.me/+919920892689" className="text-black hover:underline">Student Experience and Support</Link></li>
+              <li><Link href="/learn&grow" className="text-black hover:underline">Our Programs</Link></li>
+              <li><Link href="https://wa.me/+919920892689" className="text-black hover:underline">Join Education.Marketiq</Link></li>
             </ul>
           </div>
 
@@ -95,8 +95,8 @@ const Footer = () => {
 
         {/* Footer Bottom: Copyright */}
         <div className="mt-8 text-center">
-          <p className="text-xs md:text-sm text-gray-700">
-            © 2011- 2024 MarketIQ Edu. All rights reserved.
+          <p className="text-xs md:text-sm text-black">
+            © 2011- 2024 Education.MarketiqJunction. All rights reserved.
           </p>
         </div>
 
