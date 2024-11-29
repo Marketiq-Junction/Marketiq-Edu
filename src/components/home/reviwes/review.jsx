@@ -49,7 +49,7 @@ const Review = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto my-12 px-4">
+    <div className="max-w-6xl mx-auto my-12 px-4 ">
       {/* Section Title */}
       <div className="text-center mb-8">
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold font-syne text-gray-800">

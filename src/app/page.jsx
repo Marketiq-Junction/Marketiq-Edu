@@ -11,6 +11,7 @@ import Career from '@/components/home/career/career'
 import Join from '@/components/join/join'
 import ChooseUs from '@/components/aboutus/chooseus/chooseUs'
 import Review from '@/components/home/reviwes/review'
+import Brands from '@/components/home/brands/brands'
 
 const page = () => {
   return (
@@ -22,8 +23,9 @@ const page = () => {
       <ChooseUs/>
       {/* <Courses/> */}
       <PayAfterPlacement/>
-      <Review/>
       <Career/>
+      <Review/>
+      <Brands/>
       <Join/>
       <Footer/>
       

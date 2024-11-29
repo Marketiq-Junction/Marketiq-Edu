@@ -12,7 +12,7 @@ const PayAfterPlacement = () => {
   const translateY = useTransform(scrollYProgress, [0, 0.5], [50, 0]); // Moves upward as you scroll
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-[#4a9bd3] to-[#50c3c6] p-6 md:p-10 text-white mb-8">
+    <div className="flex flex-col md:flex-row items-center justify-between bg-white p-6 md:p-10 text-black mb-8">
       {/* Left Side Image */}
       <motion.div
         className="w-full md:w-1/4 rounded-lg overflow-hidden mb-6 md:mb-0"
@@ -49,7 +49,7 @@ const PayAfterPlacement = () => {
           100% Placement <br className="hidden md:block" /> Assistance
         </h4>
         <motion.p
-          className="text-sm md:text-xl leading-relaxed font-syne "
+          className="text-sm md:text-xl leading-relaxed font-syne text-black "
         >
          At Education.MarketJunction, your success is our priority! We offer:
 <br />Guaranteed Support Until Placement:  Our team helps you until you land a job.

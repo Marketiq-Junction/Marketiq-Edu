@@ -91,7 +91,7 @@ const HeroHome = () => {
             />
           </div>
 
-          <motion.div
+          {/* <motion.div
             className="absolute bottom-[-20px] md:bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-white p-3 md:p-4 rounded-full shadow-lg z-10"
             initial={{ scale: 0 }}
             animate={{
@@ -104,9 +104,9 @@ const HeroHome = () => {
               repeatType: "loop",
               ease: "easeInOut",
             }}
-          >
+          > */}
             {/* Pulsing Circle */}
-            <motion.div
+            {/* <motion.div
               className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-gray-200 flex items-center justify-center"
               animate={{
                 scale: [1, 1.1, 1],
@@ -122,8 +122,8 @@ const HeroHome = () => {
               <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-500">
                 100%
               </span>
-            </motion.div>
-          </motion.div>
+            </motion.div> */}
+          {/* </motion.div> */}
         </motion.div>
       </div>
 

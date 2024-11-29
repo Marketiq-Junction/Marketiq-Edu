@@ -53,7 +53,7 @@ const Mission = () => {
 
       {/* Right Section - Content */}
       <motion.div
-        className="flex-1 md:pl-8 text-center md:text-right"
+        className="flex-1 md:pl-8 text-center md:text-left"
         variants={textVariants}
         initial="hidden"
         whileInView="visible" // Trigger animation when in view
@@ -62,20 +62,14 @@ const Mission = () => {
         <h2 className="text-4xl md:text-5xl font-semibold font-syne mr-0 md:mr-12 -mt-4 md:-mt-16">
           Mission
         </h2>
-        <p className="mt-4 text-base md:text-lg font-montserrat mr-0 md:mr-12">
-          Bridge the gap between education and employment.
-          <br />
-          Equip students with industry-relevant skills and practical expertise.
-          <br />
-          Build confidence to excel in the tech industry.
-          <br />
-          Provide high-quality training and hands-on project experience.
-          <br />
-          Offer robust placement support for career success.
-          <br />
-          Prepare future-ready professionals for the evolving digital world.{" "}
-          <br />{" "}
-        </p>
+        <ul className="mt-4 text-base md:text-lg font-montserrat list-disc list-inside md:pr-12 space-y-2">
+          <li>Bridge the gap between education and employment.</li>
+          <li>Equip students with industry-relevant skills and practical expertise.</li>
+          <li>Build confidence to excel in the tech industry.</li>
+          <li>Provide high-quality training and hands-on project experience.</li>
+          <li>Offer robust placement support for career success.</li>
+          <li>Prepare future-ready professionals for the evolving digital world.</li>
+        </ul>
         {/* Learn More Button */}
         <motion.div
           variants={textVariants}
