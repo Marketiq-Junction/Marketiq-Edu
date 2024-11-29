@@ -67,9 +67,9 @@ const Footer = () => {
             <h3 className="font-semibold text-left text-xl text-black mb-4">Category</h3>
             <ul className="text-left space-y-2 text-sm md:text-base mt-8">
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">100% Placement Assistance</Link></li>
-              <li><Link href="/contact-us" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
+              <li><Link href="https://wa.me/+919920892689" className="text-gray-500 hover:underline">Student Experience and Support</Link></li>
               <li><Link href="/learn&grow" className="text-gray-500 hover:underline">Our Programs</Link></li>
-              <li><Link href="/contact-us" className="text-gray-500 hover:underline">Join Education.Code4Bharat</Link></li>
+              <li><Link href="https://wa.me/+919920892689" className="text-gray-500 hover:underline">Join Education.Marketiq</Link></li>
             </ul>
           </div>
 

@@ -17,7 +17,7 @@ const Join = () => {
           Join Education.MarketJunction
         </h1>
         <p className="text-base md:text-2xl font-montserrat leading-relaxed mt-8">
-          Are you ready to launch your career in web development
+          Are you ready to launch your career in Marketing
           <br className="block md:hidden" /> with an educational partner you can trust?
           <br className="hidden md:block" /> Education.MarketJunction is here to guide you 
           <br className="block md:hidden" /> from enrollment to employment.
