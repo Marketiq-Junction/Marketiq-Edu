@@ -63,7 +63,7 @@ const HeroCourses = () => {
             onClick={openWhatsApp}
             className="bg-white text-black px-6 py-2 rounded-full font-semibold transition-all hover:bg-[#3ca0a0] hover:text-white"
           >
-            Let &apos;'s Connect
+            Let &apos;s Connect
           </button>
           <button
             onClick={openModal}
