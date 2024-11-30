@@ -4,8 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { useState } from "react";
 
 const HeroHome = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = (e) => {
+    e.stopPropagation();  // Prevent event from propagating to the parent div
+    setModalOpen(false);   // Close the modal
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { threshold: 0.8 });
 
@@ -62,17 +72,39 @@ const HeroHome = () => {
               </button>
             </Link>
             {/* Learn More Button */}
-            <Link
-              href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20learn%20more%20about%20your%20courses.`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="bg-transparent text-white border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20">
+            
+              <button
+              onClick={openModal}
+               className="bg-transparent text-white border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20">
                 Learn More
+                <PlayCircleOutlineIcon/>
               </button>
-            </Link>
+            
+            
           </motion.div>
         </motion.div>
+         {/* Modal for Video */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 mr-2 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          onClick={closeModal}  // Close the modal when clicking outside of the modal content
+        >
+          <div
+            className="relative w-11/12 md:w-1/2 bg-white rounded-lg p-4"
+            onClick={(e) => e.stopPropagation()}  // Prevent the click event from propagating to the outer div
+          >
+            <button
+              onClick={closeModal}
+              className="absolute top-1 right-0 text-white bg-black p-4 rounded-full"
+            >
+              X
+            </button>
+            <video width="96%" height="auto" controls>
+              <source src="/edumj.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>)}
 
         {/* Right Section */}
         <motion.div

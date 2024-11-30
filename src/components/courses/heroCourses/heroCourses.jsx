@@ -110,7 +110,7 @@ const HeroCourses = () => {
               X
             </button>
             <video width="96%" height="auto" controls>
-              <source src="/lgcourse.mp4" type="video/mp4" />
+              <source src="/edumj.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
