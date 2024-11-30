@@ -43,7 +43,7 @@ const Mission = () => {
         viewport={{ once: false, amount: 0.5 }} // Adjust viewport settings
       >
         <Image
-          src="/mission.avif"
+          src="/mission.png"
           alt="Mission"
           width={500}
           height={500}
