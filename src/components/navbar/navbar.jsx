@@ -33,7 +33,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white text-gray-800 py-3 px-4 shadow-md top-0 left-0 right-0 z-50">
+    <nav className="bg-white text-gray-800 py-1 px-4 shadow-md top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo with Link to Home */}
         <div className="flex-shrink-0">

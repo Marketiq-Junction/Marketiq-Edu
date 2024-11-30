@@ -108,7 +108,7 @@ const Footer = () => {
           className="fixed bottom-4 right-4 md:bottom-6 md:right-6 bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg hover:bg-green-600 transition-colors duration-300"
           aria-label="WhatsApp"
         >
-          <WhatsAppIcon fontSize="medium" />
+          <WhatsAppIcon fontSize="large" />
         </a>
       </div>
     </div>

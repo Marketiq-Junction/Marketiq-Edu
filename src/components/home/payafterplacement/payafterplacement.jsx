@@ -24,7 +24,7 @@ const PayAfterPlacement = () => {
         whileHover={{ scale: 1.05, rotate: 1 }} // Hover effect
       >
         <Image
-          src="/placement.jpg" // Replace with your image path
+          src="/llogo.png" // Replace with your image path
           alt="Pay After Placement"
           layout="responsive"
           width={300}

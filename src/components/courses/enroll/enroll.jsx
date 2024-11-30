@@ -34,7 +34,7 @@ const Enroll = () => {
       {/* Left Side Image with motion */}
       <motion.div className="w-full md:w-1/2 md:ml-8 flex justify-center mb-4 md:mb-0">
         <Image
-          src="/5.jpg" // Replace with your image path
+          src="/llogo.png" // Replace with your image path
           alt="Career Image"
           width={400} // Set the desired width
           height={300} // Set the desired height
