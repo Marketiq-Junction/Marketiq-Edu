@@ -54,13 +54,13 @@ const ChooseUs = () => {
           y: [0, -10, 0, 10, 0], // Bouncy motion
         }}
       >
-        <div className="relative w-60 h-80 sm:w-72 sm:h-96 lg:w-[500px] lg:h-[700px]">
+        <div className="relative w-60 h-80 sm:w-72 sm:h-96 lg:w-[90%] lg:h-[700px]">
           <Image
-            src="/courses.avif"
+            src="/chose.png"
             alt="Student Image"
             fill
             style={{ objectFit: "cover" }}
-            className="rounded-lg shadow-lg"
+            className="rounded-lg"
           />
         </div>
       </motion.div>

@@ -15,7 +15,7 @@ const PayAfterPlacement = () => {
     <div className="flex flex-col md:flex-row items-center justify-between bg-white p-6 md:p-10 text-black mb-8">
       {/* Left Side Image */}
       <motion.div
-        className="w-full md:w-1/4 rounded-lg overflow-hidden mb-6 md:mb-0"
+        className="w-full md:w-1/4 md:ml-24 rounded-lg overflow-hidden mb-6 md:mb-0"
         style={{
           opacity, // Fades in
           y: translateY, // Moves upward
@@ -24,7 +24,7 @@ const PayAfterPlacement = () => {
         whileHover={{ scale: 1.05, rotate: 1 }} // Hover effect
       >
         <Image
-          src="/llogo.png" // Replace with your image path
+          src="/100.png" // Replace with your image path
           alt="Pay After Placement"
           layout="responsive"
           width={300}

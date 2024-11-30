@@ -33,7 +33,7 @@ const Career = () => {
           transition={{ type: "spring", stiffness: 150, damping: 25 }}
         >
           <Image
-            src="/career.png"
+            src="/pathways.png"
             alt="Career Image"
             width={400}
             height={300}
