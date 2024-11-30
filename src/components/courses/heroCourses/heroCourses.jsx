@@ -105,7 +105,7 @@ const HeroCourses = () => {
           >
             <button
               onClick={closeModal}
-              className="absolute top-1 right-0 text-white bg-black p-4 rounded-full"
+              className="absolute top-1 right-0 text-red-500 bg-ewhite p-4 rounded-full"
             >
               X
             </button>
