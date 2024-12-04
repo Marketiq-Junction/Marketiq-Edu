@@ -14,7 +14,7 @@ const ChooseUs = () => {
   const cards = [
     {
       id: 1,
-      src: "/career.jpg",
+      src: "/realworld.png",
       title: "Real-World Projects for Practical Learning",
       alt: "Career-Focused Curriculum",
       category: "Career-Focused Curriculum",
@@ -23,7 +23,7 @@ const ChooseUs = () => {
     },
     {
       id: 2,
-      src: "/placement.jpg",
+      src: "/expert.png",
       title: "Expert Mentorship Tailored to You",
       alt: "100% Placement Assistance",
       category: "Expert Mentorship Tailored to You",
@@ -32,7 +32,7 @@ const ChooseUs = () => {
     },
     {
       id: 3,
-      src: "/prep.jpg",
+      src: "/comprehensive.png",
       title: "Comprehensive Placement Support",
       alt: "Flexible Learning Options",
       category: "Comprehensive Placement Support",
@@ -41,16 +41,19 @@ const ChooseUs = () => {
     },
     {
       id: 4,
-      src: "/project.jpg",
-      title: "Flexible Learning Options",
+      src: "/flexible.png",
+      title: (
+        <>
+          Flexible Learning <br /> Options
+        </> )
+      ,
       alt: "Real-World Projects",
       category: "Flexible Learning Options",
       extraInfo:
         "Grow your connections through exclusive events, workshops, and networking opportunities with industry leaders. Develop relationships that can open doors to exciting career prospects.",
     },
-    { id:5, src: '/career.jpg', title: 'Continuous Learning with Industry-Relevant Courses', alt: 'Real-World Projects', category: 'Real-World Projects', extraInfo:'Stay ahead of the curve with courses designed to meet the demands of a rapidly evolving job market. Our curriculum is updated regularly to reflect the latest industry trends and technologies.' },
-      { id:6, src: '/placement.jpg', title: 'Flexible Learning for Your Convenience', alt: 'Real-World Projects', category: 'Real-World Projects', extraInfo:'Whether you prefer online, hybrid, or in-person learning, we offer flexible options to suit your schedule. Learn at your own pace while balancing your personal and professional life.' },
-      { id:7, src: '/prep.jpg', title: 'Affordable, Quality Education', alt: 'Real-World Projects', category: 'Affordable, Quality Education' , extraInfo:'We believe quality education should be accessible. Our courses offer exceptional value, providing a high-quality learning experience at an affordable price.'}
+    { id:5, src: '/continuos.png', title: 'Continuous Learning with Industry-Relevant Courses', alt: 'Real-World Projects', category: 'Real-World Projects', extraInfo:'Stay ahead of the curve with courses designed to meet the demands of a rapidly evolving job market. Our curriculum is updated regularly to reflect the latest industry trends and technologies.' },
+      { id:6, src: '/affordable.png', title: 'Affordable, Quality Education', alt: 'Real-World Projects', category: 'Affordable, Quality Education' , extraInfo:'We believe quality education should be accessible. Our courses offer exceptional value, providing a high-quality learning experience at an affordable price.'}
   ];
 
   const handleCardClick = (id) => {
@@ -138,7 +141,7 @@ const ChooseUs = () => {
             onClick={() => handleCardClick(card.id)}
             style={{ cursor: "pointer", minHeight:"200px" }}
           >
-            <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
+            <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
               <Image
                 src={card.src}
                 alt={card.alt}
@@ -147,7 +150,7 @@ const ChooseUs = () => {
                 className="rounded-lg"
               />
             </div>
-            <p className="text-lg font-semibold font-syne text-center">{card.title}</p>
+            <p className="text-lg font-semibold font-syne text-center max-w-[300px] whitespace-normal">{card.title}</p>
             {selectedCard === card.id && (
               <div className="mt-4 bg-blue-50 text-center font-syne p-4 rounded-lg text-gray-700">
                 <p className="text-lg text-black">{card.extraInfo}</p>

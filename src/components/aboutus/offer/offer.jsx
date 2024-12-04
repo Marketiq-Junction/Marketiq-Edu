@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import { FaBriefcase, FaRocket, FaCertificate } from 'react-icons/fa';
+import { MdElectricBolt } from "react-icons/md";
+import { IoIosSpeedometer } from "react-icons/io";
+import { GiGrowth } from "react-icons/gi";
 
 const Offer = () => {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -9,7 +11,7 @@ const Offer = () => {
     {
       id: 1,
       title: '2-day Bootcamp',
-      icon: <FaRocket size={50} className="text-blue-500 mx-auto" />,
+      icon: <MdElectricBolt size={100} className="text-blue-500 mx-auto" />,
       details: [
         { label: 'Duration', value: '2 Days' },
         { label: 'Hours', value: '8 hours per day' },
@@ -21,7 +23,7 @@ const Offer = () => {
     {
       id: 2,
       title: "45-day Fast Track Program",
-      icon: <FaBriefcase size={50} className="text-blue-500 mx-auto" />,
+      icon: <IoIosSpeedometer size={100} className="text-blue-500 mx-auto" />,
       details: [
         { label: 'Duration', value: '45 Days' },
         { label: 'Hours', value: '2 days per week, 5 hours per session' },
@@ -34,7 +36,7 @@ const Offer = () => {
     {
       id: 3,
       title: "4-Month A.I Digital Marketing Program",
-      icon: <FaCertificate size={50} className="text-blue-500 mx-auto" />,
+      icon: <GiGrowth size={100} className="text-blue-500 mx-auto" />,
       details: [
         { label: 'Duration', value: '4 months' },
         { label: 'Hours', value: '2 days per week, 5 hours per day' },

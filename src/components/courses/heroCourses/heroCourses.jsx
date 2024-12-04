@@ -82,9 +82,9 @@ const HeroCourses = () => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <div className="relative w-64 h-44 md:w-[82%] md:h-80">
+        <div className="relative w-64 h-44 md:w-[82%] md:h-[380px]">
           <Image
-            src="/lghero.png"
+            src="/lgpage.png"
             alt="Student Image"
             layout="fill"
             objectFit="cover"

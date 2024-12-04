@@ -3,9 +3,9 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 // MUI Icons
-import CodeIcon from "@mui/icons-material/Code";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import MarketingIcon from "@mui/icons-material/Assessment";
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import SpeedIcon from '@mui/icons-material/Speed';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 const Courses = () => {
   // Course data with "syllabusLink" and MUI icons
@@ -13,7 +13,7 @@ const Courses = () => {
     {
       id: 1,
       title: "2-Day Bootcamp",
-      icon: <CodeIcon className="text-[4rem] text-[#1976d2]" />, // MUI Icon for course
+      icon: <ElectricBoltIcon className="text-[8rem] text-[#1976d2]" />, // MUI Icon for course
       extraInfo:
         "Join our 2-day bootcamp to get a quick overview of digital marketing fundamentals. Perfect for beginners to get started!",
       syllabusLink: "/pdf/Bootcamp.pdf",
@@ -21,7 +21,7 @@ const Courses = () => {
     {
       id: 2,
       title: "45-Day Fast Track Program",
-      icon: <RocketLaunchIcon className="text-[4rem] text-[#388e3c]" />, // MUI Icon for course
+      icon: <SpeedIcon className="text-[8rem] text-[#388e3c]" />, // MUI Icon for course
       extraInfo:
         "This 45-day program focuses on fast-paced learning with in-depth knowledge and hands-on experience in digital marketing.",
       syllabusLink: "/pdf/45 day.pdf",
@@ -29,7 +29,7 @@ const Courses = () => {
     {
       id: 3,
       title: "4-Month Digital Marketing Program",
-      icon: <MarketingIcon className="text-[4rem] text-[#d32f2f]" />, // MUI Icon for course
+      icon: <InsightsIcon className="text-[8rem] text-[#d32f2f]" />, // MUI Icon for course
       extraInfo:
         "Our 4-month program offers an extensive curriculum designed to make you a pro in digital marketing. Includes practical assignments and expert guidance.",
       syllabusLink: "/pdf/4 Month.pdf",

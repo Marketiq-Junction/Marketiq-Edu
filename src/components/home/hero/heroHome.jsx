@@ -30,7 +30,7 @@ const HeroHome = () => {
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <motion.div
-          className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-20 md:-ml-4"
+          className="flex-1 mb-8 md:mb-0 md:pr-8 text-center md:text-left z-10 md:-mt-12 md:-ml-4"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -76,8 +76,8 @@ const HeroHome = () => {
               <button
               onClick={openModal}
                className="bg-transparent text-white border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20">
-                Learn More
-                <PlayCircleOutlineIcon/>
+                
+                <PlayCircleOutlineIcon />
               </button>
             
             
@@ -108,55 +108,22 @@ const HeroHome = () => {
 
         {/* Right Section */}
         <motion.div
-          className="flex-1 relative z-10 mt-12 md:mt-4 md:mt-0 w-full md:w-auto"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <div className="relative w-full h-64 md:h-68 lg:h-80 rounded-lg overflow-hidden shadow-xl mb-12 hover:animate-bounce">
-            <Image
-              src="/herohome.avif"
-              alt="Hero Image"
-              layout="fill"
-              objectFit="cover"
-              className="z-0 mt-2 rounded-2xl"
-            />
-          </div>
+  className="flex-1 relative z-10 mt-12 md:mt-4 md:mt-0 w-full md:w-auto"
+  initial={{ opacity: 0, x: 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8, delay: 0.4 }}
+>
+  <div className="relative w-[85%] h-[300px] md:h-[450px] md:ml-16 aspect-square rounded-lg md:-mt-28  overflow-hidden mb-4">
+    <Image
+      src="/DigitalGrowth.png" // Your square image path
+      alt="Hero Image"
+      layout="fill"
+      objectFit="cover" // Ensures the image covers the container without stretching
+      className="rounded-2xl"
+    />
+  </div>
+</motion.div>
 
-          {/* <motion.div
-            className="absolute bottom-[-20px] md:bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-white p-3 md:p-4 rounded-full shadow-lg z-10"
-            initial={{ scale: 0 }}
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [1, 0.8, 1],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
-          > */}
-            {/* Pulsing Circle */}
-            {/* <motion.div
-              className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-gray-200 flex items-center justify-center"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [1, 0.8, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-500">
-                100%
-              </span>
-            </motion.div> */}
-          {/* </motion.div> */}
-        </motion.div>
       </div>
 
       
