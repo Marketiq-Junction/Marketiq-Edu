@@ -85,7 +85,7 @@ const Footer = () => {
           {/* Second Column: Explore */}
           <div className="flex-1">
             <h3 className="font-semibold text-xl text-left text-black mb-4">
-              Explore
+              Policies
             </h3>
             <ul className="text-left space-y-2 md:text-base mt-8">
               <li>
