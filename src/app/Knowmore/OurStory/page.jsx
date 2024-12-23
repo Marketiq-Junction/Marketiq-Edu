@@ -1,7 +1,11 @@
+import Footer from "@/components/footer/footer";
+import Navbar from "@/components/navbar/navbar";
 import React from "react";
 
 const OurStory = () => {
   return (
+    <div>
+      <Navbar/>
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
       <div className="max-w-4xl bg-white shadow-md rounded-lg p-8">
         <h1 className="text-3xl font-bold text-blue-500 mb-6">Our Story</h1>
@@ -23,6 +27,8 @@ const OurStory = () => {
           to success.
         </p>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };
