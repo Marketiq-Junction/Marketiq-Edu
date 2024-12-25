@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const HeroHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isPdfModalOpen, setPdfModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
   };
@@ -16,6 +17,13 @@ const HeroHome = () => {
     e.stopPropagation();  // Prevent event from propagating to the parent div
     setModalOpen(false);   // Close the modal
   };
+
+  const openPdfModal = () => setPdfModalOpen(true);
+  const closePdfModal = (e) => {
+    e.stopPropagation();
+    setPdfModalOpen(false);
+  };
+
   const ref = useRef(null);
   const isInView = useInView(ref, { threshold: 0.8 });
 
@@ -66,11 +74,21 @@ const HeroHome = () => {
             transition={{ duration: 0.8, delay: 1 }}
           >
             {/* Learn & Grow Button */}
-            <Link href="/learn&grow">
-              <button className="bg-[#ffffff] text-[#50c3c6] border border-white px-4 py-2 md:px-6 md:py-3 shadoww-lg rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20">
-                Learn & Grow
-              </button>
-            </Link>
+            <button
+  onClick={() => {
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
+      // Open in a new tab for mobile devices
+      window.open("/brochure/b.pdf", "_blank");
+    } else {
+      // Open the modal for larger screens
+      openPdfModal();
+    }
+  }}
+  className="bg-[#ffffff] text-[#50c3c6] border border-white px-4 py-2 md:px-6 md:py-3 shadow-lg rounded-md hover:bg-transparent hover:text-white hover:border-white transition z-20"
+>
+  Our Brochure
+</button>
+
             {/* Learn More Button */}
             
               <button
@@ -83,6 +101,50 @@ const HeroHome = () => {
             
           </motion.div>
         </motion.div>
+
+        {isPdfModalOpen && (
+  <div
+    className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+    onClick={closePdfModal}
+  >
+    <div
+      className="relative w-[100%] h-[85%] max-w-3xl bg-white p-2 md:p-6 lg:p-2"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={closePdfModal}
+        className="absolute top-2 right-2 text-red-500 bg-white p-2 rounded-full shadow hover:bg-gray-100 transition"
+        aria-label="Close PDF Modal"
+      >
+        X
+      </button>
+      {/* Detect device size */}
+      {typeof window !== "undefined" && window.innerWidth <= 768 ? (
+        // Open in a new tab for mobile devices
+        <p className="text-center text-sm">
+          The PDF cannot be viewed directly on mobile.{' '}
+          <a
+            href="/brochure/b.pdf" // Replace with your actual PDF file link
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            Click here to view the PDF in a new tab
+          </a>
+        </p>
+      ) : (
+        // Embed the PDF for larger devices
+        <iframe
+          src="/brochure/b.pdf" // Replace with your actual PDF file link
+          className="w-full h-[90%] md:h-[80vh] rounded-lg"
+          title="PDF Viewer"
+        ></iframe>
+      )}
+    </div>
+  </div>
+)}
+
+
          {/* Modal for Video */}
       {isModalOpen && (
         <div
