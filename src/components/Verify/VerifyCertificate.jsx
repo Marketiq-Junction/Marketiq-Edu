@@ -8,16 +8,14 @@ const VerifyCertificate = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pdfPath, setPdfPath] = useState("");
+  const [certificateDetails, setCertificateDetails] = useState(null);
 
-  // Map certificate words to PDF files
+  // Static certificate map
   const certificateMap = {
-    E785641: "/PDFS/E785641.pdf", // PDF
-    ER78569: "/PDFS/ER78569.pdf", // PDF
-    GT45868: "/PDFS/GT45868.pdf", // PDF
-    KE7858: "/PDFS/KE7858.fof", // FOF
-    SER4586: "/PDFS/SER4586.for", // FOR
-    SER7898: "/PDFS/SER7898.for", // FOR
-    TB45683: "/PDFS/TB45683.pdf", // PDF
+    E785641: "/PDFS/E785641.pdf",
+    ER78569: "/PDFS/ER78569.pdf",
+    GT45868: "/PDFS/GT45868.pdf",
+    KE7858: "/PDFS/KE7858.pdf",
   };
 
   // Handle verification logic
@@ -26,30 +24,54 @@ const VerifyCertificate = () => {
     setLoading(true);
     setVerificationStatus(null);
     setPdfPath("");
+    setCertificateDetails(null);
 
-    // Convert input to uppercase or lowercase to avoid case sensitivity issues
-    const normalizedCertificateId = certificateId.toUpperCase();
+    // Ensure case insensitivity by converting both input and keys to uppercase
+    const certificateKey = certificateId.toUpperCase();
 
-    // Simulate an API call to verify the certificate
-    setTimeout(() => {
-      if (certificateMap[normalizedCertificateId]) {
-        setIsVerified(true);
-        setVerificationStatus("Certificate Verified Successfully!");
-        setPdfPath(certificateMap[normalizedCertificateId]);
-      } else {
+    if (certificateMap[certificateKey]) {
+      // Handle static mapping
+      setIsVerified(true);
+      setVerificationStatus("Certificate Verified Successfully!");
+      setPdfPath(certificateMap[certificateKey]);
+    } else {
+      // Query the backend for verification
+      try {
+        const response = await fetch("http://localhost:5000/api/verify-certificate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ certificateId: certificateKey }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.verified) {
+          setIsVerified(true);
+          setVerificationStatus("Certificate Verified Successfully!");
+          setPdfPath(data.pdfPath); // Path to the PDF file from backend
+          setCertificateDetails({
+            name: data.name,
+            authCode: data.authCode,
+            date: data.date,
+          });
+        } else {
+          setIsVerified(false);
+          setVerificationStatus(
+            data.message || "Verification Failed. Please check the certificate number."
+          );
+        }
+      } catch (error) {
         setIsVerified(false);
-        setVerificationStatus(
-          "Verification Failed. Please check the certificate number."
-        );
+        setVerificationStatus("An error occurred while verifying. Please try again.");
       }
-      setLoading(false);
-    }, 2000);
+    }
+
+    setLoading(false);
   };
 
   return (
     <section className="verify-section w-full min-h-[calc(80vh-10vh)] flex items-center justify-center bg-[#f4f6f9]">
       <div className="w-[90%] max-w-4xl h-auto bg-white rounded-3xl flex flex-col items-center p-6 md:p-8 shadow-lg">
-        {/* Title and Description */}
         <div className="text-center mb-6 md:mb-8">
           <motion.h1
             className="text-2xl md:text-3xl font-bold text-[#106EB5]"
@@ -65,12 +87,10 @@ const VerifyCertificate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
-            Please enter the unique certificate number to verify its
-            authenticity.
+            Please enter the unique certificate number to verify its authenticity.
           </motion.p>
         </div>
 
-        {/* Certificate Verification Form */}
         <motion.form
           className="w-full max-w-md space-y-4"
           onSubmit={handleVerification}
@@ -92,7 +112,7 @@ const VerifyCertificate = () => {
               onChange={(e) => setCertificateId(e.target.value)}
               required
               className="w-full px-4 py-2 border rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-[#106EB5]"
-              placeholder="Enter the Credential ID (e.g., 'one', 'two')"
+              placeholder="Enter the Credential ID (e.g., 'E785641')"
             />
           </div>
 
@@ -106,7 +126,6 @@ const VerifyCertificate = () => {
           </motion.button>
         </motion.form>
 
-        {/* Verification Status */}
         {verificationStatus && (
           <motion.div
             className={`mt-4 text-center text-sm md:text-xl font-semibold ${
@@ -120,7 +139,6 @@ const VerifyCertificate = () => {
           </motion.div>
         )}
 
-        {/* Render PDF Inline if Verified */}
         {isVerified && pdfPath && (
           <motion.div
             className="mt-6 w-full"
@@ -129,10 +147,23 @@ const VerifyCertificate = () => {
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
           >
             <iframe
-              src={`/${pdfPath}`}
+              src={pdfPath}
               className="w-full h-[500px] border rounded-md"
               title="Certificate"
             />
+          </motion.div>
+        )}
+
+        {isVerified && certificateDetails && (
+          <motion.div
+            className="mt-6 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 1 }}
+          >
+            <p className="text-lg font-medium">Name: {certificateDetails.name}</p>
+            <p className="text-sm text-gray-600">Auth Code: {certificateDetails.authCode}</p>
+            <p className="text-sm text-gray-600">Date: {certificateDetails.date}</p>
           </motion.div>
         )}
       </div>
