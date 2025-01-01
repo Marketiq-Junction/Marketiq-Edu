@@ -2,9 +2,9 @@ import React from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "Education Code for Bharat | Transforming Education with Technology",
+  title: "Education Marketiq-Junction | Transforming Education with Technology",
   description:
-    "Explore innovative education solutions with Education Code for Bharat. Empowering students and educators with technology-driven learning.",
+   "Empower your career with Marketiq Junction. Learn cutting-edge digital marketing skills and strategies to thrive in the modern business landscape."
 };
 
 export default function RootLayout({ children }) {
