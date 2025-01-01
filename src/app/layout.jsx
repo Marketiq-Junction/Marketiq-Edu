@@ -16,13 +16,13 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <meta
           name="keywords"
-          content="Education Code for Bharat, Digital Learning, EdTech, Innovative Education, Code4Bharat"
+          content="Empower your career with Marketiq Junction. Learn cutting-edge digital marketing skills and strategies to thrive in the modern business landscape."
         />
         <meta name="author" content="Code4Bharat" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         {/* Open Graph Metadata for Social Sharing */}
-        <meta property="og:title" content="Education Code for Bharat" />
+        <meta property="og:title" content="Marketiq-Junction" />
         <meta
           property="og:description"
           content="Empowering students and educators with technology-driven learning."
