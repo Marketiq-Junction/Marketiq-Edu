@@ -2,9 +2,9 @@ import React from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "Education Marketiq-Junction | Transforming Education with Technology",
+  title: "Education Marketiq-Junction | Empowering Digital Marketing Careers",
   description:
-   "Empower your career with Marketiq Junction. Learn cutting-edge digital marketing skills and strategies to thrive in the modern business landscape."
+    "Empower your career with Education Marketiq-Junction. Learn cutting-edge digital marketing skills and strategies to thrive in the modern business landscape.",
 };
 
 export default function RootLayout({ children }) {
@@ -16,33 +16,33 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <meta
           name="keywords"
-          content="Empower your career with Marketiq Junction. Learn cutting-edge digital marketing skills and strategies to thrive in the modern business landscape."
+          content="Digital Marketing, Marketiq-Junction, Marketing Education, Digital Skills, Empower Careers"
         />
-        <meta name="author" content="Code4Bharat" />
+        <meta name="author" content="Marketiq-Junction" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         {/* Open Graph Metadata for Social Sharing */}
-        <meta property="og:title" content="Marketiq-Junction" />
+        <meta property="og:title" content="Education Marketiq-Junction" />
         <meta
           property="og:description"
-          content="Empowering students and educators with technology-driven learning."
+          content="Empower your career with Education Marketiq-Junction. Learn cutting-edge digital marketing skills and strategies to thrive in the modern business landscape."
         />
         <meta property="og:image" content="/og-image.jpg" />
-        <meta property="og:url" content="https://education.code4bharat.com/" />
+        <meta property="og:url" content="https://education.marketiq-junction.com/" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Cards Metadata */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Education Code for Bharat" />
+        <meta name="twitter:title" content="Education Marketiq-Junction" />
         <meta
           name="twitter:description"
-          content="Empowering students with EdTech solutions."
+          content="Learn and master digital marketing with Marketiq-Junction."
         />
         <meta name="twitter:image" content="/twitter-image.jpg" />
 
         {/* Robots and Canonical Links */}
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://education.code4bharat.com/" />
+        <link rel="canonical" href="https://education.marketiq-junction.com/" />
 
         {/* Structured Data (Schema Markup) */}
         <script
@@ -51,32 +51,32 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Education Code for Bharat",
-              url: "https://education.code4bharat.com/",
-              logo: "https://education.code4bharat.com/favicon/favicon-16x16.png",
+              name: "Education Marketiq-Junction",
+              url: "https://education.marketiq-junction.com/",
+              logo: "https://education.marketiq-junction.com/favicon/favicon-16x16.png",
               description:
-                "Transforming education through innovative digital solutions.",
+                "Empowering individuals with skills in digital marketing to enhance their careers and grow their businesses.",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Off BKC Kurla",
-                addressLocality: "Mumbai",
-                addressRegion: "MH",
-                postalCode: "400070",
-                addressCountry: "IN",
+                streetAddress: "Downtown Business Hub",
+                addressLocality: "New York",
+                addressRegion: "NY",
+                postalCode: "10001",
+                addressCountry: "US",
               },
               contactPoint: [
                 {
                   "@type": "ContactPoint",
-                  telephone: "+91 9594402916",
+                  telephone: "+1 123-456-7890",
                   contactType: "Customer Service",
-                  areaServed: "IN",
+                  areaServed: "Global",
                   availableLanguage: ["English"],
                 },
               ],
               sameAs: [
-                "https://www.facebook.com/Code4Bharat",
-                "https://twitter.com/Code4Bharat",
-                "https://linkedin.com/company/Code4Bharat",
+                "https://www.facebook.com/MarketiqJunction",
+                "https://twitter.com/MarketiqJunction",
+                "https://linkedin.com/company/MarketiqJunction",
               ],
             }),
           }}
