@@ -16,6 +16,22 @@ const VerifyCertificate = () => {
     ER78569: "/PDFS/ER78569.pdf",
     GT45868: "/PDFS/GT45868.pdf",
     KE7858: "/PDFS/KE7858.pdf",
+    MJ85641: "/PDFS/MJ85641.pdf",
+    TR94287: "/PDFS/TR94287.pdf",
+    WK52173: "/PDFS/WK52173.pdf",
+    FX73920: "/PDFS/FX73920.pdf",
+    LB43859: "/PDFS/LB43859.pdf",
+    NR18264: "/PDFS/NR18264.pdf",
+    ZQ90415: "/PDFS/ZQ90415.pdf",
+    VK67382: "/PDFS/VK67382.pdf",
+    GP39506: "/PDFS/GP39506.pdf",
+    DX74829: "/PDFS/DX74829.pdf",
+    HT21694: "/PDFS/HT21694.pdf",
+    QM58743: "/PDFS/QM58743.pdf",
+    CY81472: "/PDFS/CY81472.pdf",
+    KL62983: "/PDFS/KL62983.pdf",
+    BF30751: "/PDFS/BF30751.pdf",
+    WX98416: "/PDFS/WX98416.pdf",
   };
 
   // Handle verification logic
@@ -37,11 +53,14 @@ const VerifyCertificate = () => {
     } else {
       // Query the backend for verification
       try {
-        const response = await fetch("http://localhost:5000/api/verify-certificate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ certificateId: certificateKey }),
-        });
+        const response = await fetch(
+          "http://localhost:5000/api/verify-certificate",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ certificateId: certificateKey }),
+          }
+        );
 
         const data = await response.json();
 
@@ -57,12 +76,15 @@ const VerifyCertificate = () => {
         } else {
           setIsVerified(false);
           setVerificationStatus(
-            data.message || "Verification Failed. Please check the certificate number."
+            data.message ||
+              "Verification Failed. Please check the certificate number."
           );
         }
       } catch (error) {
         setIsVerified(false);
-        setVerificationStatus("An error occurred while verifying. Please try again.");
+        setVerificationStatus(
+          "An error occurred while verifying. Please try again."
+        );
       }
     }
 
@@ -87,7 +109,8 @@ const VerifyCertificate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
-            Please enter the unique certificate number to verify its authenticity.
+            Please enter the unique certificate number to verify its
+            authenticity.
           </motion.p>
         </div>
 
@@ -161,9 +184,15 @@ const VerifyCertificate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 1 }}
           >
-            <p className="text-lg font-medium">Name: {certificateDetails.name}</p>
-            <p className="text-sm text-gray-600">Auth Code: {certificateDetails.authCode}</p>
-            <p className="text-sm text-gray-600">Date: {certificateDetails.date}</p>
+            <p className="text-lg font-medium">
+              Name: {certificateDetails.name}
+            </p>
+            <p className="text-sm text-gray-600">
+              Auth Code: {certificateDetails.authCode}
+            </p>
+            <p className="text-sm text-gray-600">
+              Date: {certificateDetails.date}
+            </p>
           </motion.div>
         )}
       </div>
