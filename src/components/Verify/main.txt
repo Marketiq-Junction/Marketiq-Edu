@@ -13,6 +13,10 @@ const VerifyCertificate = () => {
 
   // Static certificate map (static PDFs)
   const certificateMap = {
+    C4B829: "/PDFS/C4B829.pdf",
+    C4B104: "/PDFS/C4B104.pdf",
+    C4B562: "/PDFS/C4B562.pdf",
+    C4B738: "/PDFS/C4B738.pdf",
     E785641: "/PDFS/E785641.pdf",
     ER78569: "/PDFS/ER78569.pdf",
     GT45868: "/PDFS/GT45868.pdf",
@@ -36,7 +40,68 @@ const VerifyCertificate = () => {
   };
 
 
-  // Handle verification logic
+  // Utility: Load an image and convert it to a Data URL (base64)
+  const loadImageAsDataUrl = (url) =>
+    new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL("image/png"));
+      };
+      img.onerror = () => reject(new Error("Could not load image at " + url));
+      img.src = url;
+    });
+
+  // Function to generate a dynamic PDF using MarketIQ Junction's template
+  const generateDynamicPDF = async (data) => {
+    try {
+      const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "pt",
+        format: "a4",
+      });
+
+      // Use the MarketIQ template
+      const imgUrl = "/PDFS/templatemj.png"; 
+      const imgData = await loadImageAsDataUrl(imgUrl);
+
+      // Get page dimensions
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+
+      // Add the background image (covering the whole page)
+      doc.addImage(imgData, "PNG", 0, 0, pageWidth, pageHeight);
+
+      // Set up font properties and positions for MarketIQ Junction
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(28);
+      doc.text(data.name, pageWidth / 2, 380, { align: "center" });
+
+      // Certificate Auth Code
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(18);
+      doc.text(`${data.authCode}`, 250, 690);
+
+      // Certificate Date (formatted)
+      const formattedDate = new Date(data.date).toLocaleDateString();
+      doc.setFontSize(18);
+      doc.text(`${formattedDate}`, 280, 570);
+
+      // Convert the generated PDF to a Blob URL for display
+      const pdfBlob = doc.output("blob");
+      return URL.createObjectURL(pdfBlob);
+    } catch (error) {
+      console.error("Error generating dynamic PDF with jsPDF:", error);
+      return "";
+    }
+  };
+
+  // Handle verification logic (both static and dynamic)
   const handleVerification = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -63,15 +128,6 @@ const VerifyCertificate = () => {
             body: JSON.stringify({ credentialId: certificateKey }),
           }
         );
-        const response = await fetch(
-          "http://localhost:5000/api/verify-certificate",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ certificateId: certificateKey }),
-          }
-        );
-
         const data = await response.json();
 
         if (response.ok && data.data) {
@@ -90,8 +146,7 @@ const VerifyCertificate = () => {
         } else {
           setIsVerified(false);
           setVerificationStatus(
-            data.message ||
-              "Verification Failed. Please check the certificate number."
+            data.message || "Verification Failed. Please check the certificate number."
           );
         }
       } catch (error) {
@@ -123,8 +178,7 @@ const VerifyCertificate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
-            Please enter the unique certificate number to verify its
-            authenticity.
+            Please enter the unique certificate number to verify its authenticity.
           </motion.p>
         </div>
 
@@ -160,50 +214,9 @@ const VerifyCertificate = () => {
           </motion.button>
         </motion.form>
 
-        {verificationStatus && (
-          <motion.div
-            className={`mt-4 text-center text-sm md:text-xl font-semibold ${
-              isVerified ? "text-green-500" : "text-red-500"
-            }`}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
-          >
-            {verificationStatus}
-          </motion.div>
-        )}
-
-        {isVerified && pdfPath && (
-          <motion.div
-            className="mt-6 w-full"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
-          >
-            <iframe
-              src={pdfPath}
-              className="w-full h-[500px] border rounded-md"
-              title="Certificate"
-            />
-          </motion.div>
-        )}
-
-        {isVerified && certificateDetails && (
-          <motion.div
-            className="mt-6 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 1 }}
-          >
-            <p className="text-lg font-medium">
-              Name: {certificateDetails.name}
-            </p>
-            <p className="text-sm text-gray-600">
-              Auth Code: {certificateDetails.authCode}
-            </p>
-            <p className="text-sm text-gray-600">
-              Date: {certificateDetails.date}
-            </p>
+        {isVerified && pdfUrl && (
+          <motion.div className="mt-6 w-full">
+            <iframe src={pdfUrl} className="w-full h-[500px] border rounded-md" title="Certificate" />
           </motion.div>
         )}
       </div>

@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# education.marketiqjunction
+
+This document provides an overview of the education.marketiqjunction platform, an educational arm of Marketiq Junction, offering a range of digital marketing courses and training programs.
 
 ## Getting Started
 
-First, run the development server:
+* **Prerequisites:**
+    * Node.js (v18 or higher)
+    * npm or yarn
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Installation:**
+    1. Clone the repository: `git clone <repository-url>`
+    2. Install dependencies: `npm install` 
+    3. Run the development server: `npm run dev` 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* **.next:**  Next.js build output.
+* **.vscode:** VS Code configuration files.
+* **node_modules:** Project dependencies.
+* **public:** Static assets (images, logos, course materials, etc.).
+* **src:**
+    * **app:** Next.js file-based routing (e.g., `/courses`, `/bootcamps`, `/certifications`, `/about`, `/contact`).
+    * **components:** Reusable UI components (course cards, navigation, user profiles, etc.).
+    * **styles:** Global CSS or styling files.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development
 
-## Learn More
+* **Scripts:**
+    * `dev`: Start development server.
+    * `build`: Build for production.
+    * `start`: Run production server.
 
-To learn more about Next.js, take a look at the following resources:
+* **Tips:**
+    * Use `localhost` for testing.
+    * Set environment variables correctly in `.env` file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* **Build:** `npm run build`
+* **Start:** `npm start` 
+    * Update environment variables for production in `.env` file.
 
-## Deploy on Vercel
+## Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **Course Catalog:** 
+    * Display a wide range of digital marketing courses (SEO, SEM, Social Media Marketing, Content Marketing, etc.).
+    * Offer various course formats (online, offline, live, self-paced).
+    * Filter courses by category, level, price, and instructor.
+* **Learning Management System (LMS):**
+    * Host course materials (videos, presentations, articles, quizzes).
+    * Track student progress and provide personalized learning paths.
+    * Facilitate interaction between students and instructors through forums and Q&A.
+* **Certifications & Assessments:**
+    * Issue industry-recognized certifications upon course completion.
+    * Conduct online assessments and quizzes to evaluate student learning.
+    * Provide personalized feedback and performance reports.
+* **Career Services:**
+    * Offer job placement assistance and career guidance.
+    * Connect students with potential employers.
+    * Provide resources for resume building and interview preparation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Libraries/Frameworks
+
+* Next.js
+* Tailwind CSS 
+
+
