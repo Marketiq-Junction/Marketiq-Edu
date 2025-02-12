@@ -17,28 +17,7 @@ const VerifyCertificate = () => {
     C4B104: "/PDFS/C4B104.pdf",
     C4B562: "/PDFS/C4B562.pdf",
     C4B738: "/PDFS/C4B738.pdf",
-    E785641: "/PDFS/E785641.pdf",
-    ER78569: "/PDFS/ER78569.pdf",
-    GT45868: "/PDFS/GT45868.pdf",
-    KE7858: "/PDFS/KE7858.pdf",
-    MJ85641: "/PDFS/MJ85641.pdf",
-    TR94287: "/PDFS/TR94287.pdf",
-    WK52173: "/PDFS/WK52173.pdf",
-    FX73920: "/PDFS/FX73920.pdf",
-    LB43859: "/PDFS/LB43859.pdf",
-    NR18264: "/PDFS/NR18264.pdf",
-    ZQ90415: "/PDFS/ZQ90415.pdf",
-    VK67382: "/PDFS/VK67382.pdf",
-    GP39506: "/PDFS/GP39506.pdf",
-    DX74829: "/PDFS/DX74829.pdf",
-    HT21694: "/PDFS/HT21694.pdf",
-    QM58743: "/PDFS/QM58743.pdf",
-    CY81472: "/PDFS/CY81472.pdf",
-    KL62983: "/PDFS/KL62983.pdf",
-    BF30751: "/PDFS/BF30751.pdf",
-    WX98416: "/PDFS/WX98416.pdf",
   };
-
 
   // Utility: Load an image and convert it to a Data URL (base64)
   const loadImageAsDataUrl = (url) =>
@@ -66,20 +45,21 @@ const VerifyCertificate = () => {
         format: "a4",
       });
 
-      // Use the MarketIQ template
-      const imgUrl = "/PDFS/templatemj.png"; 
+      // Use the MarketIQ template image
+      const imgUrl = "/PDFS/templatemj.png";
       const imgData = await loadImageAsDataUrl(imgUrl);
 
       // Get page dimensions
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
 
-      // Add the background image (covering the whole page)
+      // Add the background image covering the entire page
       doc.addImage(imgData, "PNG", 0, 0, pageWidth, pageHeight);
 
-      // Set up font properties and positions for MarketIQ Junction
+      // Add certificate details over the template
       doc.setFont("helvetica", "bold");
       doc.setFontSize(28);
+      // Center the name text
       doc.text(data.name, pageWidth / 2, 380, { align: "center" });
 
       // Certificate Auth Code
@@ -92,7 +72,7 @@ const VerifyCertificate = () => {
       doc.setFontSize(18);
       doc.text(`${formattedDate}`, 280, 570);
 
-      // Convert the generated PDF to a Blob URL for display
+      // Convert the generated PDF to a Blob URL for display or download
       const pdfBlob = doc.output("blob");
       return URL.createObjectURL(pdfBlob);
     } catch (error) {
@@ -112,13 +92,13 @@ const VerifyCertificate = () => {
 
     const certificateKey = certificateId.toUpperCase();
 
-    // Check static map first
+    // Check static certificate map first
     if (certificateMap[certificateKey]) {
       setIsVerified(true);
       setVerificationStatus("Certificate Verified Successfully (Static)!");
       setPdfUrl(certificateMap[certificateKey]);
     } else {
-      // If not static, hit the backend API
+      // If not found in static map, call the backend API
       try {
         const response = await fetch(
           "https://api.code4bharat.com/api/student/verifycertificate",
@@ -140,13 +120,14 @@ const VerifyCertificate = () => {
             type: "Marketiq",
           });
 
-          // Generate MarketIQ Junction PDF
+          // Generate a dynamic PDF with the certificate details using the MarketIQ template
           const dynamicPdfUrl = await generateDynamicPDF(data.data);
           setPdfUrl(dynamicPdfUrl);
         } else {
           setIsVerified(false);
           setVerificationStatus(
-            data.message || "Verification Failed. Please check the certificate number."
+            data.message ||
+              "Verification Failed. Please check the certificate number."
           );
         }
       } catch (error) {
@@ -190,7 +171,10 @@ const VerifyCertificate = () => {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
         >
           <div>
-            <label htmlFor="certificateId" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="certificateId"
+              className="block text-sm font-medium text-gray-600"
+            >
               Credential ID
             </label>
             <input
@@ -214,9 +198,73 @@ const VerifyCertificate = () => {
           </motion.button>
         </motion.form>
 
+        {verificationStatus && (
+          <motion.div
+            className={`mt-4 text-center text-sm md:text-xl font-semibold ${
+              isVerified ? "text-green-500" : "text-red-500"
+            }`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+          >
+            {verificationStatus}
+          </motion.div>
+        )}
+
         {isVerified && pdfUrl && (
-          <motion.div className="mt-6 w-full">
-            <iframe src={pdfUrl} className="w-full h-[500px] border rounded-md" title="Certificate" />
+          <motion.div
+            className="mt-6 w-full text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
+          >
+            {/* Desktop view: Display PDF in an iframe */}
+            <div className="hidden md:block">
+              <iframe
+                src={pdfUrl}
+                className="w-full h-[500px] border rounded-md"
+                title="Certificate"
+              />
+            </div>
+
+            {/* Mobile view: Fallback options to open or download the PDF */}
+            <div className="md:hidden flex flex-col items-center">
+              <p className="text-gray-600 mb-2">View or Download Certificate</p>
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md"
+              >
+                Open Certificate
+              </a>
+              <a
+                href={pdfUrl}
+                download={`Certificate-${certificateId}.pdf`}
+                className="mt-2 px-4 py-2 bg-green-500 text-white rounded-md"
+              >
+                Download PDF
+              </a>
+            </div>
+          </motion.div>
+        )}
+
+        {isVerified && certificateDetails && (
+          <motion.div
+            className="mt-6 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 1 }}
+          >
+            <p className="text-lg font-medium">
+              Name: {certificateDetails.name}
+            </p>
+            <p className="text-sm text-gray-600">
+              Auth Code: {certificateDetails.authCode}
+            </p>
+            <p className="text-sm text-gray-600">
+              Date: {new Date(certificateDetails.date).toLocaleDateString()}
+            </p>
           </motion.div>
         )}
       </div>
