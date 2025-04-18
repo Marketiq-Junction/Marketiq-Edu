@@ -1,3 +1,4 @@
+"use client";
 import ContactPage from '@/components/contactus/contact/contact';
 import Databanner from '@/components/contactus/datas/databanner';
 import Getintouch from '@/components/contactus/getintouch/getintouch';

@@ -1,3 +1,4 @@
+"use client";
 import Offer from '@/components/aboutus/offer/offer';
 import ChooseUs from '@/components/courses/chooseus/chooseus';
 import Enroll from '@/components/courses/enroll/enroll';

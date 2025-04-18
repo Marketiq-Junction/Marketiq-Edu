@@ -99,7 +99,7 @@ const Navbar = () => {
         }
       }}
     >
-      Lets Talk <ChatIcon className="ml-2 " />
+      Let&apos;s Talk <ChatIcon className="ml-2 " />
     </div>
   </Link>
 </div>
@@ -127,7 +127,7 @@ const Navbar = () => {
         }
       }}
     >
-      Let's Talk <ChatIcon className="ml-2" />
+      Let&apos;s Talk <ChatIcon className="ml-2" />
     </div>
   </Link>
 </div>

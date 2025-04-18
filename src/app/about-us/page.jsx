@@ -1,3 +1,4 @@
+"use client";
 import ChooseUs from '@/components/aboutus/chooseus/chooseUs'
 import Experience from '@/components/aboutus/experience/experience'
 import Heroabout from '@/components/aboutus/heroAbout/heroabout'
