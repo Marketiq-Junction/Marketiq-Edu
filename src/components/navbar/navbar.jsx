@@ -80,38 +80,58 @@ const Navbar = () => {
 
           {/* Buttons for Mobile View */}
           <div className="flex md:hidden flex-col space-y-4 mt-4">
-            {/* Let's Talk Button for WhatsApp */}
-            <Link
-              href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services.`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div
-                className="text-white px-6 py-3 rounded-lg flex items-center justify-center cursor-pointer"
-                style={{ backgroundColor: "#50c3c6" }}
-              >
-                Let&apos;s Talk <ChatIcon className="ml-2 " />
-              </div>
-            </Link>
-          </div>
+  {/* Let's Talk Button for WhatsApp */}
+  <Link
+    href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services.`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div
+      className="text-white px-6 py-3 rounded-lg flex items-center justify-center cursor-pointer"
+      style={{ backgroundColor: "#50c3c6" }}
+      onClick={() => {
+        if (typeof window !== "undefined" && typeof gtag === "function") {
+          gtag("event", "social_click", {
+            event_category: "engagement",
+            event_label: "WhatsApp",
+            transport_type: "beacon",
+          });
+        }
+      }}
+    >
+      Lets Talk <ChatIcon className="ml-2 " />
+    </div>
+  </Link>
+</div>
+
         </ul>
 
         {/* Buttons for Desktop View */}
         <div className="hidden md:flex items-center space-x-4 mr-8">
-          {/* Let's Talk Button for WhatsApp */}
-          <Link
-            href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services.`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div
-              className="text-white px-8 py-3 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-700"
-              style={{ backgroundColor: "#50c3c6" }}
-            >
-              Let&apos;s Talk <ChatIcon className="ml-2" />
-            </div>
-          </Link>
-        </div>
+  {/* Let's Talk Button for WhatsApp */}
+  <Link
+    href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services.`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div
+      className="text-white px-8 py-3 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-700"
+      style={{ backgroundColor: "#50c3c6" }}
+      onClick={() => {
+        if (typeof window !== "undefined" && typeof gtag === "function") {
+          gtag("event", "social_click", {
+            event_category: "engagement",
+            event_label: "WhatsApp",
+            transport_type: "beacon",
+          });
+        }
+      }}
+    >
+      Let's Talk <ChatIcon className="ml-2" />
+    </div>
+  </Link>
+</div>
+
       </div>
     </nav>
   );

@@ -63,33 +63,35 @@ const Courses = () => {
             target="_blank" // Open in a new tab
             rel="noopener noreferrer" // Prevent security vulnerabilities
           >
-            <motion.div
-              className="relative bg-white rounded-lg shadow-lg hover:bg-gradient-to-r hover:from-[#e0f7fa] hover:to-[#c8e6c9] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col items-center h-full cursor-pointer"
-              variants={cardVariants}
-              initial="initial"
-              whileHover="hover"
-              animate="animate"
-            >
-              {/* <motion.div 
-              initial={{opacity:0.3,scale:0.4}}
-              animate={{opacity:1,scale:1}}
-              transition={{duration:0.7,delay:0.3, ease:"backIn"}}
-              className="p-8   rounded-t-lg w-full flex justify-center">
-                {course.icon}
-              </motion.div> */}
-              <div className=" p-4 rounded-t-lg w-full flex justify-center mt-8 animate-bounce">
-                {course.icon}
-              </div>
-              {/* Content Section */}
-              <div className="p-6 flex flex-col items-center">
-                <h3 className="text-lg sm:text-xl font-bold font-montserrat text-gray-800">
-                  {course.title}
-                </h3>
-                <p className="text-sm text-gray-600 mt-4 text-center">
-                  {course.extraInfo}
-                </p>
-              </div>
-            </motion.div>
+        <motion.div
+  className="relative bg-white rounded-lg shadow-lg hover:bg-gradient-to-r hover:from-[#e0f7fa] hover:to-[#c8e6c9] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col items-center h-full cursor-pointer"
+  variants={cardVariants}
+  initial="initial"
+  whileHover="hover"
+  animate="animate"
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "select_content", {
+        event_category: "courses",
+        event_label: `${course.title} Card Clicked`,
+        transport_type: "beacon",
+      });
+    }
+  }}
+>
+  <div className="p-4 rounded-t-lg w-full flex justify-center mt-8 animate-bounce">
+    {course.icon}
+  </div>
+  <div className="p-6 flex flex-col items-center">
+    <h3 className="text-lg sm:text-xl font-bold font-montserrat text-gray-800">
+      {course.title}
+    </h3>
+    <p className="text-sm text-gray-600 mt-4 text-center">
+      {course.extraInfo}
+    </p>
+  </div>
+</motion.div>
+
           </div>
         ))}
       </div>

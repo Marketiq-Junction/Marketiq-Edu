@@ -63,42 +63,54 @@ const Offer = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-4 md:px-16">
         {cards.map((card) => (
-          <div
-            key={card.id}
-            className={`relative rounded-lg shadow-lg transform transition-all duration-300 bg-blue-100 hover:scale-105 hover:shadow-xl flex flex-col overflow-hidden h-auto min-h-[350px]`}
-            onClick={() => handleCardClick(card.id)}
-            style={{ cursor: "pointer" }}
-          >
-            {/* Icon Section */}
-            <div className="p-6 flex justify-center animate-pulse mt-12">
-              {card.icon}
-            </div>
-
-            {/* Title Section */}
-            <div className="p-4 flex flex-col items-center">
-              <h3 className="text-lg md:text-2xl font-semibold font-syne text-gray-900 text-center">
-                {card.title}
-              </h3>
-              {selectedCard !== card.id && (
-                <p className="text-sm md:text-md text-gray-700 font-syne text-center mt-2">
-                  Click to view details
-                </p>
-              )}
-            </div>
-
-            {/* Extra Info Section */}
-            {selectedCard === card.id && (
-              <div className="absolute inset-0 bg-blue-50 p-6 font-syne flex flex-col justify-center transition-all rounded-lg z-10 h-full overflow-y-auto">
-                <ul className="list-inside text-gray-700 text-sm md:text-md">
-                  {card.details.map((detail, index) => (
-                    <li key={index} className="mb-2">
-                      <strong>{detail.label}:</strong> {detail.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+        <div
+        key={card.id}
+        className={`relative rounded-lg shadow-lg transform transition-all duration-300 bg-blue-100 hover:scale-105 hover:shadow-xl flex flex-col overflow-hidden h-auto min-h-[350px]`}
+        onClick={() => {
+          // Send the GA4 event when the card is clicked
+          if (typeof window !== "undefined" && typeof gtag === "function") {
+            gtag("event", "select_content", {
+              event_category: "cards",
+              event_label: `${card.title} Card Clicked`,
+              transport_type: "beacon",
+            });
+          }
+      
+          handleCardClick(card.id);
+        }}
+        style={{ cursor: "pointer" }}
+      >
+        {/* Icon Section */}
+        <div className="p-6 flex justify-center animate-pulse mt-12">
+          {card.icon}
+        </div>
+      
+        {/* Title Section */}
+        <div className="p-4 flex flex-col items-center">
+          <h3 className="text-lg md:text-2xl font-semibold font-syne text-gray-900 text-center">
+            {card.title}
+          </h3>
+          {selectedCard !== card.id && (
+            <p className="text-sm md:text-md text-gray-700 font-syne text-center mt-2">
+              Click to view details
+            </p>
+          )}
+        </div>
+      
+        {/* Extra Info Section */}
+        {selectedCard === card.id && (
+          <div className="absolute inset-0 bg-blue-50 p-6 font-syne flex flex-col justify-center transition-all rounded-lg z-10 h-full overflow-y-auto">
+            <ul className="list-inside text-gray-700 text-sm md:text-md">
+              {card.details.map((detail, index) => (
+                <li key={index} className="mb-2">
+                  <strong>{detail.label}:</strong> {detail.value}
+                </li>
+              ))}
+            </ul>
           </div>
+        )}
+      </div>
+      
         ))}
       </div>
     </div>

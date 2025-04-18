@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -32,12 +34,22 @@ const Footer = () => {
             <p className="font-semibold text-left text-black mb-2 text-sm md:text-base">
               ✉️ Email:{" "}
               <a
-                href="mailto:marketiqjunction@gmail.com"
-                className="hover:underline"
-              >
-                {" "}
-                <span className="text-black">marketiqjunction@gmail.com</span>
-              </a>
+  href="mailto:marketiqjunction@gmail.com"
+  className="hover:underline"
+  onClick={() => {
+    // Track the email click event in GA4
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "click", {
+        event_category: "email",
+        event_label: "Email Click",
+        transport_type: "beacon",
+      });
+    }
+  }}
+>
+  <span className="text-black">marketiqjunction@gmail.com</span>
+</a>
+
             </p>
             <p className="font-semibold text-left text-black mb-4 text-sm md:text-base">
               📍 Address: <br />
@@ -52,33 +64,63 @@ const Footer = () => {
             </p>
 
             <div className="flex justify-start space-x-4">
-              <a
-                href="https://www.facebook.com/people/marketiqjunction"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-blue-600 rounded-full p-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-                aria-label="Facebook"
-              >
-                <FacebookIcon fontSize="small" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/marketiq-junction/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-blue-700 rounded-full p-2 hover:bg-blue-700 hover:text-white transition-colors duration-300"
-                aria-label="LinkedIn"
-              >
-                <LinkedInIcon fontSize="small" />
-              </a>
-              <a
-                href="https://www.instagram.com/marketiq_junction"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-pink-500 rounded-full p-2 hover:bg-pink-500 hover:text-white transition-colors duration-300"
-                aria-label="Instagram"
-              >
-                <InstagramIcon fontSize="small" />
-              </a>
+            <a
+  href="https://www.facebook.com/people/marketiqjunction"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-white text-blue-600 rounded-full p-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+  aria-label="Facebook"
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "social_click", {
+        event_category: "engagement",
+        event_label: "Facebook",
+        transport_type: "beacon",
+      });
+    }
+  }}
+>
+  <FacebookIcon fontSize="small" />
+</a>
+
+<a
+  href="https://www.linkedin.com/company/marketiq-junction/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-white text-blue-700 rounded-full p-2 hover:bg-blue-700 hover:text-white transition-colors duration-300"
+  aria-label="LinkedIn"
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "social_click", {
+        event_category: "engagement",
+        event_label: "LinkedIn",
+        transport_type: "beacon",
+      });
+    }
+  }}
+>
+  <LinkedInIcon fontSize="small" />
+</a>
+
+<a
+  href="https://www.instagram.com/marketiq_junction"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-white text-pink-500 rounded-full p-2 hover:bg-pink-500 hover:text-white transition-colors duration-300"
+  aria-label="Instagram"
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "social_click", {
+        event_category: "engagement",
+        event_label: "Instagram",
+        transport_type: "beacon",
+      });
+    }
+  }}
+>
+  <InstagramIcon fontSize="small" />
+</a>
+
             </div>
           </div>
 

@@ -82,25 +82,35 @@ const Mission = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <motion.button
-              className="mt-6 mb-8 md:mr-12 bg-[#50c3c6] font-semibold font-montserrat text-black px-6 py-3 hover:bg-[#3ca0a0] transition"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{
-                opacity: 1,
-                scale: [1, 1.1, 1],
-              }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              Learn More
-            </motion.button>
+        <motion.button
+  className="mt-6 mb-8 md:mr-12 bg-[#50c3c6] font-semibold font-montserrat text-black px-6 py-3 hover:bg-[#3ca0a0] transition"
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.9 }}
+  initial={{ opacity: 0, scale: 0 }}
+  whileInView={{
+    opacity: 1,
+    scale: [1, 1.1, 1],
+  }}
+  viewport={{ once: true, amount: 0.5 }}
+  transition={{
+    duration: 1.5,
+    repeat: Infinity,
+    repeatType: "loop",
+    ease: "easeInOut",
+  }}
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "learn_more_click", {
+        event_category: "engagement",
+        event_label: "Learn More Button",
+        value: 1,
+      });
+    }
+  }}
+>
+  Learn More
+</motion.button>
+
           </Link>
         </motion.div>
       </motion.div>

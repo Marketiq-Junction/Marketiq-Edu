@@ -67,20 +67,30 @@ const Career = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <motion.button
-              className="mt-6 md:mt-8 bg-[#50c3c6] text-black font-semibold font-montserrat px-6 py-3 rounded-3xl hover:bg-gray-200"
-              animate={{
-                scale: [1, 1.05, 1],
-                opacity: [1, 0.9, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeOut",
-              }}
-            >
-              We would Love to Hear From You
-            </motion.button>
+         <motion.button
+  className="mt-6 md:mt-8 bg-[#50c3c6] text-black font-semibold font-montserrat px-6 py-3 rounded-3xl hover:bg-gray-200"
+  animate={{
+    scale: [1, 1.05, 1],
+    opacity: [1, 0.9, 1],
+  }}
+  transition={{
+    duration: 1.5,
+    repeat: Infinity,
+    ease: "easeOut",
+  }}
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "cta_click", {
+        event_category: "engagement",
+        event_label: "Love to Hear Button",
+        value: 1,
+      });
+    }
+  }}
+>
+  We would Love to Hear From You
+</motion.button>
+
           </Link>
         </motion.div>
       </motion.div>

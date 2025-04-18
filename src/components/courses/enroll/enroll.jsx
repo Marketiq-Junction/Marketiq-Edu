@@ -68,9 +68,21 @@ const Enroll = () => {
           <Link href={`https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20learn%20more%20about%20your%20courses.`}
          target="_blank"
          rel="noopener noreferrer">
-            <button className="mt-16 bg-[#0554f2] text-white font-semibold font-montserrat px-6 py-3 rounded-3xl hover:bg-gray-200 transition duration-300 animate-pulse mb-8">
-            We would Love to Hear From You
-            </button>
+        <button
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "click", {
+        event_category: "engagement",
+        event_label: "We would Love to Hear From You Button",
+        transport_type: "beacon",
+      });
+    }
+  }}
+  className="mt-16 bg-[#0554f2] text-white font-semibold font-montserrat px-6 py-3 rounded-3xl hover:bg-gray-200 transition duration-300 animate-pulse mb-8"
+>
+  We would Love to Hear From You
+</button>
+
           </Link>
         </motion.div>
       </motion.div>

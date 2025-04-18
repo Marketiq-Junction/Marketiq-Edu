@@ -61,42 +61,86 @@ const Review = () => {
       <div className="flex flex-col items-center gap-6 md:gap-8 md:flex-row">
         {/* Previous Button */}
         <button
-          onClick={handlePrevious}
-          disabled={currentPage === 0}
-          className={`bg-white shadow-lg p-2 rounded-full transition-all duration-300 ${
-            currentPage === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-300'
-          }`}
-        >
-          <ArrowBack />
-        </button>
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "carousel_previous_click", {
+        event_category: "interaction",
+        event_label: "Previous Button",
+        value: currentPage,
+      });
+    }
+
+    handlePrevious();
+  }}
+  disabled={currentPage === 0}
+  className={`bg-white shadow-lg p-2 rounded-full transition-all duration-300 ${
+    currentPage === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-300'
+  }`}
+>
+  <ArrowBack />
+</button>
+
 
         {/* Cards */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-4 md:mt-8">
-          {currentCards.map((card) => (
-            <div
-              key={card.id}
-              className="bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md relative transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-blue-100"
-            >
-              <div className="flex items-center mb-4">
-                <Image src={card.image} alt={card.title} width={48} height={48} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full object-cover mr-4" />
-                <h3 className="font-semibold text-sm sm:text-base md:text-lg">{card.title}</h3>
-              </div>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600">{card.description}</p>
-              <span className="absolute top-4 right-4 text-blue-500 text-xl sm:text-2xl md:text-3xl font-bold">”</span>
-            </div>
-          ))}
-        </div>
+  {currentCards.map((card) => (
+    <div
+      key={card.id}
+      className="bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md relative transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-blue-100"
+      onClick={() => {
+        if (typeof window !== "undefined" && typeof gtag === "function") {
+          gtag("event", "card_click", {
+            event_category: "engagement",
+            event_label: card.title,
+            value: card.id,
+          });
+        }
+      }}
+    >
+      <div className="flex items-center mb-4">
+        <Image
+          src={card.image}
+          alt={card.title}
+          width={48}
+          height={48}
+          className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full object-cover mr-4"
+        />
+        <h3 className="font-semibold text-sm sm:text-base md:text-lg">
+          {card.title}
+        </h3>
+      </div>
+      <p className="text-xs sm:text-sm md:text-base text-gray-600">
+        {card.description}
+      </p>
+      <span className="absolute top-4 right-4 text-blue-500 text-xl sm:text-2xl md:text-3xl font-bold">
+        ”
+      </span>
+    </div>
+  ))}
+</div>
+
 
         {/* Next Button */}
         <button
-          onClick={handleNext}
-          disabled={currentPage >= totalPages - 1}
-          className={`bg-blue-500 text-white p-2 rounded-full transition-all duration-300 ${
-            currentPage >= totalPages - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
-          }`}
-        >
-          <ArrowForward />
-        </button>
+  onClick={() => {
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "carousel_next_click", {
+        event_category: "interaction",
+        event_label: "Next Button",
+        value: currentPage + 1, // the page it will go to
+      });
+    }
+
+    handleNext();
+  }}
+  disabled={currentPage >= totalPages - 1}
+  className={`bg-blue-500 text-white p-2 rounded-full transition-all duration-300 ${
+    currentPage >= totalPages - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
+  }`}
+>
+  <ArrowForward />
+</button>
+
       </div>
 
       {/* Navigation Dots */}

@@ -60,18 +60,38 @@ const HeroCourses = () => {
           className="flex flex-col md:flex-row justify-center md:justify-start gap-4 mt-6 md:mt-12"
         >
           <button
-            onClick={openWhatsApp}
-            className="bg-white text-black px-6 py-2 rounded-full font-semibold transition-all hover:bg-[#3ca0a0] hover:text-white"
-          >
-            Let &apos;s Connect
-          </button>
-          <button
-            onClick={openModal}
-            className="bg-transparent border-2 justify-center border-black text-black px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-black transition flex items-center gap-2"
-          >
-            Learn More
-            <PlayCircleOutlineIcon />
-          </button>
+  onClick={() => {
+    openWhatsApp();
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "click", {
+        event_category: "engagement",
+        event_label: "WhatsApp - Let's Connect",
+        transport_type: "beacon",
+      });
+    }
+  }}
+  className="bg-white text-black px-6 py-2 rounded-full font-semibold transition-all hover:bg-[#3ca0a0] hover:text-white"
+>
+  Let's Connect
+</button>
+
+<button
+  onClick={() => {
+    openModal();
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "click", {
+        event_category: "engagement",
+        event_label: "Modal - Learn More",
+        transport_type: "beacon",
+      });
+    }
+  }}
+  className="bg-transparent border-2 justify-center border-black text-black px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-black transition flex items-center gap-2"
+>
+  Learn More
+  <PlayCircleOutlineIcon />
+</button>
+
         </motion.div>
       </motion.div>
 

@@ -76,6 +76,15 @@ const HeroHome = () => {
             {/* Learn & Grow Button */}
             <button
   onClick={() => {
+    // Track GA4 event
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "brochure_click", {
+        event_category: "engagement",
+        event_label: "Our Brochure Button",
+        value: 1,
+      });
+    }
+
     if (typeof window !== "undefined" && window.innerWidth <= 768) {
       // Open in a new tab for mobile devices
       window.open("/brochure/b.pdf", "_blank");
@@ -89,14 +98,28 @@ const HeroHome = () => {
   Our Brochure
 </button>
 
+
             {/* Learn More Button */}
             
-              <button
-              onClick={openModal}
-               className="bg-transparent text-white border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20">
-                
-                <PlayCircleOutlineIcon />
-              </button>
+            <button
+  onClick={() => {
+    // GA4 event tracking
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "video_modal_open", {
+        event_category: "engagement",
+        event_label: "Play Video Button",
+        value: 1,
+      });
+    }
+
+    // Open modal
+    openModal();
+  }}
+  className="bg-transparent text-white border border-white px-4 py-2 md:px-6 md:py-3 rounded-md hover:bg-white hover:text-[#50c3c6] transition z-20"
+>
+  <PlayCircleOutlineIcon />
+</button>
+
             
             
           </motion.div>

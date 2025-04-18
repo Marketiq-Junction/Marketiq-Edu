@@ -1,6 +1,6 @@
 import React from "react";
 import "./globals.css";
-
+import Script from "next/script";
 export const metadata = {
   title: "Education Marketiq-Junction | Empowering Digital Marketing Careers",
   description:
@@ -11,6 +11,20 @@ export default function RootLayout({ children }) {
   return ( 
     <html lang="en">
       <head>
+        {/*Google Analytics code */}
+        <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-FHJRTHKJ3E"
+        strategy="afterInteractive"
+      />
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-FHJRTHKJ3E');
+        `}
+      </Script>
+      
         {/* Basic Metadata */}
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />

@@ -164,39 +164,64 @@ const VerifyCertificate = () => {
         </div>
 
         <motion.form
-          className="w-full max-w-md space-y-4"
-          onSubmit={handleVerification}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
-        >
-          <div>
-            <label
-              htmlFor="certificateId"
-              className="block text-sm font-medium text-gray-600"
-            >
-              Credential ID
-            </label>
-            <input
-              type="text"
-              id="certificateId"
-              value={certificateId}
-              onChange={(e) => setCertificateId(e.target.value)}
-              required
-              className="w-full px-4 py-2 border rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-[#106EB5]"
-              placeholder="Enter the Credential ID (e.g., 'MJ7856')"
-            />
-          </div>
+  className="w-full max-w-md space-y-4"
+  onSubmit={(e) => {
+    // Prevent the default form submission
+    e.preventDefault();
 
-          <motion.button
-            type="submit"
-            className="w-full py-3 text-white bg-[#106EB5] rounded-md mt-4 md:mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={loading}
-            whileHover={!loading ? { scale: 1.03 } : {}}
-          >
-            {loading ? "Verifying..." : "Verify Certificate"}
-          </motion.button>
-        </motion.form>
+    // Track the form submission event in GA4
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "submit", {
+        event_category: "form",
+        event_label: "Certificate Verification",
+        transport_type: "beacon",
+      });
+    }
+
+    // Proceed with the form handling
+    handleVerification();
+  }}
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+>
+  <div>
+    <label
+      htmlFor="certificateId"
+      className="block text-sm font-medium text-gray-600"
+    >
+      Credential ID
+    </label>
+    <input
+      type="text"
+      id="certificateId"
+      value={certificateId}
+      onChange={(e) => setCertificateId(e.target.value)}
+      required
+      className="w-full px-4 py-2 border rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-[#106EB5]"
+      placeholder="Enter the Credential ID (e.g., 'MJ7856')"
+    />
+  </div>
+
+  <motion.button
+    type="submit"
+    className="w-full py-3 text-white bg-[#106EB5] rounded-md mt-4 md:mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+    disabled={loading}
+    whileHover={!loading ? { scale: 1.03 } : {}}
+    onClick={() => {
+      // Track the button click event in GA4
+      if (typeof window !== "undefined" && typeof gtag === "function") {
+        gtag("event", "click", {
+          event_category: "button",
+          event_label: "Verify Certificate Button",
+          transport_type: "beacon",
+        });
+      }
+    }}
+  >
+    {loading ? "Verifying..." : "Verify Certificate"}
+  </motion.button>
+</motion.form>
 
         {verificationStatus && (
           <motion.div
