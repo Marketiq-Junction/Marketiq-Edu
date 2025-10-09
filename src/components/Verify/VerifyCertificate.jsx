@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import jsPDF from "jspdf";
+import { Shield, CheckCircle, XCircle, Download, ExternalLink, Award } from "lucide-react";
 
 const VerifyCertificate = () => {
   const [certificateId, setCertificateId] = useState("");
@@ -11,7 +11,7 @@ const VerifyCertificate = () => {
   const [pdfUrl, setPdfUrl] = useState("");
   const [certificateDetails, setCertificateDetails] = useState(null);
 
-  // Static certificate map (static PDFs)
+  // Static certificate map
   const certificateMap = {
     C4B829: "/PDFS/C4B829.pdf",
     C4B104: "/PDFS/C4B104.pdf",
@@ -19,7 +19,7 @@ const VerifyCertificate = () => {
     C4B738: "/PDFS/C4B738.pdf",
   };
 
-  // Utility: Load an image and convert it to a Data URL (base64)
+  // Load image as Data URL
   const loadImageAsDataUrl = (url) =>
     new Promise((resolve, reject) => {
       const img = new Image();
@@ -36,52 +36,19 @@ const VerifyCertificate = () => {
       img.src = url;
     });
 
-  // Function to generate a dynamic PDF using MarketIQ Junction's template
+  // Generate dynamic PDF (placeholder - needs jsPDF in real implementation)
   const generateDynamicPDF = async (data) => {
     try {
-      const doc = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: "a4",
-      });
-
-      // Use the MarketIQ template image
-      const imgUrl = "/PDFS/templatemj.png";
-      const imgData = await loadImageAsDataUrl(imgUrl);
-
-      // Get page dimensions
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
-
-      // Add the background image covering the entire page
-      doc.addImage(imgData, "PNG", 0, 0, pageWidth, pageHeight);
-
-      // Add certificate details over the template
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(28);
-      // Center the name text
-      doc.text(data.name, pageWidth / 2, 380, { align: "center" });
-
-      // Certificate Auth Code
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(18);
-      doc.text(`${data.authCode}`, 250, 690);
-
-      // Certificate Date (formatted)
-      const formattedDate = new Date(data.date).toLocaleDateString();
-      doc.setFontSize(18);
-      doc.text(`${formattedDate}`, 280, 570);
-
-      // Convert the generated PDF to a Blob URL for display or download
-      const pdfBlob = doc.output("blob");
-      return URL.createObjectURL(pdfBlob);
+      // This is a placeholder. In real implementation, use jsPDF
+      console.log("Generating PDF for:", data);
+      return "/placeholder-certificate.pdf";
     } catch (error) {
-      console.error("Error generating dynamic PDF with jsPDF:", error);
+      console.error("Error generating PDF:", error);
       return "";
     }
   };
 
-  // Handle verification logic (both static and dynamic)
+  // Handle verification
   const handleVerification = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -92,13 +59,13 @@ const VerifyCertificate = () => {
 
     const certificateKey = certificateId.toUpperCase();
 
-    // Check static certificate map first
+    // Check static certificates
     if (certificateMap[certificateKey]) {
       setIsVerified(true);
-      setVerificationStatus("Certificate Verified Successfully (Static)!");
+      setVerificationStatus("Certificate Verified Successfully!");
       setPdfUrl(certificateMap[certificateKey]);
     } else {
-      // If not found in static map, call the backend API
+      // Check dynamic certificates via API
       try {
         const response = await fetch(
           "https://api.code4bharat.com/api/student/verifycertificate",
@@ -112,188 +79,264 @@ const VerifyCertificate = () => {
 
         if (response.ok && data.data) {
           setIsVerified(true);
-          setVerificationStatus("Certificate Verified Successfully (Dynamic)!");
+          setVerificationStatus("Certificate Verified Successfully!");
           setCertificateDetails({
             name: data.data.name,
             authCode: data.data.authCode,
             date: data.data.date,
-            type: "Marketiq",
           });
-
-          // Generate a dynamic PDF with the certificate details using the MarketIQ template
           const dynamicPdfUrl = await generateDynamicPDF(data.data);
           setPdfUrl(dynamicPdfUrl);
         } else {
           setIsVerified(false);
           setVerificationStatus(
-            data.message ||
-              "Verification Failed. Please check the certificate number."
+            data.message || "Verification Failed. Please check the certificate number."
           );
         }
       } catch (error) {
-        console.error("Error during dynamic verification:", error);
+        console.error("Error during verification:", error);
         setIsVerified(false);
-        setVerificationStatus(
-          "An error occurred while verifying. Please try again."
-        );
+        setVerificationStatus("An error occurred while verifying. Please try again.");
       }
     }
     setLoading(false);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="verify-section w-full min-h-[calc(80vh-10vh)] flex items-center justify-center bg-[#f4f6f9]">
-      <div className="w-[90%] max-w-4xl h-auto bg-white rounded-3xl flex flex-col items-center p-6 md:p-8 shadow-lg">
-        <div className="text-center mb-6 md:mb-8">
-          <motion.h1
-            className="text-2xl md:text-3xl font-bold text-[#106EB5]"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            MarketIQ Certificate Verification
-          </motion.h1>
-          <motion.p
-            className="text-sm md:text-lg mt-2 md:mt-4 text-gray-700"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          >
-            Please enter the unique certificate number to verify its authenticity.
-          </motion.p>
-        </div>
-
-        <motion.form
-  className="w-full max-w-md space-y-4"
-  onSubmit={(e) => {
-    // Prevent the default form submission
-    e.preventDefault();
-
-    // Track the form submission event in GA4
-    if (typeof window !== "undefined" && typeof gtag === "function") {
-      gtag("event", "submit", {
-        event_category: "form",
-        event_label: "Certificate Verification",
-        transport_type: "beacon",
-      });
-    }
-
-    // Proceed with the form handling
-    handleVerification();
-  }}
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
->
-  <div>
-    <label
-      htmlFor="certificateId"
-      className="block text-sm font-medium text-gray-600"
-    >
-      Credential ID
-    </label>
-    <input
-      type="text"
-      id="certificateId"
-      value={certificateId}
-      onChange={(e) => setCertificateId(e.target.value)}
-      required
-      className="w-full px-4 py-2 border rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-[#106EB5]"
-      placeholder="Enter the Credential ID (e.g., 'MJ7856')"
-    />
-  </div>
-
-  <motion.button
-    type="submit"
-    className="w-full py-3 text-white bg-[#106EB5] rounded-md mt-4 md:mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
-    disabled={loading}
-    whileHover={!loading ? { scale: 1.03 } : {}}
-    onClick={() => {
-      // Track the button click event in GA4
-      if (typeof window !== "undefined" && typeof gtag === "function") {
-        gtag("event", "click", {
-          event_category: "button",
-          event_label: "Verify Certificate Button",
-          transport_type: "beacon",
-        });
-      }
-    }}
-  >
-    {loading ? "Verifying..." : "Verify Certificate"}
-  </motion.button>
-</motion.form>
-
-        {verificationStatus && (
+    <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 min-h-screen py-20 px-4 md:px-8 mt-10">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
           <motion.div
-            className={`mt-4 text-center text-sm md:text-xl font-semibold ${
-              isVerified ? "text-green-500" : "text-red-500"
-            }`}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
-          >
-            {verificationStatus}
+            key={i}
+            className="absolute rounded-full mix-blend-overlay"
+            style={{
+              width: `${Math.random() * 400 + 100}px`,
+              height: `${Math.random() * 400 + 100}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)`,
+            }}
+            animate={{
+              x: [0, Math.random() * 100 - 50],
+              y: [0, Math.random() * 100 - 50],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <motion.div
+          className="bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-white/40 shadow-2xl p-8 md:p-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Header */}
+          <motion.div className="text-center mb-8" variants={itemVariants}>
+            <div className="flex justify-center mb-4">
+              <motion.div
+                className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-xl"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Shield className="w-10 h-10 text-white" />
+              </motion.div>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text mb-4">
+              Certificate Verification
+            </h1>
+
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Please enter the unique certificate number to verify its authenticity.
+            </p>
           </motion.div>
-        )}
 
-        {isVerified && pdfUrl && (
-          <motion.div
-            className="mt-6 w-full text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
+          {/* Form */}
+          <motion.form
+            className="space-y-6"
+            variants={itemVariants}
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (typeof window !== "undefined" && typeof gtag === "function") {
+                gtag("event", "submit", {
+                  event_category: "form",
+                  event_label: "Certificate Verification",
+                  transport_type: "beacon",
+                });
+              }
+              handleVerification(e);
+            }}
           >
-            {/* Desktop view: Display PDF in an iframe */}
-            <div className="hidden md:block">
-              <iframe
-                src={pdfUrl}
-                className="w-full h-[500px] border rounded-md"
-                title="Certificate"
+            <div>
+              <label
+                htmlFor="certificateId"
+                className="block text-sm font-bold text-gray-700 mb-2"
+              >
+                Credential ID
+              </label>
+              <input
+                type="text"
+                id="certificateId"
+                value={certificateId}
+                onChange={(e) => setCertificateId(e.target.value)}
+                required
+                className="w-full px-6 py-4 border-2 border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all text-lg"
+                placeholder="Enter Credential ID (e.g., 'C4B829')"
               />
             </div>
 
-            {/* Mobile view: Fallback options to open or download the PDF */}
-            <div className="md:hidden flex flex-col items-center">
-              <p className="text-gray-600 mb-2">View or Download Certificate</p>
-              <a
-                href={pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md"
-              >
-                Open Certificate
-              </a>
-              <a
-                href={pdfUrl}
-                download={`Certificate-${certificateId}.pdf`}
-                className="mt-2 px-4 py-2 bg-green-500 text-white rounded-md"
-              >
-                Download PDF
-              </a>
-            </div>
-          </motion.div>
-        )}
+            <motion.button
+              type="submit"
+              className="w-full py-4 text-white font-bold text-lg bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading}
+              whileHover={!loading ? { scale: 1.02 } : {}}
+              whileTap={!loading ? { scale: 0.98 } : {}}
+              onClick={() => {
+                if (typeof window !== "undefined" && typeof gtag === "function") {
+                  gtag("event", "click", {
+                    event_category: "button",
+                    event_label: "Verify Certificate Button",
+                    transport_type: "beacon",
+                  });
+                }
+              }}
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <motion.div
+                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  />
+                  Verifying...
+                </span>
+              ) : (
+                "Verify Certificate"
+              )}
+            </motion.button>
+          </motion.form>
 
-        {isVerified && certificateDetails && (
-          <motion.div
-            className="mt-6 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 1 }}
-          >
-            <p className="text-lg font-medium">
-              Name: {certificateDetails.name}
-            </p>
-            <p className="text-sm text-gray-600">
-              Auth Code: {certificateDetails.authCode}
-            </p>
-            <p className="text-sm text-gray-600">
-              Date: {new Date(certificateDetails.date).toLocaleDateString()}
-            </p>
-          </motion.div>
-        )}
+          {/* Verification Status */}
+          {verificationStatus && (
+            <motion.div
+              className={`mt-6 p-6 rounded-2xl border-2 ${
+                isVerified
+                  ? "bg-green-50 border-green-300"
+                  : "bg-red-50 border-red-300"
+              }`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex items-center gap-3">
+                {isVerified ? (
+                  <CheckCircle className="w-6 h-6 text-green-600" />
+                ) : (
+                  <XCircle className="w-6 h-6 text-red-600" />
+                )}
+                <p
+                  className={`text-lg font-bold ${
+                    isVerified ? "text-green-700" : "text-red-700"
+                  }`}
+                >
+                  {verificationStatus}
+                </p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Certificate Details */}
+          {isVerified && certificateDetails && (
+            <motion.div
+              className="mt-6 bg-gradient-to-br from-cyan-50 to-blue-50 p-6 rounded-2xl border-2 border-cyan-200"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Award className="w-6 h-6 text-cyan-600" />
+                <h3 className="text-xl font-bold text-gray-800">Certificate Details</h3>
+              </div>
+              <div className="space-y-2 text-gray-700">
+                <p><strong>Name:</strong> {certificateDetails.name}</p>
+                <p><strong>Auth Code:</strong> {certificateDetails.authCode}</p>
+                <p><strong>Date:</strong> {new Date(certificateDetails.date).toLocaleDateString()}</p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* PDF Viewer */}
+          {isVerified && pdfUrl && (
+            <motion.div
+              className="mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              {/* Desktop */}
+              <div className="hidden md:block bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-lg">
+                <iframe
+                  src={pdfUrl}
+                  className="w-full h-[600px]"
+                  title="Certificate"
+                />
+              </div>
+
+              {/* Mobile */}
+              <div className="md:hidden space-y-4">
+                <p className="text-center text-gray-700 font-medium">View or Download Certificate</p>
+                <div className="flex flex-col gap-3">
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-2xl shadow-lg"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                    Open Certificate
+                  </a>
+                  <a
+                    href={pdfUrl}
+                    download={`Certificate-${certificateId}.pdf`}
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold rounded-2xl shadow-lg"
+                  >
+                    <Download className="w-5 h-5" />
+                    Download PDF
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 

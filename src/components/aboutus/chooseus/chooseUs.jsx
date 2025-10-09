@@ -1,179 +1,310 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Star, Award, Users, Briefcase, TrendingUp, DollarSign } from "lucide-react";
 
 const ChooseUs = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All Category");
-  const [visibleCards, setVisibleCards] = useState(3); // Default to 3 cards for desktop
+  const [visibleCards, setVisibleCards] = useState(3);
   const [selectedCard, setSelectedCard] = useState(null);
 
-  // Card data
+  // Card data with icons
   const cards = [
     {
       id: 1,
-      src: "/realworld.png",
+      icon: Briefcase,
       title: "Real-World Projects for Practical Learning",
-      alt: "Career-Focused Curriculum",
-      category: "Career-Focused Curriculum",
+      category: "Flexible Learning Options",
       extraInfo:
         "Our courses go beyond theory, offering hands-on experience with real-world projects that mirror industry challenges. Gain the skills and confidence to solve practical problems, just like a professional.",
     },
     {
       id: 2,
-      src: "/expert.png",
+      icon: Users,
       title: "Expert Mentorship Tailored to You",
-      alt: "100% Placement Assistance",
       category: "Expert Mentorship Tailored to You",
       extraInfo:
         "Learn with the guidance of industry experts who provide personalized mentorship. Our one-on-one support ensures you stay on track, overcome obstacles, and achieve your learning goals.",
     },
     {
       id: 3,
-      src: "/comprehensive.png",
+      icon: Award,
       title: "Comprehensive Placement Support",
-      alt: "Flexible Learning Options",
       category: "Comprehensive Placement Support",
       extraInfo:
-        "We dont just teach technical skills — we prepare you for the job market with dedicated placement support. From resume building to mock interviews and soft skills training, we equip you to land your dream job.",
+        "We don't just teach technical skills — we prepare you for the job market with dedicated placement support. From resume building to mock interviews and soft skills training, we equip you to land your dream job.",
     },
     {
       id: 4,
-      src: "/flexible.png",
-      title: (
-        <>
-          Flexible Learning <br /> Options
-        </> )
-      ,
-      alt: "Real-World Projects",
+      icon: Star,
+      title: "Flexible Learning Options",
       category: "Flexible Learning Options",
       extraInfo:
         "Grow your connections through exclusive events, workshops, and networking opportunities with industry leaders. Develop relationships that can open doors to exciting career prospects.",
     },
-    { id:5, src: '/continuos.png', title: 'Continuous Learning with Industry-Relevant Courses', alt: 'Real-World Projects', category: 'Real-World Projects', extraInfo:'Stay ahead of the curve with courses designed to meet the demands of a rapidly evolving job market. Our curriculum is updated regularly to reflect the latest industry trends and technologies.' },
-      { id:6, src: '/affordable.png', title: 'Affordable, Quality Education', alt: 'Real-World Projects', category: 'Affordable, Quality Education' , extraInfo:'We believe quality education should be accessible. Our courses offer exceptional value, providing a high-quality learning experience at an affordable price.'}
+    {
+      id: 5,
+      icon: TrendingUp,
+      title: "Continuous Learning with Industry-Relevant Courses",
+      category: "Expert Mentorship Tailored to You",
+      extraInfo:
+        "Stay ahead of the curve with courses designed to meet the demands of a rapidly evolving job market. Our curriculum is updated regularly to reflect the latest industry trends and technologies.",
+    },
+    {
+      id: 6,
+      icon: DollarSign,
+      title: "Affordable, Quality Education",
+      category: "Comprehensive Placement Support",
+      extraInfo:
+        "We believe quality education should be accessible. Our courses offer exceptional value, providing a high-quality learning experience at an affordable price.",
+    },
   ];
 
   const handleCardClick = (id) => {
     setSelectedCard(id === selectedCard ? null : id);
   };
 
-  // Update visible cards based on screen size
   useEffect(() => {
     const handleResize = () => {
-      setVisibleCards(window.innerWidth < 768 ? 1 : 3); // 1 card on screens smaller than 768px, else 3 cards
+      setVisibleCards(window.innerWidth < 768 ? 1 : 3);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Filtered cards based on selected category
+  // Reset index when category changes
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [selectedCategory]);
+
   const filteredCards =
     selectedCategory === "All Category"
       ? cards
       : cards.filter((card) => card.category === selectedCategory);
 
-  // Calculate the visible cards based on the current index and filter
+  const totalCards = filteredCards.length;
+  const maxIndex = Math.max(0, totalCards - visibleCards);
+
   const getVisibleCards = () => {
-    if (filteredCards.length <= visibleCards) {
-      return filteredCards;
-    }
-    return filteredCards.slice(currentIndex, currentIndex + visibleCards);
+    const endIndex = Math.min(currentIndex + visibleCards, totalCards);
+    return filteredCards.slice(currentIndex, endIndex);
   };
 
-  // Function to go to the previous set of cards
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? Math.max(0, filteredCards.length - visibleCards) : prevIndex - 1
-    );
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(maxIndex);
+    }
   };
 
-  // Function to go to the next set of cards
   const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + visibleCards >= filteredCards.length ? 0 : prevIndex + 1
-    );
+    if (currentIndex < maxIndex) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
-    <div className="flex flex-col bg-[#50c3c6] items-center p-8 mt-4 mb-4 rounded-lg">
-      {/* Title Section */}
-      <div className="flex flex-col md:flex-row w-full items-start md:items-center md:justify-start mb-6 ml-8">
-        <h2 className="text-3xl md:text-6xl font-semibold font-syne text-center md:text-left -ml-8 md:-ml-0">
-          Your Path to <span className="text-white">Guaranteed</span> <br /> Success
-        </h2>
-      </div>
-
-      {/* Category Buttons */}
-      <div className="flex flex-wrap justify-center md:justify-end w-full gap-2 px-2 mb-6 md:-mt-2">
-        {[
-          "All Category",
-          "Expert Mentorship Tailored to You",
-          "Comprehensive Placement Support",
-          "Flexible Learning Options",
-        ].map((category) => (
-          <button
-            key={category}
-            onClick={() => {
-              setSelectedCategory(category);
-              setCurrentIndex(0);
+    <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 py-20 px-4 md:px-8">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full mix-blend-overlay"
+            style={{
+              width: `${Math.random() * 400 + 100}px`,
+              height: `${Math.random() * 400 + 100}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)`,
             }}
-            className={`px-2 py-2 text-sm border-2 font-syne font-semibold border-blue-600  text-black rounded-full hover:bg-blue-200 ${
-              selectedCategory === category ? "bg-blue-100" : ""
-            }`}
-          >
-            {category}
-          </button>
+            animate={{
+              x: [0, Math.random() * 100 - 50],
+              y: [0, Math.random() * 100 - 50],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          />
         ))}
       </div>
 
-      {/* Carousel Section */}
-      <div className="flex gap-4 px-4 md:px-12 w-full justify-center md:justify-end items-start ">
-        {getVisibleCards().map((card) => (
-          <div
-            key={card.id}
-            className={`bg-white rounded-xl shadow-lg w-full md:w-80 flex flex-col items-center p-4 transition-transform duration-300 ease-in-out hover:bg-blue-200 hover:animate-pulse ${
-              selectedCard === card.id ? "md:w-[400px]" : ""
-            }`}
-            onClick={() => handleCardClick(card.id)}
-            style={{ cursor: "pointer", minHeight:"200px" }}
-          >
-            <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
-              <Image
-                src={card.src}
-                alt={card.alt}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
-            <p className="text-lg font-semibold font-syne text-center max-w-[300px] whitespace-normal">{card.title}</p>
-            {selectedCard === card.id && (
-              <div className="mt-4 bg-blue-50 text-center font-syne p-4 rounded-lg text-gray-700">
-                <p className="text-lg text-black">{card.extraInfo}</p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Title Section */}
+        <motion.div
+          className="text-center md:text-left mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl md:text-6xl font-black text-white mb-4">
+            Your Path to{" "}
+            <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+              Guaranteed
+            </span>
+            <br />
+            Success
+          </h2>
+        </motion.div>
 
-      {/* Navigation Buttons Below Carousel */}
-      <div className="flex gap-4 mt-6">
-        <button
-          onClick={handlePrev}
-          className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-400"
+        {/* Category Buttons */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <ArrowBackIcon fontSize="small" />
-        </button>
-        <button
-          onClick={handleNext}
-          className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-500 flex items-center justify-center text-white hover:bg-blue-600"
+          {[
+            "All Category",
+            "Expert Mentorship Tailored to You",
+            "Comprehensive Placement Support",
+            "Flexible Learning Options",
+          ].map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-3 text-sm font-semibold rounded-full border-2 transition-all duration-300 ${
+                selectedCategory === category
+                  ? "bg-white text-cyan-500 border-white shadow-lg"
+                  : "bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* Cards Section */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 min-h-[400px]"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          key={currentIndex}
         >
-          <ArrowForwardIcon fontSize="small" />
-        </button>
+          {getVisibleCards().map((card) => {
+            const IconComponent = card.icon;
+            return (
+              <motion.div
+                key={card.id}
+                variants={itemVariants}
+                onClick={() => handleCardClick(card.id)}
+                className="cursor-pointer group"
+                whileHover={{ scale: 1.02 }}
+                layout
+              >
+                <div
+                  className={`relative bg-white/60 backdrop-blur-sm rounded-3xl border-2 border-white/40 p-6 shadow-xl hover:shadow-2xl transition-all duration-300 ${
+                    selectedCard === card.id ? "ring-4 ring-white" : ""
+                  }`}
+                >
+                  {/* Icon */}
+                  <motion.div
+                    className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg"
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </motion.div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-gray-800 mb-3 min-h-[60px]">
+                    {card.title}
+                  </h3>
+
+                  {/* Expanded Content */}
+                  <AnimatePresence>
+                    {selectedCard === card.id && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-4 pt-4 border-t-2 border-cyan-200">
+                          <p className="text-gray-700 leading-relaxed">
+                            {card.extraInfo}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Click indicator */}
+                  <motion.div
+                    className="mt-4 text-cyan-600 text-sm font-semibold flex items-center gap-2"
+                    animate={{
+                      opacity: selectedCard === card.id ? 0 : 1,
+                    }}
+                  >
+                    {selectedCard !== card.id && "Click to learn more →"}
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Navigation Buttons */}
+        {totalCards > visibleCards && (
+          <motion.div
+            className="flex justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.button
+              onClick={handlePrev}
+              className="w-12 h-12 rounded-full bg-white/60 backdrop-blur-sm border-2 border-white/40 flex items-center justify-center text-gray-700 hover:bg-white transition-all shadow-lg"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
+            <motion.button
+              onClick={handleNext}
+              className="w-12 h-12 rounded-full bg-white text-cyan-500 flex items-center justify-center hover:shadow-xl transition-all shadow-lg"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </div>
   );
