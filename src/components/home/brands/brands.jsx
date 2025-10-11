@@ -110,9 +110,9 @@ const Brands = () => {
         </motion.div>
 
         {/* Scrolling Brands Section */}
-        <div className="relative overflow-hidden py-8">
+        {/* <div className="relative overflow-hidden py-8"> */}
           {/* Gradient Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-cyan-400 to-transparent z-10" />
+          {/* <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-cyan-400 to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-teal-400 to-transparent z-10" />
 
           <motion.div
@@ -127,8 +127,8 @@ const Brands = () => {
             {shuffledBrands.map((brand, index) => (
               <SingleBrand key={`${brand.id}-${index}`} brand={brand} />
             ))}
-          </motion.div>
-        </div>
+          </motion.div> */}
+        {/* </div> */}
 
         {/* Stats Section */}
         <motion.div
@@ -139,7 +139,7 @@ const Brands = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           {[
-            { number: "50+", label: "Partner Companies" },
+            { number: "33+", label: "Partner Companies" },
             { number: "500+", label: "Placements" },
             { number: "95%", label: "Success Rate" },
             { number: "100+", label: "Projects" },

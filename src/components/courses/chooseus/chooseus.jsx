@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GraduationCap, Users, TrendingUp, Award, CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 const ChooseUs = () => {
   const containerVariants = {
@@ -130,11 +131,12 @@ const ChooseUs = () => {
               {/* Image */}
               <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl border-2 border-white/20 p-3">
                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4]">
-                  <img
-                    src="/chose.png"
-                    alt="Why Choose Us"
-                    className="w-full h-full object-cover"
-                  />
+                  <Image
+  src="/chose.png"
+  alt="Why Choose Us"
+  fill
+  className="object-cover rounded-2xl"
+/>
                 </div>
               </div>
             </motion.div>
@@ -178,7 +180,7 @@ const ChooseUs = () => {
               </h2>
 
               <p className="text-lg text-white/90 leading-relaxed">
-                They're your bridge to a successful digital marketing career.
+                They&apos;re your bridge to a successful digital marketing career.
               </p>
             </motion.div>
 

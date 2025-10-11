@@ -25,7 +25,7 @@ Subject: ${formData.subject}
 Message: ${formData.message}`;
 
     // WhatsApp Business Number
-    const phoneNumber = "919920892689";
+    const phoneNumber = "919594402822"; // Replace with your WhatsApp number in international format
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
@@ -93,14 +93,14 @@ Message: ${formData.message}`;
     {
       icon: <Phone className="w-8 h-8" />,
       title: "Call Us",
-      value: "+91 99208 92689",
-      href: "tel:+919920892689",
+      value: "+91 9594402822",
+      href: "tel:+919594402822",
     },
     {
       icon: <Mail className="w-8 h-8" />,
       title: "Email Us",
-      value: "marketiqjunction@gmail.com",
-      href: "mailto:marketiqjunction@gmail.com",
+      value: "growthhead@nexcorealliance.com",
+      href: "mailto:growthhead@nexcorealliance.com",
     },
     {
       icon: <MapPin className="w-8 h-8" />,
@@ -168,13 +168,14 @@ Message: ${formData.message}`;
               Contact Us
             </motion.h1>
             <motion.p
-              className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto font-montserrat leading-relaxed"
-              variants={textVariants}
-              custom={1}
-            >
-              We'd love to hear from you! Reach out to us anytime for inquiries,
-              support, or collaborations. Our team is ready to assist you.
-            </motion.p>
+  className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto font-montserrat leading-relaxed"
+  variants={textVariants}
+  custom={1}
+>
+  We&apos;d love to hear from you! Reach out to us anytime for inquiries,
+  support, or collaborations. Our team is ready to assist you.
+</motion.p>
+
           </motion.div>
 
           {/* Contact Info Cards */}
@@ -328,8 +329,9 @@ Message: ${formData.message}`;
                   Why Contact Us?
                 </h3>
                 <p className="text-sm sm:text-base md:text-lg text-gray-700 font-montserrat leading-relaxed">
-                  Whether you're interested in our services, have questions about our programs, or want to explore partnership opportunities, we're here to help. Our dedicated team responds to all inquiries promptly.
-                </p>
+  Whether you&apos;re interested in our services, have questions about our programs, or want to explore partnership opportunities, we&apos;re here to help. Our dedicated team responds to all inquiries promptly.
+</p>
+
               </div>
 
               <div>

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Sparkles, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const Enroll = () => {
   const containerVariants = {
@@ -100,11 +101,12 @@ const Enroll = () => {
               {/* Image */}
               <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl border-2 border-white/20 p-3">
                 <div className="relative rounded-2xl overflow-hidden aspect-square">
-                  <img
-                    src="/howtoenroll.png"
-                    alt="How to Enroll"
-                    className="w-full h-full object-cover rounded-full"
-                  />
+                  <Image
+    src="/howtoenroll.png"
+    alt="How to Enroll"
+    fill
+    className="object-cover"
+  />
                 </div>
               </div>
             </motion.div>
@@ -196,7 +198,7 @@ const Enroll = () => {
             {/* CTA Button */}
             <motion.div variants={itemVariants}>
               <motion.a
-                href="https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20learn%20more%20about%20your%20courses."
+                href="https://wa.me/919594402822?text=Hi%20there!%20I%20would%20like%20to%20learn%20more%20about%20your%20courses."
                 target="_blank"
                 rel="noopener noreferrer"
               >

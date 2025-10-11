@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
-
+import Image from "next/image";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState("");
@@ -30,9 +30,11 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { name: "Our story", path: "home" },
+    { name: "Our Story", path: "home" },
     { name: "Learn&Grow", path: "learn&grow" },
     { name: "Verify Certificate", path: "verify-certificate" },
+    {name: "Gallery", path: "gallery"},
+    {name: "Review", path: "review"},
   ];
 
   return (
@@ -56,12 +58,14 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <div className="relative h-14 w-28 md:h-16 md:w-40 bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg border-2 border-white/40">
-              <img
-                src="/37.png"
-                alt="Logo"
-                className="w-full h-full object-cover"
-              />
-            </div>
+  <Image
+    src="/37.png"
+    alt="Logo"
+    fill
+    className="object-cover rounded-lg"
+    priority
+  />
+</div>
           </motion.a>
 
           {/* Desktop Menu */}
@@ -215,7 +219,7 @@ const Navbar = () => {
                   }}
                 >
                   <div className="bg-white text-cyan-500 px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all mt-8">
-                    Let's Talk
+                    Let&apos;s Talk
                     <MessageCircle className="w-5 h-5" />
                   </div>
                 </motion.a>

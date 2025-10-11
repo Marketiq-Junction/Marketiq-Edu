@@ -145,21 +145,7 @@ const HeroHome = () => {
                   </span>
                 </motion.button>
 
-                {/* Video Button */}
-                <motion.button
-                  onClick={() => setModalOpen(true)}
-                  className="group relative px-8 py-4 bg-transparent text-white rounded-xl font-semibold border-2 border-white overflow-hidden shadow-lg"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Play size={20} fill="white" />
-                    Watch Video
-                  </span>
-                </motion.button>
-              </motion.div>
+                </motion.div>
             </motion.div>
 
             {/* Right Image */}
@@ -193,66 +179,74 @@ const HeroHome = () => {
 
       </motion.div>
 
-      {/* Video Modal */}
-      {isModalOpen && (
-        <motion.div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setModalOpen(false)}
-        >
-          <motion.div
-            className="relative w-full max-w-4xl bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-2 shadow-2xl"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setModalOpen(false)}
-              className="absolute -top-4 -right-4 bg-red-500 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition-colors z-10"
-            >
-              <X size={20} />
-            </button>
-            <video className="w-full rounded-xl" controls autoPlay>
-              <source src="/edumj.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </motion.div>
-        </motion.div>
-      )}
+      
+        
+      
 
       {/* PDF Modal */}
-      {isPdfModalOpen && (
-        <motion.div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setPdfModalOpen(false)}
+{isPdfModalOpen && (
+  <motion.div
+    className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    onClick={() => setPdfModalOpen(false)}
+  >
+    <motion.div
+      className="relative w-full max-w-4xl h-[90vh] bg-white rounded-2xl p-6 shadow-2xl flex flex-col"
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.9, opacity: 0 }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close Button */}
+      <button
+        onClick={() => setPdfModalOpen(false)}
+        className="absolute -top-4 -right-4 bg-red-500 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition-colors z-10"
+      >
+        <X size={20} />
+      </button>
+
+      {/* PDF Viewer */}
+      <iframe
+        src="/brochure/b.pdf"
+        className="w-full flex-1 rounded-xl"
+        title="PDF Viewer"
+      />
+
+      {/* WhatsApp Share Button */}
+      <div className="flex justify-center mt-4">
+        <motion.button
+          onClick={() => {
+            const pdfUrl =
+              typeof window !== "undefined"
+                ? `${window.location.origin}/brochure/b.pdf`
+                : "/brochure/b.pdf";
+            const message = encodeURIComponent(
+              `Hey! Check out this brochure from Marketiq junction: ${pdfUrl}`
+            );
+            const waUrl = `https://wa.me/?text=${message}`;
+            window.open(waUrl, "_blank", "noopener,noreferrer");
+          }}
+          className="flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg transition-all"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <motion.div
-            className="relative w-full max-w-4xl h-[90vh] bg-white rounded-2xl p-6 shadow-2xl"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
+          {/* WhatsApp Icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+            className="w-5 h-5"
           >
-            <button
-              onClick={() => setPdfModalOpen(false)}
-              className="absolute -top-4 -right-4 bg-red-500 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition-colors z-10"
-            >
-              <X size={20} />
-            </button>
-            <iframe
-              src="/brochure/b.pdf"
-              className="w-full h-full rounded-xl"
-              title="PDF Viewer"
-            />
-          </motion.div>
-        </motion.div>
-      )}
+            <path d="M380.9 97.1C339-7.9 202.9-32.1 119.1 51.7-11.8 183.8 12.2 404.5 162.5 463.9c17.2 7 35.8 10.5 54.3 10.5 28.1 0 56.1-7.3 80.6-21.5l52.3 13.8-14.1-51.3c29.7-25.8 49.3-61.3 56.2-101.3 9.2-54.5-5.7-109.7-34.9-157zM243 403.3c-18.2 0-36-4.4-51.8-12.7l-3.7-2-38.5 10.2 10.3-37.4-2.4-3.9c-22.2-35.9-26.9-79.5-13-119.5 27.2-75.6 108.7-115.7 184.3-88.5 36.6 13.2 65.5 42 78.7 78.6 27.3 75.6-12.9 157.1-88.5 184.3-20.2 7.3-41.4 11-62.4 11z" />
+          </svg>
+          Send via WhatsApp
+        </motion.button>
+      </div>
+    </motion.div>
+  </motion.div>
+)}
     </div>
   );
 };

@@ -54,7 +54,7 @@ const CancellationPolicy = () => {
                       href="mailto:nexcorealliance@gmail.com"
                       className="text-cyan-600 font-semibold hover:text-cyan-700 transition-colors underline decoration-cyan-400"
                     >
-                      nexcorealliance@gmail.com
+                      growthhead@nexcorealliance.com
                     </a>
                     .
                   </p>
@@ -73,7 +73,7 @@ const CancellationPolicy = () => {
                     2. Eligibility for Cancellation
                   </h2>
                   <p className="text-gray-700 text-lg leading-relaxed">
-                    Cancellations after accessing more than 25% of the course content
+                    Cancellations after accessing more than 15% of the course content
                     will not be eligible for a refund.
                   </p>
                 </div>
@@ -120,8 +120,9 @@ const CancellationPolicy = () => {
           {/* Footer note */}
           <div className="mt-6 bg-white/60 backdrop-blur-lg rounded-2xl p-6 border border-white/40 text-center">
             <p className="text-gray-600 text-sm">
-              For any questions or concerns, please don't hesitate to reach out to our support team.
-            </p>
+  For any questions or concerns, please don&#39;t hesitate to reach out to our support team.
+</p>
+
           </div>
           
         </div>

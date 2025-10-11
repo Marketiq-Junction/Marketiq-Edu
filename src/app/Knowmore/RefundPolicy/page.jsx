@@ -61,14 +61,21 @@ const RefundPolicy = () => {
       id: 2,
       title: "Eligibility for Refund",
       content:
-        "Refunds are only applicable if less than 25% of the course has been accessed. Once you exceed this threshold, the course is considered consumed and is no longer eligible for a refund. Please review the course materials carefully before completing your enrollment.",
+        "Refunds are only applicable if less than 15% of the course has been accessed. Once you exceed this threshold, the course is considered consumed and is no longer eligible for a refund. Please review the course materials carefully before completing your enrollment.",
     },
     {
-      id: 3,
-      title: "Processing Fees",
-      content:
-        "Processing fees, if any, will be deducted from the refunded amount. These fees typically account for payment gateway charges and administrative costs. We ensure that any deductions are transparent and minimal.",
-    },
+  id: 3,
+  
+  title: "Processing Fees",
+  content:
+    "Processing fees, if any, will be deducted from the refunded amount. These include payment gateway charges and administrative costs. A fixed processing fee of ₹5000 will be deducted from the refund amount to cover transaction expenses.",
+  points: [
+    "A fixed processing fee of ₹5000 will be deducted from the refund amount.",
+    "Additional applicable processing or gateway charges may also be deducted.",
+    "All deductions are transparent and kept minimal.",
+  ],
+}
+,
     {
       id: 4,
       title: "Refund Timeline",
@@ -247,7 +254,7 @@ const RefundPolicy = () => {
                 </div>
                 <div className="bg-white/50 backdrop-blur-sm rounded-lg p-3 sm:p-4 text-center">
                   <p className="text-sm sm:text-base md:text-lg font-syne font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500">
-                    25%
+                    15%
                   </p>
                   <p className="text-xs sm:text-sm text-gray-700 font-montserrat mt-1">Access Limit</p>
                 </div>
@@ -276,17 +283,17 @@ const RefundPolicy = () => {
               <p className="text-sm sm:text-base md:text-lg text-gray-700 font-montserrat leading-relaxed">
                 <strong className="text-gray-800">Questions about refunds?</strong> Contact our support team at{" "}
                 <a
-                  href="mailto:marketiqjunction@gmail.com"
+                  href="mailto:growthhead@nexcorealliance.com"
                   className="text-blue-600 hover:text-cyan-600 font-semibold transition"
                 >
-                  marketiqjunction@gmail.com
+                 growthhead@nexcorealliance.com
                 </a>
                 {" "}or call{" "}
                 <a
-                  href="tel:+919920892689"
+                  href="tel:+91959402822"
                   className="text-blue-600 hover:text-cyan-600 font-semibold transition"
                 >
-                  +91 99208 92689
+                  +91 959402822
                 </a>
               </p>
             </motion.div>

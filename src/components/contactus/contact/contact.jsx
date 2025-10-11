@@ -85,7 +85,7 @@ const ContactPage = () => {
                 transition={{ duration: 0.3 }}
               >
                 <p className="font-semibold text-gray-800">Email</p>
-                <p className="text-gray-600">marketiqjunction@gmail.com</p>
+                <p className="text-gray-600">growthhead@nexcorealliance.com</p>
               </motion.div>
               <motion.div
                 className="bg-white/80 backdrop-blur-md border border-white/40 rounded-lg p-4"
@@ -93,7 +93,7 @@ const ContactPage = () => {
                 transition={{ duration: 0.3 }}
               >
                 <p className="font-semibold text-gray-800">Phone</p>
-                <p className="text-gray-600">+91 99208 92689</p>
+                <p className="text-gray-600">+91 9594402822</p>
               </motion.div>
               <motion.div
                 className="bg-white/80 backdrop-blur-md border border-white/40 rounded-lg p-4"

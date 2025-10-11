@@ -35,19 +35,20 @@ const Offer = () => {
       ],
     },
     {
-      id: 3,
-      title: "4-Month A.I Digital Marketing Program",
-      icon: TrendingUp,
-      color: 'from-teal-500 to-cyan-600',
-      details: [
-        { label: 'Duration', value: '4 months' },
-        { label: 'Hours', value: '2 days per week, 5 hours per day' },
-        { label: 'Placement Support', value: '100% assistance with career workshops and mock interviews' },
-        { label: 'Career Coaching', value: 'Mock interviews and recruiter connections' },
-        { label: 'Live Projects', value: 'Gain practical experience by working on real-world campaigns' },
-        { label: 'Certifications', value: 'Digital Marketing Specialist Certificate, Advanced SEO Specialist Certificate, Social Media Marketing Expert Certificate, Full Stack Digital Marketer Certificate' },
-      ],
-    },
+  id: 3,
+  title: "4-Month A.I Digital Marketing Program + 2-Month Internship",
+  icon: TrendingUp,
+  color: 'from-teal-500 to-cyan-600',
+  details: [
+    { label: 'Duration', value: '6 months (4 months training + 2 months internship)' },
+    { label: 'Hours', value: '2 days per week, 5 hours per day' },
+    { label: 'Placement Support', value: '100% assistance with career workshops, resume building, and mock interviews' },
+    { label: 'Career Coaching', value: 'Personalized mentorship, recruiter connections, and performance feedback' },
+    { label: 'Live Projects', value: 'Work on real-world campaigns and AI-driven marketing strategies during internship' },
+    { label: 'Certifications', value: 'AI-Powered Digital Marketing Specialist Certificate, Advanced SEO & Analytics Certificate, Social Media Marketing Expert Certificate, Full Stack Digital Marketer Certificate' },
+  ],
+}
+
   ];
 
   const handleCardClick = (id) => {

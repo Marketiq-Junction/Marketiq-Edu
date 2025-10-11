@@ -24,14 +24,14 @@ const Courses = () => {
       syllabusLink: "/pdf/45 day.pdf",
     },
     {
-      id: 3,
-      title: "4-Month Digital Marketing Program",
-      icon: TrendingUp,
-      color: "from-teal-500 to-cyan-600",
-      extraInfo:
-        "Our 4-month program offers an extensive curriculum designed to make you a pro in digital marketing. Includes practical assignments and expert guidance.",
-      syllabusLink: "/pdf/4 Month.pdf",
-    },
+  id: 3,
+  title: "4-Month Digital Marketing Program + 2-Month Internship",
+  icon: TrendingUp,
+  color: "from-teal-500 to-cyan-600",
+  extraInfo:
+    "Our 4-month intensive Digital Marketing program is followed by a 2-month hands-on internship, providing real-world experience in SEO, SEM, social media, and campaign management. Gain both theoretical knowledge and practical industry exposure.",
+  syllabusLink: "/pdf/4Month_DigitalMarketing.pdf",
+}
   ];
 
   const containerVariants = {

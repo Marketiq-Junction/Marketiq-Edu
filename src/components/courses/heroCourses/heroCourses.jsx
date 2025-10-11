@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Play, MessageCircle, X, Sparkles } from "lucide-react";
-
+import Image from "next/image";
 const HeroCourses = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -16,7 +16,7 @@ const HeroCourses = () => {
   };
 
   const openWhatsApp = () => {
-    const whatsappNumber = "9920892689";
+    const whatsappNumber = "9594402822";
     const message = "Hello, I would like to know more about the courses!";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
@@ -154,14 +154,15 @@ const HeroCourses = () => {
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors">
-                    <MessageCircle size={20} />
-                    Let's Connect
-                  </span>
+                  <span className="relative z-10 flex items-center gap-2 transition-colors">
+  <MessageCircle size={20} />
+  Let&apos;s Connect
+</span>
+
                 </motion.button>
 
                 {/* Learn More Button */}
-                <motion.button
+                {/* <motion.button
                   onClick={() => {
                     openModal();
                     if (typeof window !== "undefined" && typeof gtag === "function") {
@@ -182,7 +183,7 @@ const HeroCourses = () => {
                     Learn More
                     <Play size={20} fill="white" />
                   </span>
-                </motion.button>
+                </motion.button> */}
               </motion.div>
             </motion.div>
 
@@ -202,11 +203,14 @@ const HeroCourses = () => {
                 {/* Image Container */}
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl border-2 border-white/20 p-2">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                    <img
-                      src="/lgpage.png"
-                      alt="Student Learning"
-                      className="w-full h-full object-cover"
-                    />
+                    <Image
+  src="/lgpage.png"
+  alt="Student Learning"
+  className="w-full h-full object-cover"
+  width={800}  // adjust width as needed
+  height={600} // adjust height as needed
+  priority      // optional: for important images above the fold
+/>
                   </div>
                 </div>
               </motion.div>
@@ -216,7 +220,7 @@ const HeroCourses = () => {
       </motion.div>
 
       {/* Video Modal */}
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <motion.div
           className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
           initial={{ opacity: 0 }}
@@ -243,7 +247,7 @@ const HeroCourses = () => {
             </video>
           </motion.div>
         </motion.div>
-      )}
+      )} */}
     </div>
   );
 };

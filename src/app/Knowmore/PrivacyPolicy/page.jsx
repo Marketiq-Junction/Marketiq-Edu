@@ -249,14 +249,14 @@ const PrivacyPolicy = () => {
                   href="mailto:marketiqjunction@gmail.com"
                   className="text-blue-600 hover:text-cyan-600 font-semibold transition"
                 >
-                  marketiqjunction@gmail.com
+                  growthhead@nexcorealliance.com
                 </a>
                 {" "}or call us at{" "}
                 <a
-                  href="tel:+919920892689"
+                  href="tel:+91959402822"
                   className="text-blue-600 hover:text-cyan-600 font-semibold transition"
                 >
-                  +91 99208 92689
+                  +91 9595402822
                 </a>
                 .
               </p>

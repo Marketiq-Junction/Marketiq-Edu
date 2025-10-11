@@ -129,27 +129,27 @@ Message: ${formData.message}`;
 
               {/* Phone Card */}
               <motion.a
-                href="tel:+919594402916"
+                href="tel:+919594402822"
                 className="flex items-start bg-white/80 backdrop-blur-md border border-white/40 rounded-lg p-4 hover:bg-white/90 transition group cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <Phone className="text-cyan-600 mr-4 flex-shrink-0 group-hover:scale-110 transition" />
                 <div>
                   <p className="font-syne text-gray-800 font-bold">Phone</p>
-                  <p className="font-montserrat text-gray-600">+91 959 440 2916</p>
+                  <p className="font-montserrat text-gray-600">+91 9594402822</p>
                 </div>
               </motion.a>
 
               {/* Email Card */}
               <motion.a
-                href="mailto:marketiqjunction@gmail.com"
+                href="mailto:growthhead@nexcorealliance.com"
                 className="flex items-start bg-white/80 backdrop-blur-md border border-white/40 rounded-lg p-4 hover:bg-white/90 transition group cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <Email className="text-cyan-600 mr-4 flex-shrink-0 group-hover:scale-110 transition" />
                 <div>
                   <p className="font-syne text-gray-800 font-bold">Email</p>
-                  <p className="font-montserrat text-gray-600">marketiqjunction@gmail.com</p>
+                  <p className="font-montserrat text-gray-600">growthhead@nexcorealliance.com</p>
                 </div>
               </motion.a>
             </div>
@@ -237,12 +237,13 @@ Message: ${formData.message}`;
 
               {submitted && (
                 <motion.p
-                  className="text-center text-green-600 font-montserrat font-semibold"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  Thank you! We'll get back to you soon.
-                </motion.p>
+  className="text-center text-green-600 font-montserrat font-semibold"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+>
+  Thank you! We&apos;ll get back to you soon.
+</motion.p>
+
               )}
             </motion.form>
           </motion.div>

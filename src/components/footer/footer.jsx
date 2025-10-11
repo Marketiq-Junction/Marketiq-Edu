@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Facebook, Linkedin, Instagram, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
-
+import Image from "next/image";
 const Footer = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -85,31 +85,33 @@ const Footer = () => {
             <motion.div variants={itemVariants} className="space-y-6">
               {/* Logo */}
               <div className="relative h-14 w-28 md:h-16 md:w-40 bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg border-2 border-white/40">
-                <img
-                  src="/37.png"
-                  alt="Logo"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+  <Image
+    src="/37.png"
+    alt="Logo"
+    className="h-full w-full object-cover"
+    width={160}  // adjust according to your design
+    height={64}  // adjust according to your design
+  />
+</div>
 
               <div className="space-y-4">
                 <h3 className="font-bold text-2xl text-white mb-4">Contact Us</h3>
                 
                 {/* Phone */}
                 <motion.a
-                  href="tel:+919920892689"
+                  href="tel:+919594402822"
                   className="flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
                   whileHover={{ x: 5 }}
                 >
                   <div className="bg-white/20 backdrop-blur-sm p-2 rounded-xl group-hover:bg-white/30 transition-all">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <span className="font-medium">+91 99208 92689</span>
+                  <span className="font-medium">+91 9594402822</span>
                 </motion.a>
 
                 {/* Email */}
                 <motion.a
-                  href="mailto:marketiqjunction@gmail.com"
+                  href="mailto:growthhead@nexcorealliance.com"
                   className="flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
                   whileHover={{ x: 5 }}
                   onClick={() => {
@@ -125,7 +127,7 @@ const Footer = () => {
                   <div className="bg-white/20 backdrop-blur-sm p-2 rounded-xl group-hover:bg-white/30 transition-all">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="font-medium text-sm">marketiqjunction@gmail.com</span>
+                  <span className="font-medium text-sm">growthhead@nexcorealliance.com</span>
                 </motion.a>
 
                 {/* Address */}
