@@ -175,13 +175,13 @@ const SingleBrand = ({ brand }) => {
       whileHover={{ scale: 1.05, rotate: 2 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <div className="absolute inset-0 flex items-center justify-center p-4">
+      {/* <div className="absolute inset-0 flex items-center justify-center p-4">
         <img
           src={image}
           alt={`${name} Logo`}
           className="w-full h-full object-contain"
         />
-      </div>
+      </div> */}
     </motion.div>
   );
 };
