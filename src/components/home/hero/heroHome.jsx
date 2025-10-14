@@ -1,16 +1,22 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState , useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play, FileText, X } from "lucide-react";
 
 const HeroHome = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
+ const [isModalOpen, setModalOpen] = useState(false);
   const [isPdfModalOpen, setPdfModalOpen] = useState(false);
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false); // ✅ Added missing state
+  const [formData, setFormData] = useState({
+    mobileNumber: "",
+    fullName: "",
+    email: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
 
   const ref = useRef(null);
   const isInView = useInView(ref, { threshold: 0.3, once: false });
 
-  // Staggered animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,6 +45,96 @@ const HeroHome = () => {
       rotate: 0,
       transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] },
     },
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (formErrors[name]) {
+      setFormErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+  };
+
+  // ✅ Scroll Lock Fix
+  useEffect(() => {
+    if (isBrochureModalOpen || isPdfModalOpen || isModalOpen) {
+      document.body.style.overflow = "hidden"; // Stop background scroll
+    } else {
+      document.body.style.overflow = "auto"; // Enable scroll again
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isBrochureModalOpen, isPdfModalOpen, isModalOpen]);
+
+  const validateForm = () => {
+    const errors = {};
+    const phoneRegex = /^[0-9]{10}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!formData.mobileNumber.trim()) {
+      errors.mobileNumber = "Mobile number required";
+    } else if (!phoneRegex.test(formData.mobileNumber)) {
+      errors.mobileNumber = "Enter 10-digit mobile number";
+    }
+
+    if (!formData.fullName.trim()) {
+      errors.fullName = "Full name required";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email required";
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = "Invalid email address";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const downloadBrochure = () => {
+    if (validateForm()) {
+      const link = document.createElement("a");
+      link.href = "/brochure/b.pdf";
+      link.download = "Education_Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+        setPdfModalOpen(false);
+        setIsBrochureModalOpen(false);
+        setFormData({ mobileNumber: "", fullName: "", email: "" });
+      }, 500);
+    }
+  };
+
+  const shareOnWhatsApp = () => {
+    if (validateForm()) {
+      const pdfUrl =
+        typeof window !== "undefined"
+          ? `${window.location.origin}/brochure/b.pdf`
+          : "/brochure/b.pdf";
+
+      const message = `📘 Explore the latest brochure from Education.Code4Bharat! Discover our programs and opportunities here: ${pdfUrl}`;
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+      setTimeout(() => {
+        setPdfModalOpen(false);
+        setIsBrochureModalOpen(false);
+        setFormData({ mobileNumber: "", fullName: "", email: "" });
+      }, 500);
+    }
   };
 
   return (
@@ -127,11 +223,7 @@ const HeroHome = () => {
                 {/* Brochure Button */}
                 <motion.button
                   onClick={() => {
-                    if (typeof window !== "undefined" && window.innerWidth <= 768) {
-                      window.open("/brochure/b.pdf", "_blank");
-                    } else {
-                      setPdfModalOpen(true);
-                    }
+                    setPdfModalOpen(true);
                   }}
                   className="group relative px-8 py-4 bg-white text-cyan-500 rounded-xl font-semibold overflow-hidden shadow-xl"
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -144,8 +236,7 @@ const HeroHome = () => {
                     Our Brochure
                   </span>
                 </motion.button>
-
-                </motion.div>
+              </motion.div>
             </motion.div>
 
             {/* Right Image */}
@@ -163,90 +254,183 @@ const HeroHome = () => {
 
                 {/* Image Container */}
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl border-2 border-white/20 p-2">
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                    <img
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-300 to-teal-300">
+                    <div className="w-full h-full flex items-center justify-center text-white text-5xl">
+                      <img
                       src="/DigitalGrowth.png"
                       alt="Digital Growth"
                       className="w-full h-full object-cover"
                     />
+                    </div>
                   </div>
                 </div>
               </motion.div>
             </motion.div>
           </div>
         </div>
-
-
       </motion.div>
 
-      
-        
-      
-
-      {/* PDF Modal */}
-{isPdfModalOpen && (
-  <motion.div
-    className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    onClick={() => setPdfModalOpen(false)}
-  >
-    <motion.div
-      className="relative w-full max-w-4xl h-[90vh] bg-white rounded-2xl p-6 shadow-2xl flex flex-col"
-      initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.9, opacity: 0 }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close Button */}
-      <button
-        onClick={() => setPdfModalOpen(false)}
-        className="absolute -top-4 -right-4 bg-red-500 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition-colors z-10"
-      >
-        <X size={20} />
-      </button>
-
-      {/* PDF Viewer */}
-      <iframe
-        src="/brochure/b.pdf"
-        className="w-full flex-1 rounded-xl"
-        title="PDF Viewer"
-      />
-
-      {/* WhatsApp Share Button */}
-      <div className="flex justify-center mt-4">
-        <motion.button
-          onClick={() => {
-            const pdfUrl =
-              typeof window !== "undefined"
-                ? `${window.location.origin}/brochure/b.pdf`
-                : "/brochure/b.pdf";
-            const message = encodeURIComponent(
-              `Hey! Check out this brochure from Marketiq junction: ${pdfUrl}`
-            );
-            const waUrl = `https://wa.me/?text=${message}`;
-            window.open(waUrl, "_blank", "noopener,noreferrer");
-          }}
-          className="flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg transition-all"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+      {/* Form Modal */}
+      {isPdfModalOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setPdfModalOpen(false)}
         >
-          {/* WhatsApp Icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            fill="currentColor"
-            className="w-5 h-5"
+          <motion.div
+            className="relative w-full max-w-2xl bg-gradient-to-br from-white via-blue-50/30 to-white rounded-2xl shadow-2xl overflow-hidden border border-cyan-200/50"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <path d="M380.9 97.1C339-7.9 202.9-32.1 119.1 51.7-11.8 183.8 12.2 404.5 162.5 463.9c17.2 7 35.8 10.5 54.3 10.5 28.1 0 56.1-7.3 80.6-21.5l52.3 13.8-14.1-51.3c29.7-25.8 49.3-61.3 56.2-101.3 9.2-54.5-5.7-109.7-34.9-157zM243 403.3c-18.2 0-36-4.4-51.8-12.7l-3.7-2-38.5 10.2 10.3-37.4-2.4-3.9c-22.2-35.9-26.9-79.5-13-119.5 27.2-75.6 108.7-115.7 184.3-88.5 36.6 13.2 65.5 42 78.7 78.6 27.3 75.6-12.9 157.1-88.5 184.3-20.2 7.3-41.4 11-62.4 11z" />
-          </svg>
-          Send via WhatsApp
-        </motion.button>
-      </div>
-    </motion.div>
-  </motion.div>
-)}
+            <div className="flex flex-col md:flex-row">
+              {/* Left - Brochure Preview */}
+              <div className="hidden md:flex md:w-2/5 bg-gradient-to-br from-cyan-400 to-teal-400 p-8 flex-col items-center justify-center relative min-h-[500px] border-r border-cyan-300/50">
+                <button
+                  onClick={() => setPdfModalOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/40 text-white rounded-full flex items-center justify-center text-xl transition-colors"
+                >
+                  ✕
+                </button>
+                <div className="text-center">
+                  <div className="text-6xl mb-4">📘</div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Download Brochure
+                  </h3>
+                  <p className="text-white/90 text-sm">
+                    Get insights about our courses and programs
+                  </p>
+                </div>
+              </div>
+
+              {/* Right - Form */}
+              <div className="w-full md:w-3/5 p-8 relative">
+                <button
+                  onClick={() => setPdfModalOpen(false)}
+                  className="md:hidden absolute top-4 right-4 w-8 h-8 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full flex items-center justify-center text-xl"
+                >
+                  ✕
+                </button>
+
+                <h2 className="text-2xl font-bold text-cyan-600 mb-2 flex items-center gap-2">
+                  <FileText className="w-6 h-6" />
+                  Download Brochure
+                </h2>
+                <p className="text-gray-600 mb-6 text-sm">
+                  Fill in your details to download our brochure
+                </p>
+
+                <div className="space-y-4">
+                  {/* Mobile Number */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Mobile Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="mobileNumber"
+                      value={formData.mobileNumber}
+                      onChange={handleFormChange}
+                      placeholder="Enter 10-digit Mobile Number"
+                      maxLength="10"
+                      className={`w-full px-4 py-3 rounded-lg border-2 bg-white/50 transition-colors ${
+                        formErrors.mobileNumber
+                          ? "border-red-500"
+                          : "border-cyan-300 focus:border-cyan-500"
+                      } focus:outline-none`}
+                    />
+                    {formErrors.mobileNumber && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {formErrors.mobileNumber}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Full Name */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleFormChange}
+                      placeholder="Your Name"
+                      className={`w-full px-4 py-3 rounded-lg border-2 bg-white/50 transition-colors ${
+                        formErrors.fullName
+                          ? "border-red-500"
+                          : "border-cyan-300 focus:border-cyan-500"
+                      } focus:outline-none`}
+                    />
+                    {formErrors.fullName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {formErrors.fullName}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleFormChange}
+                      placeholder="e.g. yourname@gmail.com"
+                      className={`w-full px-4 py-3 rounded-lg border-2 bg-white/50 transition-colors ${
+                        formErrors.email
+                          ? "border-red-500"
+                          : "border-cyan-300 focus:border-cyan-500"
+                      } focus:outline-none`}
+                    />
+                    {formErrors.email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {formErrors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Download Button */}
+                  <motion.button
+                    onClick={downloadBrochure}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 text-white font-bold rounded-lg flex items-center justify-center gap-2 shadow-lg mt-6"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FileText size={20} />
+                    Download Brochure
+                  </motion.button>
+
+                  {/* WhatsApp Button */}
+                  <motion.button
+                    onClick={shareOnWhatsApp}
+                    className="w-full px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg flex items-center justify-center gap-2 shadow-lg"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      fill="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path d="M380.9 97.1C339-7.9 202.9-32.1 119.1 51.7-11.8 183.8 12.2 404.5 162.5 463.9c17.2 7 35.8 10.5 54.3 10.5 28.1 0 56.1-7.3 80.6-21.5l52.3 13.8-14.1-51.3c29.7-25.8 49.3-61.3 56.2-101.3 9.2-54.5-5.7-109.7-34.9-157zM243 403.3c-18.2 0-36-4.4-51.8-12.7l-3.7-2-38.5 10.2 10.3-37.4-2.4-3.9c-22.2-35.9-26.9-79.5-13-119.5 27.2-75.6 108.7-115.7 184.3-88.5 36.6 13.2 65.5 42 78.7 78.6 27.3 75.6-12.9 157.1-88.5 184.3-20.2 7.3-41.4 11-62.4 11z" />
+                    </svg>
+                    Share on WhatsApp
+                  </motion.button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 };

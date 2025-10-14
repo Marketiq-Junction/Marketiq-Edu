@@ -33,8 +33,11 @@ const Navbar = () => {
     { name: "Our Story", path: "home" },
     { name: "Learn&Grow", path: "learn&grow" },
     { name: "Verify Certificate", path: "verify-certificate" },
-    {name: "Gallery", path: "gallery"},
-    {name: "Review", path: "review"},
+    { name: "Gallery", path: "gallery" },
+    { name: "Review", path: "review" },
+    {name: "Hire From Us", path: "hirefromus" },
+    { name: "Career", path: "careerjourney" },
+    
   ];
 
   return (
@@ -58,14 +61,14 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <div className="relative h-14 w-28 md:h-16 md:w-40 bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg border-2 border-white/40">
-  <Image
-    src="/37.png"
-    alt="Logo"
-    fill
-    className="object-cover rounded-lg"
-    priority
-  />
-</div>
+              <Image
+                src="/37.png"
+                alt="Logo"
+                fill
+                className="object-cover rounded-lg"
+                priority
+              />
+            </div>
           </motion.a>
 
           {/* Desktop Menu */}

@@ -269,13 +269,27 @@ const InstagramReelsGallery = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {[
-            "All",
-            "Workshops",
-            "Student Success",
-            "Campus Life",
-            "Events",
-            "Projects",
-          ].map((category) => (
+  "All",
+  "Workshops",
+  "Student Success",
+  "Campus Life",
+  "Events",
+  "Projects",
+  "Career & Internships",
+  "Tech & Coding",
+  "AI & Machine Learning",
+  "Web Development",
+  "Mobile Apps",
+  "UI/UX & Design",
+  "Startups & Innovation",
+  "Tools & Resources",
+  "Motivation & Growth",
+  "Team Moments",
+  "Fun & Culture",
+  "Q&A Sessions",
+  "Research & Insights",
+  "Behind the Scenes"
+].map((category) => (
             <motion.button
               key={category}
               onClick={() => setSelectedCategory(category)}
