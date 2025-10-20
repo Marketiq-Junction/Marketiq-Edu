@@ -11,44 +11,28 @@ const VerifyCertificate = () => {
   const [pdfUrl, setPdfUrl] = useState("");
   const [certificateDetails, setCertificateDetails] = useState(null);
 
-  // Static certificate map
-  const certificateMap = {
+  // ✅ Static certificate map including new NEXMJ statics
+  const staticCertificates = {
     C4B829: "/PDFS/C4B829.pdf",
     C4B104: "/PDFS/C4B104.pdf",
     C4B562: "/PDFS/C4B562.pdf",
     C4B738: "/PDFS/C4B738.pdf",
+
+    // New Static 5 Certificates
+    NEXMJ111: "/certificates/NEXMJ111.pdf",
+    NEXMJ222: "/certificates/NEXMJ222.pdf",
+    NEXMJ333: "/certificates/NEXMJ333.pdf",
+    NEXMJ444: "/certificates/NEXMJ444.pdf",
+    NEXMJ555: "/certificates/NEXMJ555.pdf",
   };
 
-  // Load image as Data URL
-  const loadImageAsDataUrl = (url) =>
-    new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = "Anonymous";
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        resolve(canvas.toDataURL("image/png"));
-      };
-      img.onerror = () => reject(new Error("Could not load image at " + url));
-      img.src = url;
-    });
-
-  // Generate dynamic PDF (placeholder - needs jsPDF in real implementation)
+  // Placeholder, not changing your logic
   const generateDynamicPDF = async (data) => {
-    try {
-      // This is a placeholder. In real implementation, use jsPDF
-      console.log("Generating PDF for:", data);
-      return "/placeholder-certificate.pdf";
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-      return "";
-    }
+    console.log("Generating PDF for:", data);
+    return "/placeholder-certificate.pdf";
   };
 
-  // Handle verification
+  // ✅ Handle verification
   const handleVerification = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -59,71 +43,67 @@ const VerifyCertificate = () => {
 
     const certificateKey = certificateId.toUpperCase();
 
-    // Check static certificates
-    if (certificateMap[certificateKey]) {
+    // ✅ STATIC CHECK
+    if (staticCertificates[certificateKey]) {
       setIsVerified(true);
       setVerificationStatus("Certificate Verified Successfully!");
-      setPdfUrl(certificateMap[certificateKey]);
-    } else {
-      // Check dynamic certificates via API
-      try {
-        const response = await fetch(
-          "https://api.code4bharat.com/api/student/verifycertificate",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ credentialId: certificateKey }),
-          }
-        );
-        const data = await response.json();
+      setPdfUrl(staticCertificates[certificateKey]);
 
-        if (response.ok && data.data) {
-          setIsVerified(true);
-          setVerificationStatus("Certificate Verified Successfully!");
-          setCertificateDetails({
-            name: data.data.name,
-            authCode: data.data.authCode,
-            date: data.data.date,
-          });
-          const dynamicPdfUrl = await generateDynamicPDF(data.data);
-          setPdfUrl(dynamicPdfUrl);
-        } else {
-          setIsVerified(false);
-          setVerificationStatus(
-            data.message || "Verification Failed. Please check the certificate number."
-          );
-        }
-      } catch (error) {
-        console.error("Error during verification:", error);
-        setIsVerified(false);
-        setVerificationStatus("An error occurred while verifying. Please try again.");
+      // ✅ If NEXMJ — Show Owais details with today's date
+      if (certificateKey.startsWith("NEXMJ")) {
+        setCertificateDetails({
+          name: "Owais Certificate",
+          authCode: certificateKey,
+          date: new Date(),
+        });
       }
+
+      setLoading(false);
+      return;
     }
+
+    // ✅ ELSE API CHECK
+    try {
+      const response = await fetch("https://api.code4bharat.com/api/student/verifycertificate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ credentialId: certificateKey }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.data) {
+        setIsVerified(true);
+        setVerificationStatus("Certificate Verified Successfully!");
+        setCertificateDetails({
+          name: data.data.name,
+          authCode: data.data.authCode,
+          date: data.data.date,
+        });
+
+        const dynamicPdfUrl = await generateDynamicPDF(data.data);
+        setPdfUrl(dynamicPdfUrl);
+      } else {
+        setIsVerified(false);
+        setVerificationStatus(
+          data.message || "Verification Failed. Please check the certificate number."
+        );
+      }
+    } catch (error) {
+      console.error("Error during verification:", error);
+      setIsVerified(false);
+      setVerificationStatus("An error occurred while verifying. Please try again.");
+    }
+
     setLoading(false);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+  // Animation variants unchanged...
+  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } } };
+  const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } };
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 min-h-screen py-20 px-4 md:px-8 mt-10">
+       <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 min-h-screen py-20 px-4 md:px-8 mt-10">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (
