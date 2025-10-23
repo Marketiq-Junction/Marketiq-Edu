@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Image from "next/image";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState("");
@@ -13,16 +14,12 @@ const Navbar = () => {
     const page = currentPath === "/" ? "home" : currentPath.slice(1);
     setActivePage(page);
 
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleMenuItemClick = (page) => {
     setActivePage(page);
@@ -31,13 +28,23 @@ const Navbar = () => {
 
   const menuItems = [
     { name: "Our Story", path: "home" },
-    { name: "Learn&Grow", path: "learn&grow" },
+    { name: "Learn & Grow", path: "learn&grow" },
+    { name: "Verify Certificate", path: "verify-certificate" },
+    { name: "Gallery", path: "gallery" },
+    { name: "Hire From Us", path: "hirefromus" },
+    { name: "Career", path: "careerjourney" },
+    {name: "Review", path:"review"}
+  ];
+
+  const sidebarMenuItems = [
+    { name: "Our Story", path: "home" },
+    { name: "Learn & Grow", path: "learn&grow" },
     { name: "Verify Certificate", path: "verify-certificate" },
     { name: "Gallery", path: "gallery" },
     { name: "Review", path: "review" },
-    {name: "Hire From Us", path: "hirefromus" },
+    { name: "Hire From Us", path: "hirefromus" },
     { name: "Career", path: "careerjourney" },
-    
+    {name: "Review", path:"review"}
   ];
 
   return (
@@ -53,7 +60,6 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          {/* Logo */}
           <motion.a
             href="/"
             className="flex-shrink-0"
@@ -82,12 +88,12 @@ const Navbar = () => {
                 <a
                   href={path === "home" ? "/" : `/${path}`}
                   onClick={() => handleMenuItemClick(path)}
-                  className={`text-lg font-bold transition-colors relative  ${
+                  className={`text-lg font-bold transition-colors relative ${
                     activePage === path
                       ? "text-white"
                       : scrolled
                       ? "text-gray-800 hover:text-cyan-500"
-                      : "text-white/90 hover:text-black-400"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   {name}
@@ -101,25 +107,12 @@ const Navbar = () => {
               </motion.li>
             ))}
 
-            {/* Let's Talk Button - Desktop */}
             <motion.a
               href="/contact-us"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                if (
-                  typeof window !== "undefined" &&
-                  typeof gtag === "function"
-                ) {
-                  gtag("event", "social_click", {
-                    event_category: "engagement",
-                    event_label: "Contact Us",
-                    transport_type: "beacon",
-                  });
-                }
-              }}
             >
               <div className="bg-white text-cyan-500 px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all border-2 border-white/40">
                 Let&apos;s Talk
@@ -128,7 +121,7 @@ const Navbar = () => {
             </motion.a>
           </ul>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Button */}
           <motion.button
             className="md:hidden bg-white/80 backdrop-blur-sm p-2 rounded-xl shadow-lg"
             onClick={toggleMenu}
@@ -143,11 +136,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden"
               initial={{ opacity: 0 }}
@@ -156,7 +148,6 @@ const Navbar = () => {
               onClick={toggleMenu}
             />
 
-            {/* Menu Panel */}
             <motion.div
               className="fixed top-0 right-0 w-3/4 h-full bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 shadow-2xl md:hidden overflow-y-auto"
               initial={{ x: "100%" }}
@@ -165,7 +156,6 @@ const Navbar = () => {
               transition={{ type: "spring", damping: 20 }}
             >
               <div className="p-8 space-y-6">
-                {/* Close Button */}
                 <div className="flex justify-end mb-4">
                   <motion.button
                     onClick={toggleMenu}
@@ -176,9 +166,8 @@ const Navbar = () => {
                   </motion.button>
                 </div>
 
-                {/* Menu Items */}
                 <ul className="space-y-4">
-                  {menuItems.map(({ name, path }, index) => (
+                  {sidebarMenuItems.map(({ name, path }, index) => (
                     <motion.li
                       key={path}
                       initial={{ opacity: 0, x: 20 }}
@@ -200,26 +189,13 @@ const Navbar = () => {
                   ))}
                 </ul>
 
-                {/* Let's Talk Button - Mobile */}
                 <motion.a
-                  href="https://wa.me/919920892689?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+                  href="https://wa.me/919594402822?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  onClick={() => {
-                    if (
-                      typeof window !== "undefined" &&
-                      typeof gtag === "function"
-                    ) {
-                      gtag("event", "social_click", {
-                        event_category: "engagement",
-                        event_label: "WhatsApp",
-                        transport_type: "beacon",
-                      });
-                    }
-                  }}
                 >
                   <div className="bg-white text-cyan-500 px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all mt-8">
                     Let&apos;s Talk

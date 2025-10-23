@@ -427,21 +427,7 @@ const GoogleReviews = () => {
         )} */}
 
         {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <motion.button
-            className="bg-white text-cyan-500 px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Write Your Review
-          </motion.button>
-        </motion.div>
+        
       </div>
     </div>
   );

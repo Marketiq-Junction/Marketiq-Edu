@@ -1,7 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Shield, CheckCircle, XCircle, Download, ExternalLink, Award } from "lucide-react";
+import {
+  Shield,
+  CheckCircle,
+  XCircle,
+  Download,
+  ExternalLink,
+  Award,
+} from "lucide-react";
 
 const VerifyCertificate = () => {
   const [certificateId, setCertificateId] = useState("");
@@ -10,6 +17,8 @@ const VerifyCertificate = () => {
   const [loading, setLoading] = useState(false);
   const [pdfUrl, setPdfUrl] = useState("");
   const [certificateDetails, setCertificateDetails] = useState(null);
+
+  const [previewUrl, setPreviewUrl] = useState("");
 
   // ✅ Static certificate map including new NEXMJ statics
   const staticCertificates = {
@@ -29,7 +38,7 @@ const VerifyCertificate = () => {
   // Placeholder, not changing your logic
   const generateDynamicPDF = async (data) => {
     console.log("Generating PDF for:", data);
-    return "/placeholder-certificate.pdf";
+    return "/PDFS/templatemj.png";
   };
 
   // ✅ Handle verification
@@ -64,46 +73,97 @@ const VerifyCertificate = () => {
 
     // ✅ ELSE API CHECK
     try {
-      const response = await fetch("https://api.code4bharat.com/api/student/verifycertificate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ credentialId: certificateKey }),
-      });
+      // ✅ Try remote API first
+      let response = await fetch(
+        "https://api.code4bharat.com/api/student/verifycertificate",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ credentialId: certificateKey }),
+        }
+      );
 
-      const data = await response.json();
+      let data = await response.json();
 
-      if (response.ok && data.data) {
+      // ✅ If remote fails → fallback to localhost
+      if (!response.ok || !data?.data) {
+        response = await fetch(
+          "http://localhost:5000/api/certificates/verify",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ certificateId: certificateKey }),
+          }
+        );
+        data = await response.json();
+      }
+
+      // ✅ Process Success Response
+      if (response.ok && data?.data) {
+        const cert = data.data;
+
         setIsVerified(true);
         setVerificationStatus("Certificate Verified Successfully!");
         setCertificateDetails({
-          name: data.data.name,
-          authCode: data.data.authCode,
-          date: data.data.date,
+          name: cert.name || "N/A",
+          authCode: cert.authCode || cert.certificateId || certificateKey,
+          date: cert.date || cert.issueDate || new Date(),
+          type: cert.type || "N/A",
         });
 
-        const dynamicPdfUrl = await generateDynamicPDF(data.data);
-        setPdfUrl(dynamicPdfUrl);
+        // ✅ Localhost PDF preview fetch
+        if (response.url.includes("localhost")) {
+          const identifier = cert.authCode || cert.certificateId;
+          const pdfResponse = await fetch(
+            `http://localhost:5000/api/certificates/${identifier}/download/pdf`
+          );
+          const blob = await pdfResponse.blob();
+          const objectUrl = URL.createObjectURL(blob);
+          setPreviewUrl(objectUrl);
+          // setPdfUrl(objectUrl);
+        } else {
+          // ✅ Remote or static: Generate dynamic PDF
+          const dynamicPdfUrl = await generateDynamicPDF(cert);
+          setPdfUrl(dynamicPdfUrl);
+          setPreviewUrl("");
+        }
       } else {
         setIsVerified(false);
         setVerificationStatus(
-          data.message || "Verification Failed. Please check the certificate number."
+          data.message ||
+            "Verification Failed. Please check the certificate number."
         );
       }
     } catch (error) {
       console.error("Error during verification:", error);
       setIsVerified(false);
-      setVerificationStatus("An error occurred while verifying. Please try again.");
+      setVerificationStatus(
+        "An error occurred while verifying. Please try again."
+      );
     }
 
     setLoading(false);
   };
 
   // Animation variants unchanged...
-  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } } };
-  const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
 
   return (
-       <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 min-h-screen py-20 px-4 md:px-8 mt-10">
+    <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 min-h-screen py-20 px-4 md:px-8 mt-10">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (
@@ -156,7 +216,8 @@ const VerifyCertificate = () => {
             </h1>
 
             <p className="text-lg text-gray-700 leading-relaxed">
-              Please enter the unique certificate number to verify its authenticity.
+              Please enter the unique certificate number to verify its
+              authenticity.
             </p>
           </motion.div>
 
@@ -201,7 +262,10 @@ const VerifyCertificate = () => {
               whileHover={!loading ? { scale: 1.02 } : {}}
               whileTap={!loading ? { scale: 0.98 } : {}}
               onClick={() => {
-                if (typeof window !== "undefined" && typeof gtag === "function") {
+                if (
+                  typeof window !== "undefined" &&
+                  typeof gtag === "function"
+                ) {
                   gtag("event", "click", {
                     event_category: "button",
                     event_label: "Verify Certificate Button",
@@ -215,7 +279,11 @@ const VerifyCertificate = () => {
                   <motion.div
                     className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                   Verifying...
                 </span>
@@ -263,12 +331,63 @@ const VerifyCertificate = () => {
             >
               <div className="flex items-center gap-2 mb-4">
                 <Award className="w-6 h-6 text-cyan-600" />
-                <h3 className="text-xl font-bold text-gray-800">Certificate Details</h3>
+                <h3 className="text-xl font-bold text-gray-800">
+                  Certificate Details
+                </h3>
               </div>
               <div className="space-y-2 text-gray-700">
-                <p><strong>Name:</strong> {certificateDetails.name}</p>
-                <p><strong>Auth Code:</strong> {certificateDetails.authCode}</p>
-                <p><strong>Date:</strong> {new Date(certificateDetails.date).toLocaleDateString()}</p>
+                <p>
+                  <strong>Name:</strong> {certificateDetails.name}
+                </p>
+                <p>
+                  <strong>Auth Code:</strong> {certificateDetails.authCode}
+                </p>
+                <p>
+                  <strong>Date:</strong>{" "}
+                  {new Date(certificateDetails.date).toLocaleDateString()}
+                </p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Localhost PDF Preview */}
+          {isVerified && previewUrl && (
+            <motion.div
+              className="mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div className="hidden md:block bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-lg">
+                <iframe
+                  src={previewUrl}
+                  className="w-full h-[600px]"
+                  title="Certificate Preview"
+                />
+              </div>
+              {/* Mobile */}
+              <div className="md:hidden space-y-4">
+                <p className="text-center text-gray-700 font-medium">
+                  View or Download Certificate
+                </p>
+                <div className="flex flex-col gap-3">
+                  <a
+                    href={previewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-2xl shadow-lg"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                    Open Certificate
+                  </a>
+                  <a
+                    href={previewUrl}
+                    download={`Certificate-${certificateId}.pdf`}
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold rounded-2xl shadow-lg"
+                  >
+                    <Download className="w-5 h-5" />
+                    Download PDF
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
@@ -291,7 +410,9 @@ const VerifyCertificate = () => {
 
               {/* Mobile */}
               <div className="md:hidden space-y-4">
-                <p className="text-center text-gray-700 font-medium">View or Download Certificate</p>
+                <p className="text-center text-gray-700 font-medium">
+                  View or Download Certificate
+                </p>
                 <div className="flex flex-col gap-3">
                   <a
                     href={pdfUrl}

@@ -7,33 +7,7 @@ const Offer = () => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const cards = [
-    {
-      id: 1,
-      title: '2-day Bootcamp',
-      icon: Zap,
-      color: 'from-cyan-500 to-blue-600',
-      details: [
-        { label: 'Duration', value: '2 Days' },
-        { label: 'Hours', value: '8 hours per day' },
-        { label: 'Placement Support', value: 'No placement support' },
-        { label: 'Hands-on Experience', value: 'Apply concepts through real-time exercises and examples' },
-        { label: 'Certifications', value: 'Receive a Digital Marketing Bootcamp Certificate' },
-      ],
-    },
-    {
-      id: 2,
-      title: "45-day Fast Track Program",
-      icon: Gauge,
-      color: 'from-blue-500 to-teal-600',
-      details: [
-        { label: 'Duration', value: '45 Days' },
-        { label: 'Hours', value: '2 days per week, 5 hours per session' },
-        { label: 'Placement Support', value: 'Career guidance and mock interviews included' },
-        { label: '100% Placement Support', value: 'Resume building, mock interviews, and recruiter connections' },
-        { label: 'Project-Based Learning', value: 'Gain practical experience by working on real-world campaigns' },
-        { label: 'Certifications', value: 'Digital Marketing Basics Certificate, Social Media Marketing Specialist Certificate, Content Writing Specialist Certificate' },
-      ],
-    },
+    
     {
   id: 3,
   title: "4-Month A.I Digital Marketing Program + 2-Month Internship",

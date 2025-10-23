@@ -5,24 +5,7 @@ import { Zap, Gauge, TrendingUp, ExternalLink, FileText } from "lucide-react";
 
 const Courses = () => {
   const courseData = [
-    {
-      id: 1,
-      title: "2-Day Bootcamp",
-      icon: Zap,
-      color: "from-cyan-500 to-blue-600",
-      extraInfo:
-        "Join our 2-day bootcamp to get a quick overview of digital marketing fundamentals. Perfect for beginners to get started!",
-      syllabusLink: "/pdf/Bootcamp.pdf",
-    },
-    {
-      id: 2,
-      title: "45-Day Fast Track Program",
-      icon: Gauge,
-      color: "from-blue-500 to-teal-600",
-      extraInfo:
-        "This 45-day program focuses on fast-paced learning with in-depth knowledge and hands-on experience in digital marketing.",
-      syllabusLink: "/pdf/45 day.pdf",
-    },
+    
     {
   id: 3,
   title: "4-Month Digital Marketing Program + 2-Month Internship",
