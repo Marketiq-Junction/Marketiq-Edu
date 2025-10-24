@@ -88,7 +88,7 @@ const VerifyCertificate = () => {
       // ✅ If remote fails → fallback to localhost
       if (!response.ok || !data?.data) {
         response = await fetch(
-          "http://localhost:5000/api/certificates/verify",
+          "https://api-certificate.nexcorealliance.com/api/certificates/verify",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -115,7 +115,7 @@ const VerifyCertificate = () => {
         if (response.url.includes("localhost")) {
           const identifier = cert.authCode || cert.certificateId;
           const pdfResponse = await fetch(
-            `http://localhost:5000/api/certificates/${identifier}/download/pdf`
+            `https://api-certificate.nexcorealliance.com/api/certificates/${identifier}/download/pdf`
           );
           const blob = await pdfResponse.blob();
           const objectUrl = URL.createObjectURL(blob);
