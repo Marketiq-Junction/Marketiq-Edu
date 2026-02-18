@@ -63,8 +63,18 @@ const VerifyCertificate = () => {
 
       // ✅ If NEXMJ — Show Owais details with today's date
       if (certificateKey.startsWith("NEXMJ")) {
+        const num = parseInt(certificateKey.replace("NEXMJ", ""), 10);
+
+        let name = "";
+
+        if (num <= 555) {
+          name = "Owais Certificate";
+        } else {
+          name = "MOHAMMAD QUTBUDDIN KOTKUNDE";
+        }
+
         setCertificateDetails({
-          name: "Owais Certificate",
+          name,
           authCode: certificateKey,
           date: new Date(),
         });
@@ -83,7 +93,7 @@ const VerifyCertificate = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ credentialId: certificateKey }),
-        }
+        },
       );
 
       let data = await response.json();
@@ -96,7 +106,7 @@ const VerifyCertificate = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ certificateId: certificateKey }),
-          }
+          },
         );
         data = await response.json();
       }
@@ -118,7 +128,7 @@ const VerifyCertificate = () => {
         if (response.url.includes("localhost")) {
           const identifier = cert.authCode || cert.certificateId;
           const pdfResponse = await fetch(
-            `https://api-certificate.nexcorealliance.com/api/certificates/${identifier}/download/pdf`
+            `https://api-certificate.nexcorealliance.com/api/certificates/${identifier}/download/pdf`,
           );
           const blob = await pdfResponse.blob();
           const objectUrl = URL.createObjectURL(blob);
@@ -134,14 +144,14 @@ const VerifyCertificate = () => {
         setIsVerified(false);
         setVerificationStatus(
           data.message ||
-            "Verification Failed. Please check the certificate number."
+            "Verification Failed. Please check the certificate number.",
         );
       }
     } catch (error) {
       console.error("Error during verification:", error);
       setIsVerified(false);
       setVerificationStatus(
-        "An error occurred while verifying. Please try again."
+        "An error occurred while verifying. Please try again.",
       );
     }
 
