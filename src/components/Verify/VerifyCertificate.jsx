@@ -33,6 +33,9 @@ const VerifyCertificate = () => {
     NEXMJ333: "/certificates/NEXMJ333.pdf",
     NEXMJ444: "/certificates/NEXMJ444.pdf",
     NEXMJ555: "/certificates/NEXMJ555.pdf",
+    NEXMJ666: "/certificates/NEXMJ666.pdf",
+    NEXMJ888: "/certificates/NEXMJ888.pdf",
+    NEXMJ999: "/certificates/NEXMJ999.pdf",
   };
 
   // Placeholder, not changing your logic
