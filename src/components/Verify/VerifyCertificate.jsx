@@ -27,7 +27,7 @@ const VerifyCertificate = () => {
     C4B562: "/PDFS/C4B562.pdf",
     C4B738: "/PDFS/C4B738.pdf",
 
-    // New Static 5 Certificates
+    // New Static Certificates
     NEXMJ111: "/certificates/NEXMJ111.pdf",
     NEXMJ222: "/certificates/NEXMJ222.pdf",
     NEXMJ333: "/certificates/NEXMJ333.pdf",
@@ -36,6 +36,17 @@ const VerifyCertificate = () => {
     NEXMJ666: "/certificates/NEXMJ666.pdf",
     NEXMJ888: "/certificates/NEXMJ888.pdf",
     NEXMJ999: "/certificates/NEXMJ999.pdf",
+
+    // ✅ NEW ADD (your IDs)
+    NEXMJ121: "/certificates/NEXMJ121.pdf",
+    NEXMJ122: "/certificates/NEXMJ122.pdf",
+    NEXMJ123: "/certificates/NEXMJ123.pdf",
+    NEXMJ124: "/certificates/NEXMJ124.pdf",
+    NEXMJ125: "/certificates/NEXMJ125.pdf",
+    NEXMJ126: "/certificates/NEXMJ126.pdf",
+    NEXMJ127: "/certificates/NEXMJ127.pdf",
+    NEXMJ128: "/certificates/NEXMJ128.pdf",
+    NEXMJ129: "/certificates/NEXMJ129.pdf",
   };
 
   // Placeholder, not changing your logic
@@ -62,12 +73,29 @@ const VerifyCertificate = () => {
       setPdfUrl(staticCertificates[certificateKey]);
 
       // ✅ If NEXMJ — Show Owais details with today's date
+      const nexmjNames = {
+        NEXMJ121: "ANAM SHAIKH",
+        NEXMJ122: "ANAS ANSARI",
+        NEXMJ123: "ABDUL KHALIQUE SHAIKH",
+        NEXMJ124: "ANAS ANSARI",
+        NEXMJ125: "ANAM SHAIKH",
+        NEXMJ126: "ABDUL KHALIQUE SHAIKH",
+        NEXMJ127: "ABDUL KHALIQUE SHAIKH",
+        NEXMJ128: "ANAS ANSARI",
+        NEXMJ129: "ANAM SHAIKH",
+      };
+
       if (certificateKey.startsWith("NEXMJ")) {
         const num = parseInt(certificateKey.replace("NEXMJ", ""), 10);
 
         let name = "";
 
-        if (num <= 555) {
+        // ✅ 1. Pehle custom mapping check karo
+        if (nexmjNames[certificateKey]) {
+          name = nexmjNames[certificateKey];
+        }
+        // ✅ 2. Agar mapping me nahi mila → old logic use karo
+        else if (num <= 555) {
           name = "Owais Certificate";
         } else {
           name = "MOHAMMAD QUTBUDDIN KOTKUNDE";
@@ -144,7 +172,7 @@ const VerifyCertificate = () => {
         setIsVerified(false);
         setVerificationStatus(
           data.message ||
-            "Verification Failed. Please check the certificate number.",
+          "Verification Failed. Please check the certificate number.",
         );
       }
     } catch (error) {
@@ -309,11 +337,10 @@ const VerifyCertificate = () => {
           {/* Verification Status */}
           {verificationStatus && (
             <motion.div
-              className={`mt-6 p-6 rounded-2xl border-2 ${
-                isVerified
-                  ? "bg-green-50 border-green-300"
-                  : "bg-red-50 border-red-300"
-              }`}
+              className={`mt-6 p-6 rounded-2xl border-2 ${isVerified
+                ? "bg-green-50 border-green-300"
+                : "bg-red-50 border-red-300"
+                }`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
@@ -325,9 +352,8 @@ const VerifyCertificate = () => {
                   <XCircle className="w-6 h-6 text-red-600" />
                 )}
                 <p
-                  className={`text-lg font-bold ${
-                    isVerified ? "text-green-700" : "text-red-700"
-                  }`}
+                  className={`text-lg font-bold ${isVerified ? "text-green-700" : "text-red-700"
+                    }`}
                 >
                   {verificationStatus}
                 </p>
