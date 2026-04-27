@@ -76,11 +76,11 @@ const VerifyCertificate = () => {
       const nexmjNames = {
         NEXMJ121: "ANAM SHAIKH",
         NEXMJ122: "ANAS ANSARI",
-        NEXMJ123: "ABDUL KHALIQUE SHAIKH",
+        NEXMJ123: "ABDUL KHALIQUE ASRAR SHAIKH",
         NEXMJ124: "ANAS ANSARI",
         NEXMJ125: "ANAM SHAIKH",
-        NEXMJ126: "ABDUL KHALIQUE SHAIKH",
-        NEXMJ127: "ABDUL KHALIQUE SHAIKH",
+        NEXMJ126: "ABDUL KHALIQUE ASRAR SHAIKH",
+        NEXMJ127: "ABDUL KHALIQUE ASRAR SHAIKH",
         NEXMJ128: "ANAS ANSARI",
         NEXMJ129: "ANAM SHAIKH",
       };
@@ -292,7 +292,7 @@ const VerifyCertificate = () => {
                 onChange={(e) => setCertificateId(e.target.value)}
                 required
                 className="w-full px-6 py-4 border-2 border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all text-lg"
-                placeholder="Enter Credential ID (e.g., 'C4B829')"
+                placeholder="Enter Credential ID (e.g., 'NEXMJ111')"
               />
             </div>
 
